@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "node --test src/games/memory.test.js"
+    "test": "node --test src/games/memory.test.js src/games/gorila-loco/*.test.js src/games/conecta-colores/*.test.js src/games/ultima-mordida/*.test.js"
   },
   "dependencies": {
     "react": "^19.3.1",
