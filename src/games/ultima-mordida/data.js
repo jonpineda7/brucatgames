@@ -1,9 +1,11 @@
-export const CHARACTERS = [
-  { id:'pipo', name:'Pipo', title:'El conejo nervioso', image:'rabbit', ears:'largas', outfit:'azul', gold:false, detail:'Lazo azul; orejas largas; sin detalle dorado.' },
-  { id:'miga', name:'Miga', title:'El gato glotón', image:'cat', ears:'puntiagudas', outfit:'verde', gold:false, detail:'Babero verde; orejas puntiagudas; sin detalle dorado.' },
-  { id:'bruno', name:'Bruno', title:'El oso dormilón', image:'bear', ears:'redondas', outfit:'azul', gold:true, detail:'Gorro azul con estrella dorada; orejas redondas.' },
-  { id:'lino', name:'Lino', title:'El zorro elegante', image:'fox', ears:'puntiagudas', outfit:'azul', gold:true, detail:'Pajarita azul y monóculo dorado; orejas puntiagudas.' },
-  { id:'moru', name:'Moru', title:'El monstruito bromista', image:'monster', ears:'redondas', outfit:'verde', gold:true, detail:'Capa verde con broche dorado; orejas redondas y cuernos suaves.' },
+const png = (name,width,height) => ({src:`games/ultima-mordida/characters/${name}.png`,width,height})
+export const VILLAIN_ID='cocodrilo'
+export const CHARACTERS=[
+ {id:'brucat',name:'BruCat',title:'El gorila anfitrión',innocent:true,art:{normal:png('brucat-normal',884,887),poisoned:png('brucat-poisoned',1199,1312)}},
+ {id:'gata',name:'Gata',title:'La invitada del lazo morado',innocent:true,art:{normal:png('gata-normal',1312,1199),poisoned:png('gata-poisoned',1199,1312)}},
+ {id:'ajolote',name:'Axo',title:'El ajolote de la sudadera turquesa',innocent:true,art:{normal:png('ajolote-normal',1312,1199),poisoned:png('ajolote-poisoned',1312,1199)}},
+ {id:'bruno',name:'Bruno',title:'El caballero rana',innocent:true,art:{normal:png('bruno-normal',1312,1199),poisoned:png('bruno-poisoned',1287,1222)}},
+ {id:VILLAIN_ID,name:'Cocodrilo',title:'El villano del sombrero elegante',innocent:false,art:{normal:png('cocodrilo-normal',890,887),poisoned:png('cocodrilo-poisoned',1220,1289)}},
 ]
 // Explicit recipes: clues describe THESE dishes, rather than assumptions about all food.
 const dish = (id,name,image,category,ingredients,temperature,flavor,price,baked) => ({id,name,image,category,ingredients,temperature,flavor,price,baked})
@@ -30,12 +32,12 @@ export const MENUS = {
     dish('cake','Pastel tibio de chocolate','cake','horno',['harina','huevo','chocolate'],'caliente','dulce',4,true),
   ],
 }
-export const STAGES = [
-  {id:0,name:'Aprendiz',subtitle:'Tres invitados · Tutorial guiado',from:1,to:5},
-  {id:1,name:'Investigador',subtitle:'Cinco invitados · Tres pistas',from:6,to:10},
-  {id:2,name:'Detective',subtitle:'Encuentra también al travieso',from:11,to:15},
-  {id:3,name:'Maestro del Banquete',subtitle:'Recetas especiales · Cambia-Platos',from:16,to:20},
+export const STAGES=[
+ {id:0,name:'Fácil',subtitle:'Pistas con solución única · Tutorial guiado',from:1,to:5,difficulty:'easy'},
+ {id:1,name:'Normal',subtitle:'Pistas parciales · Ayuda opcional',from:6,to:10,difficulty:'normal'},
+ {id:2,name:'Difícil',subtitle:'Menos información · Más incertidumbre',from:11,to:15,difficulty:'hard'},
+ {id:3,name:'Experto',subtitle:'Recetas especiales · Riesgo controlado',from:16,to:20,difficulty:'expert'},
 ]
-export const characterById = id => CHARACTERS.find(character => character.id === id)
-export const menuFor = level => MENUS[level.menu].filter(dish => level.dishes.includes(dish.id))
-export const guestsFor = level => level.guests.map(characterById)
+export const characterById = id => CHARACTERS.find(character=>character.id===id)
+export const menuFor = level => MENUS[level.menu] || []
+export const guestsFor = () => CHARACTERS

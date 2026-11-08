@@ -1,17 +1,23 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {STORAGE_KEY,cleanProgress,readProgress,saveProgress,rememberResult} from './progress.js'
-test('records, score and sound round-trip independently of the other games',()=>{
- let raw=null;const storage={getItem:()=>raw,setItem:(key,value)=>{assert.equal(key,STORAGE_KEY);raw=value}}
- let progress=rememberResult(cleanProgress(null),1,{stars:3,score:1000});progress={...progress,sound:true}
+import {STORAGE_KEY,LEGACY_KEY,cleanProgress,readProgress,saveProgress,rememberResult} from './progress.js'
+const win={won:true,stars:3,score:1600,rounds:1,survivors:4,safeServed:0,poisonedServed:1}
+test('new records round-trip, unlock levels and cannot be downgraded by a loss or worse win',()=>{
+ const values=new Map(),storage={getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value)}
+ let progress=rememberResult(cleanProgress(null),1,win);progress={...progress,sound:true}
  assert.equal(saveProgress(storage,progress),true);assert.deepEqual(readProgress(storage),progress);assert.equal(progress.unlocked,2)
- progress=rememberResult(progress,1,{stars:1,score:600});assert.deepEqual(progress.completed[1],{stars:3,score:1000})
- progress=rememberResult(progress,1,{stars:3,score:1025});assert.equal(progress.completed[1].score,1025)
+ assert.equal(rememberResult(progress,1,{...win,won:false,stars:0}),progress)
+ progress=rememberResult(progress,1,{...win,stars:1,score:900,survivors:2});assert.equal(progress.completed[1].stars,3)
+ assert.ok(values.has(STORAGE_KEY))
 })
-test('corrupt or denied storage does not crash; unlocks derive only from consecutive wins',()=>{
- const storage={getItem(){throw Error('denied')},setItem(){throw Error('quota')}}
- assert.deepEqual(readProgress(storage),cleanProgress(null));assert.equal(saveProgress(storage,cleanProgress(null)),false)
- assert.deepEqual(readProgress({getItem:()=>'{oops'}),cleanProgress(null));assert.equal(saveProgress(null,cleanProgress(null)),false)
- const progress=cleanProgress({unlocked:99,completed:{1:{stars:0,score:900},20:{stars:3,score:1000},3:{stars:3,score:-1}},sound:'true'})
- assert.equal(progress.unlocked,1);assert.equal(progress.completed[1],undefined);assert.equal(progress.completed[3],undefined);assert.equal(progress.sound,false)
+test('V1 migration retains unlocked access and sound without comparing incompatible old records',()=>{
+ const legacy={completed:{1:{stars:3,score:1000},2:{stars:2,score:950}},sound:true}
+ const storage={getItem:key=>key===LEGACY_KEY?JSON.stringify(legacy):null}
+ const progress=readProgress(storage);assert.equal(progress.unlocked,3);assert.equal(progress.inheritedUnlocked,3);assert.equal(progress.sound,true);assert.deepEqual(progress.completed,{})
+})
+test('unavailable, corrupt or full storage allows play and validates incoming data',()=>{
+ const blocked={getItem(){throw Error('blocked')},setItem(){throw Error('quota')}}
+ assert.deepEqual(readProgress(blocked),cleanProgress(null));assert.equal(saveProgress(blocked,cleanProgress(null)),false)
+ assert.deepEqual(readProgress({getItem:()=>'{bad'}),cleanProgress(null));assert.equal(saveProgress(null,cleanProgress(null)),false)
+ assert.equal(cleanProgress({completed:{1:{...win,stars:7}},inheritedUnlocked:90}).unlocked,1)
 })

@@ -7,7 +7,7 @@ const kidsGames = [
   { id: 'memory', title: 'Memoria Gorila', text: 'Encuentra los pares y entrena tu memoria.', skill: 'Memoria y atención', color: 'violet', href: '#/infantil/memoria' },
   { id: 'gorila-loco', title: 'Gorila Loco', text: 'Atrapa animales, evita trampas y supera tu récord.', skill: 'Reflejos y coordinación', color: 'green', href: '#/infantil/gorila-loco', age: '4–10 años' },
   { id: 'conecta-colores', title: 'Conecta los Colores', text: 'Une las parejas sin cruzar caminos. 30 niveles para explorar.', skill: 'Lógica · Fácil a difícil', color: 'pink', href: '#/infantil/conecta-colores', age: '4–10 años' },
-  { id: 'ultima-mordida', title: 'La Última Mordida', text: 'Sigue las pistas y sirve un banquete lleno de magia. 20 misterios.', skill: 'Deducción y estrategia', color: 'gold', href: '#/infantil/ultima-mordida', age: '6–10 años' },
+  { id: 'ultima-mordida', title: 'La Última Mordida', text: 'Lee las pistas, reparte los platos y pulsa «¡A comer!».', skill: 'Deducción y estrategia', color: 'gold', href: '#/infantil/ultima-mordida', age: '6–10 años' },
   { id: 'puzzle', title: 'Rompecabezas BruCat', text: 'Arma imágenes divertidas, pieza por pieza.', skill: 'Lógica y motricidad', color: 'blue' },
   { id: 'math', title: 'Aventura Matemática', text: 'Resuelve desafíos y descubre nuevos caminos.', skill: 'Matemáticas', color: 'green' },
   { id: 'words', title: 'Sopa de Letras', text: 'Explora el tablero y encuentra las palabras.', skill: 'Vocabulario', color: 'orange' },

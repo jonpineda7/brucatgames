@@ -1,33 +1,8 @@
-// Original SVG character and food studies. Replace these components with approved
-// character assets later if desired; no external illustrations or licenses required.
-import { useId } from 'react'
-const ink='#302042'
-export function GuestArt({character,frog=false,className=''}){
- const id=useId(),kind=character.image
- const fur={rabbit:'#f4ddc6',cat:'#ffb264',bear:'#b98a69',fox:'#f59151',monster:'#b596f0'}[kind]
- return <svg className={`bite-guest-art ${className}`} viewBox="0 0 180 180" aria-hidden="true"><defs><linearGradient id={id} x2="0" y2="1"><stop stopColor={fur}/><stop offset="1" stopColor={kind==='monster'?'#8264c7':fur}/></linearGradient></defs>
-  <ellipse cx="90" cy="167" rx="67" ry="9" fill="#09071944"/>
-  <path d="M32 166Q34 117 90 114Q146 117 148 166" fill={character.outfit==='verde'?'#6abc91':'#68b7e3'} stroke={ink} strokeWidth="4"/>
-  {frog?<><path d="M36 130Q16 97 43 72Q71 52 91 69Q120 48 143 76Q166 110 140 134Q90 164 36 130" fill="#9cdb73" stroke={ink} strokeWidth="4"/><circle cx="60" cy="81" r="24" fill="#b4ea89" stroke={ink} strokeWidth="4"/><circle cx="119" cy="81" r="24" fill="#b4ea89" stroke={ink} strokeWidth="4"/>{[60,119].map(x=><g key={x}><ellipse cx={x} cy="82" rx="13" ry="17" fill="#fff8de"/><circle cx={x+3} cy="84" r="7" fill={ink}/></g>)}<path d="M52 115Q89 139 130 114" fill="none" stroke={ink} strokeWidth="4" strokeLinecap="round"/><path d="M80 128Q92 152 103 129" fill="#ff9ba5" stroke={ink} strokeWidth="3"/><path d="M26 154L12 164M149 154L165 164" stroke="#a8df78" strokeWidth="10" strokeLinecap="round"/></>:<>
-  {kind==='rabbit'&&<><ellipse cx="62" cy="40" rx="17" ry="35" transform="rotate(-13 62 40)" fill={fur} stroke={ink} strokeWidth="4"/><ellipse cx="116" cy="38" rx="16" ry="36" transform="rotate(16 116 38)" fill={fur} stroke={ink} strokeWidth="4"/><path d="M59 52L58 22M119 52L122 20" stroke="#e89eaa" strokeWidth="11" strokeLinecap="round"/></>}
-  {['cat','fox'].includes(kind)&&<><path d="M38 83L30 27L79 58M100 57L149 24L144 91" fill={fur} stroke={ink} strokeWidth="4" strokeLinejoin="round"/><path d="M41 61L39 43L59 59M122 58L140 42L137 68" fill="#ffccbd"/></>}
-  {['bear','monster'].includes(kind)&&<><circle cx="43" cy="61" r="22" fill={fur} stroke={ink} strokeWidth="4"/><circle cx="137" cy="61" r="22" fill={fur} stroke={ink} strokeWidth="4"/><circle cx="43" cy="61" r="12" fill="#e1aed5"/><circle cx="137" cy="61" r="12" fill="#e1aed5"/></>}
-  {kind==='monster'&&<><path d="M46 50Q30 12 60 30L69 50M112 48Q133 9 138 46" fill="#ffe9ad" stroke={ink} strokeWidth="4" strokeLinejoin="round"/></>}
-  <path d="M35 86Q34 49 89 46Q146 49 148 88Q154 140 91 145Q28 139 35 86" fill={`url(#${id})`} stroke={ink} strokeWidth="4"/>
-  {kind==='fox'&&<path d="M36 91L85 120L146 88Q148 140 91 143Q40 141 36 91" fill="#ffe9cf"/>}
-  {kind==='bear'&&<ellipse cx="90" cy="114" rx="35" ry="24" fill="#e7c7a1"/>}
-  {kind==='cat'&&<><path d="M54 48L62 70M83 47L88 69M114 49L110 69" stroke="#db7d3c" strokeWidth="7" strokeLinecap="round"/><path d="M42 110L17 101M41 120L14 123M138 108L162 101M140 120L166 123" stroke={ink} strokeWidth="3" strokeLinecap="round"/></>}
-  {[66,113].map((x,i)=><g key={x}><ellipse cx={x} cy={kind==='bear'?89:86} rx="18" ry={kind==='bear'?14:22} fill="#fffdf5" stroke={ink} strokeWidth="3"/>{kind==='bear'?<path d={`M${x-10} 90q10 -9 20 0`} stroke={ink} strokeWidth="4" fill="none" strokeLinecap="round"/>:<><ellipse cx={x+(kind==='rabbit'?i?-2:3:2)} cy="89" rx="8" ry="11" fill={ink}/><circle cx={x+4} cy="85" r="3" fill="white"/></>}</g>)}
-  <ellipse cx="43" cy="109" rx="11" ry="6" fill="#ef9c9c" opacity=".65"/><ellipse cx="137" cy="109" rx="11" ry="6" fill="#ef9c9c" opacity=".65"/>
-  <path d="M81 107Q90 101 99 107L90 114Z" fill={kind==='monster'?'#8063b4':'#9b5364'} stroke={ink} strokeWidth="2"/>
-  {kind==='monster'?<><path d="M61 120Q90 151 122 117" fill="#663760" stroke={ink} strokeWidth="3"/><path d="M72 124L78 133L84 127" fill="#fff8d9"/><path d="M101 125L108 132L114 122" fill="#fff8d9"/></>:<path d="M64 120Q90 139 117 118" fill="none" stroke={ink} strokeWidth="3" strokeLinecap="round"/>}
-  {kind==='rabbit'&&<><path d="M81 124L81 135H97V125" fill="#fffef5" stroke={ink} strokeWidth="2"/><path d="M64 151L87 143L114 151L99 165L87 154L72 165Z" fill="#4e8edc" stroke={ink} strokeWidth="3"/></>}
-  {kind==='cat'&&<path d="M60 142Q90 159 120 142L115 170H63Z" fill="#b2e79e" stroke={ink} strokeWidth="3"/>}
-  {kind==='bear'&&<><path d="M43 66Q39 20 96 23L143 70Q105 49 43 66" fill="#4a72a6" stroke={ink} strokeWidth="4"/><path d="M91 30L95 40L107 41L98 49L99 61L90 55L80 61L83 49L74 42L87 41Z" fill="#ffdb80" stroke={ink} strokeWidth="2"/></>}
-  {kind==='fox'&&<><circle cx="114" cy="85" r="23" stroke="#f6d17a" strokeWidth="6" fill="none"/><path d="M136 91Q151 135 139 160" stroke="#f6d17a" strokeWidth="3" fill="none"/><path d="M64 148L90 155L115 147V170L91 162L64 171Z" fill="#4e83c3" stroke={ink} strokeWidth="3"/></>}
-  {kind==='monster'&&<><path d="M45 139L31 165L80 151M134 138L151 165L98 151" fill="#4d917b" stroke={ink} strokeWidth="3"/><circle cx="91" cy="153" r="10" fill="#ffdc82" stroke={ink} strokeWidth="3"/></>}
-  </>}
- </svg>
+// Official PNGs retain their source proportions and transparency.
+const base=import.meta.env.BASE_URL
+export function GuestArt({character,poisoned=false,className=''}){
+ const artwork=character.art[poisoned?'poisoned':'normal']
+ return <img className={`bite-guest-art bite-official-art ${className}`} src={`${base}${artwork.src}`} width={artwork.width} height={artwork.height} alt="" draggable={false} decoding="async"/>
 }
 export function DishArt({dish,className=''}){
  const kind=dish.image
