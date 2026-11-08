@@ -1,5 +1,6 @@
 import { useEffect, useRef, useSyncExternalStore } from 'react'
 import MemoryGame from './games/MemoryGame'
+import CategoryView from './categories/CategoryView'
 import { symbols } from './games/memory'
 import './App.css'
 
@@ -25,9 +26,6 @@ function Home() {
     <section className="featured-section" aria-labelledby="featured-title"><div className="section-heading"><div><span className="eyebrow">TU PRIMERA PARTIDA</span><h2 id="featured-title">Empieza con una buena pareja</h2></div><a className="text-link" href="#/infantil">Ver Infantil →</a></div><div className="featured-layout"><GameCard /><div className="featured-note"><span className="note-number">01</span><h3>Pequeño juego.<br />Grandes descubrimientos.</h3><p>Nuestra primera demo abre las puertas de Infantil. Seis parejas, un tablero y toda la curiosidad para encontrarlas.</p><span className="pill">Sin tiempo límite</span><span className="pill">Para jugar a tu ritmo</span></div></div></section>
   </>
 }
-function Kids() {
-  return <section aria-labelledby="kids-title"><div className="category-banner"><div><span className="eyebrow">CATEGORÍA / INFANTIL</span><h1 id="kids-title">Pequeños jugadores.<br /><span className="gradient-text">Grandes aventuras.</span></h1><p>Un espacio para explorar, descubrir y divertirse sin prisa.</p></div><span className="category-banner-icon" aria-hidden="true">✦</span></div><div className="section-heading"><h2>Elige tu primera aventura</h2><span className="pill">1 juego disponible</span></div><div className="kids-catalog"><GameCard /><div className="next-game"><span aria-hidden="true">＋</span><h3>La aventura continúa</h3><p>Pronto habrá más juegos por descubrir en esta categoría.</p></div></div></section>
-}
 function NotFound() {
   return <main className="not-found"><h1 className="sr-only">404: Página no encontrada</h1><div className="error-artwork"><img src={`${base}images/brucatgames-404.png`} alt="Un gorila gamer perdido en el mapa. Página no encontrada." /><a className="artwork-home-link" href={base} aria-label="Volver al inicio" /></div></main>
 }
@@ -44,5 +42,5 @@ export default function App() {
   const path = window.location.pathname.replace(/\/+$/, '')
   const home = base.replace(/\/+$/, '')
   if (![home, `${home}/index.html`].includes(path) || !['/', '/infantil', '/infantil/memoria'].includes(route)) return <NotFound />
-  return <div className="platform-shell"><a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); main.current?.focus() }}>Saltar al contenido</a><header className="platform-header"><a className="wordmark" href="#/" aria-label="BruCatGames, inicio"><span className="brand-emblem" aria-hidden="true">B<span>✦</span></span><span>BruCat<span className="cyan">Games</span><small>EL JUEGO NOS CONECTA</small></span></a><nav aria-label="Navegación principal"><a href="#/" aria-current={route === '/' ? 'page' : undefined}>Inicio</a><a href="#/infantil" aria-current={route.startsWith('/infantil') ? 'page' : undefined}>Infantil <span className="nav-count">01</span></a></nav><span className="header-label"><span className="live-dot" /> MODO EXPLORAR</span></header><main id="main-content" ref={main} tabIndex={-1} className="platform-main">{route === '/' ? <Home /> : route === '/infantil' ? <Kids /> : <MemoryGame />}</main><footer className="platform-footer"><span>BruCat<span className="cyan">Games</span> <span className="muted">· Un lugar para cada jugador.</span></span><a href="#/">Volver al inicio ↑</a></footer></div>
+  return <div className={`platform-shell ${route === '/infantil' ? 'category-shell' : ''}`}><a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); main.current?.focus() }}>Saltar al contenido</a><header className="platform-header"><a className="wordmark" href="#/" aria-label="BruCatGames, inicio"><span className="brand-emblem" aria-hidden="true">B<span>✦</span></span><span>BruCat<span className="cyan">Games</span><small>EL JUEGO NOS CONECTA</small></span></a><nav aria-label="Navegación principal"><a href="#/" aria-current={route === '/' ? 'page' : undefined}>Inicio</a><a href="#/infantil" aria-current={route.startsWith('/infantil') ? 'page' : undefined}>Infantil <span className="nav-count">01</span></a></nav><span className="header-label"><span className="live-dot" /> MODO EXPLORAR</span></header><main id="main-content" ref={main} tabIndex={-1} className="platform-main">{route === '/' ? <Home /> : route === '/infantil' ? <CategoryView categoryId="infantil" /> : <MemoryGame />}</main><footer className="platform-footer"><span>BruCat<span className="cyan">Games</span> <span className="muted">· Un lugar para cada jugador.</span></span><a href="#/">Volver al inicio ↑</a></footer></div>
 }

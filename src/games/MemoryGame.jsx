@@ -1,11 +1,14 @@
+import MemoryResult from './MemoryResult'
 import { useEffect, useReducer, useRef, useState } from 'react'
-import { createGame, memoryReducer, symbols } from './memory'
+import { createGame, getGameStatus, memoryReducer, symbols } from './memory'
 
 export default function MemoryGame() {
   const [game, dispatch] = useReducer(memoryReducer, undefined, createGame)
   const [sound, setSound] = useState(false)
   const audio = useRef(null)
-  const finished = game.matched.length === game.cards.length
+  const status = getGameStatus(game)
+  const finished = status !== 'playing'
+  const resultReady = finished && game.flipped.length === 0
   const pairs = game.matched.length / 2
 
   useEffect(() => {
@@ -16,7 +19,7 @@ export default function MemoryGame() {
   useEffect(() => () => { audio.current?.close().catch(() => {}) }, [])
   useEffect(() => {
     // Warm the six shared images before the first reveal.
-    symbols.forEach(symbol => {
+    [...symbols, { image: 'images/results/victory.png' }, { image: 'images/results/game-over.png' }].forEach(symbol => {
       const image = new window.Image()
       image.src = `${import.meta.env.BASE_URL}${symbol.image}`
     })
@@ -54,11 +57,17 @@ export default function MemoryGame() {
           <span className="guide-icon" aria-hidden="true">🦍</span>
           <h2>¡Pon a prueba tu memoria!</h2>
           <ol><li>Descubre dos cartas.</li><li>Busca sus parejas.</li><li>¡Completa el tablero!</li></ol>
-          <p>Sin reloj ni vidas. Cada intento cuenta.</p>
+          <p>{game.moveLimit === null ? 'Sin reloj ni vidas. Cada intento cuenta.' : 'Encuentra las seis parejas en 12 movimientos. Cada dos cartas cuentan como un movimiento.'}</p>
           <a className="text-link" href="#/infantil">← Otros juegos</a>
         </aside>
         <div className="board-panel">
-          <div className="game-stats"><span><strong>{pairs}<small> / 6</small></strong> parejas</span><span><strong>{game.moves}</strong> movimientos</span><button className="text-button" onClick={() => dispatch({ type: 'restart', game: createGame() })}>↻ Reiniciar</button></div>
+          <fieldset className="memory-modes">
+            <legend>Elige cómo jugar · Cambiar de modo reinicia la partida</legend>
+            <label><input type="radio" name="memory-mode" checked={game.moveLimit === null} onChange={() => dispatch({ type: 'restart', game: createGame() })} /> Sin límite</label>
+            <label><input type="radio" name="memory-mode" checked={game.moveLimit !== null} onChange={() => dispatch({ type: 'restart', game: createGame(Math.random, 12) })} /> Desafío · 12 movimientos</label>
+          </fieldset>
+          <p className="mode-description">{game.moveLimit === null ? 'Explora a tu ritmo. Aquí siempre puedes seguir intentándolo.' : `Te quedan ${Math.max(0, game.moveLimit - game.moves)} movimientos para encontrar las seis parejas.`}</p>
+          <div className="game-stats"><span><strong>{pairs}<small> / 6</small></strong> parejas</span><span><strong>{game.moves}</strong> movimientos</span><button className="text-button" onClick={() => dispatch({ type: 'restart', game: createGame(Math.random, game.moveLimit) })}>↻ Reiniciar</button></div>
           <div className="memory-board" aria-label="Tablero de seis parejas">
             {game.cards.map((card, index) => {
               const matched = game.matched.includes(card.id)
@@ -75,8 +84,9 @@ export default function MemoryGame() {
               </button>
             })}
           </div>
-          <p className="board-status" role="status" aria-live="polite">{finished ? '¡Lo lograste! Encontraste todas las parejas.' : game.flipped.length === 2 ? game.matched.includes(game.flipped[0]) ? '¡Una pareja más! Bien hecho.' : 'Mira sus posiciones y vuelve a intentarlo.' : 'Elige dos cartas y encuentra su pareja.'}</p>
-          {finished && <div className="win-panel"><span aria-hidden="true">🏆</span><h2>¡Memoria de gorila!</h2><p>Encontraste las 6 parejas en {game.moves} movimientos.</p><div className="actions"><button className="primary-button" onClick={() => dispatch({ type: 'restart', game: createGame() })}>Jugar otra vez ↗</button><a className="secondary-button" href="#/infantil">Volver a Infantil</a></div></div>}
+          <p className="board-status" role="status" aria-live="polite">{finished ? status === 'won' ? '¡Lo lograste! Encontraste todas las parejas.' : 'Desafío terminado. ¡Puedes volver a intentarlo!' : game.flipped.length === 2 ? game.matched.includes(game.flipped[0]) ? '¡Una pareja más! Bien hecho.' : 'Mira sus posiciones y vuelve a intentarlo.' : 'Elige dos cartas y encuentra su pareja.'}</p>
+          {resultReady && <MemoryResult status={status} moves={game.moves} pairs={pairs}
+            onRestart={() => dispatch({ type: 'restart', game: createGame(Math.random, game.moveLimit) })} />}
         </div>
       </div>
     </section>

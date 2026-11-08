@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { createGame, memoryReducer } from './memory.js'
+import { createGame, getGameStatus, memoryReducer } from './memory.js'
 
 test('a new game contains six distinct pairs and twelve unique cards', () => {
   const game = createGame()
@@ -46,4 +46,43 @@ test('six correct pairs complete a game; restart clears progress', () => {
   assert.equal(game.matched.length, 0)
   assert.equal(game.moves, 0)
   assert.deepEqual(game.flipped, [])
+})
+
+function revealPair(game, pair) {
+  for (const card of game.cards.filter(item => item.pair === pair)) game = memoryReducer(game, { type: 'flip', id: card.id })
+  return memoryReducer(game, { type: 'resolve' })
+}
+test('challenge ends in defeat after twelve unsuccessful moves and blocks further flips', () => {
+  let game = createGame(Math.random, 12)
+  const first = game.cards[0]
+  const wrong = game.cards.find(card => card.pair !== first.pair)
+  for (let i = 0; i < 12; i++) {
+    game = memoryReducer(game, { type: 'flip', id: first.id })
+    game = memoryReducer(game, { type: 'flip', id: wrong.id })
+    game = memoryReducer(game, { type: 'resolve' })
+  }
+  assert.equal(getGameStatus(game), 'lost')
+  assert.equal(memoryReducer(game, { type: 'flip', id: first.id }), game)
+})
+test('completing the last pair on the final allowed move is a victory', () => {
+  let game = createGame(Math.random, 12)
+  const first = game.cards[0]
+  const wrong = game.cards.find(card => card.pair !== first.pair)
+  for (let i = 0; i < 6; i++) {
+    game = memoryReducer(game, { type: 'flip', id: first.id })
+    game = memoryReducer(game, { type: 'flip', id: wrong.id })
+    game = memoryReducer(game, { type: 'resolve' })
+  }
+  for (let pair = 0; pair < 6; pair++) game = revealPair(game, pair)
+  assert.equal(game.moves, 12)
+  assert.equal(getGameStatus(game), 'won')
+})
+test('unlimited mode keeps playing after twelve moves and restart clears defeat', () => {
+  let game = createGame()
+  game = { ...game, moves: 20 }
+  assert.equal(getGameStatus(game), 'playing')
+  game = memoryReducer(game, { type: 'restart', game: createGame(Math.random, 12) })
+  assert.equal(game.moves, 0)
+  assert.equal(game.moveLimit, 12)
+  assert.equal(getGameStatus(game), 'playing')
 })
