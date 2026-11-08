@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from 'react'
-import { createGame, memoryReducer } from './memory'
+import { createGame, memoryReducer, symbols } from './memory'
 
 export default function MemoryGame() {
   const [game, dispatch] = useReducer(memoryReducer, undefined, createGame)
@@ -14,6 +14,13 @@ export default function MemoryGame() {
     return () => clearTimeout(timer)
   }, [game.flipped])
   useEffect(() => () => { audio.current?.close().catch(() => {}) }, [])
+  useEffect(() => {
+    // Warm the six shared images before the first reveal.
+    symbols.forEach(symbol => {
+      const image = new window.Image()
+      image.src = `${import.meta.env.BASE_URL}${symbol.image}`
+    })
+  }, [])
 
   function flip(card) {
     if (finished || game.flipped.length === 2 || game.flipped.includes(card.id) || game.matched.includes(card.id)) return
@@ -60,7 +67,9 @@ export default function MemoryGame() {
                 disabled={matched || game.flipped.includes(card.id) || game.flipped.length === 2 || finished}
                 aria-label={visible ? `${card.name}${matched ? ', pareja encontrada' : ''}` : `Descubrir carta ${index + 1}`}
                 onClick={() => flip(card)}>
-                <span className="card-face" aria-hidden="true">{visible ? card.icon : 'B'}</span>
+                <span className={`card-face ${visible ? 'card-face-illustration' : ''}`} aria-hidden="true">
+                  {visible ? <img src={`${import.meta.env.BASE_URL}${card.image}`} alt="" width="384" height="384" draggable={false} /> : 'B'}
+                </span>
                 <span className="card-caption">{visible ? card.name : 'BRUCAT'}</span>
                 {matched && <span className="match-check" aria-hidden="true">✓</span>}
               </button>

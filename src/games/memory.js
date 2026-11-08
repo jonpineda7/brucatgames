@@ -1,7 +1,10 @@
 export const symbols = [
-  { name: 'Gorila', icon: '🦍' }, { name: 'Cohete', icon: '🚀' },
-  { name: 'Control', icon: '🎮' }, { name: 'Planeta', icon: '🪐' },
-  { name: 'Rayo', icon: '⚡' }, { name: 'Estrella', icon: '⭐' },
+  { name: 'Sombrero de paja', image: 'images/memory/straw-hat.png' },
+  { name: 'Sombrerero', image: 'images/memory/hatter.png' },
+  { name: 'Pelo de punta', image: 'images/memory/spiky-hair.png' },
+  { name: 'Tortuga héroe', image: 'images/memory/turtle.png' },
+  { name: 'Gato naranja', image: 'images/memory/orange-cat.png' },
+  { name: 'Llama con gafas', image: 'images/memory/llama.png' },
 ]
 export function createGame(random = Math.random) {
   const cards = symbols.flatMap((symbol, pair) => [0, 1].map(copy => ({ ...symbol, pair, id: `${pair}-${copy}` })))

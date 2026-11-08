@@ -1,5 +1,6 @@
 import { useEffect, useRef, useSyncExternalStore } from 'react'
 import MemoryGame from './games/MemoryGame'
+import { symbols } from './games/memory'
 import './App.css'
 
 const base = import.meta.env.BASE_URL
@@ -7,7 +8,12 @@ const subscribe = callback => { window.addEventListener('hashchange', callback);
 const getRoute = () => window.location.hash.slice(1) || '/'
 
 function MemoryPreview() {
-  return <div className="memory-preview" aria-hidden="true">{['🚀', 'B', '🪐', 'B', '⭐', 'B'].map((icon, index) => <span className={`preview-card preview-${index}`} key={index}>{icon}</span>)}</div>
+  const preview = [symbols[0], null, symbols[3], null, symbols[5], null]
+  return <div className="memory-preview" aria-hidden="true">{preview.map((card, index) => (
+    <span className={`preview-card preview-${index}`} key={index}>
+      {card ? <img src={`${base}${card.image}`} alt="" loading="lazy" width="384" height="384" /> : 'B'}
+    </span>
+  ))}</div>
 }
 function GameCard() {
   return <a className="catalog-game" href="#/infantil/memoria"><div className="catalog-art"><span className="game-tag">DEMO JUGABLE</span><MemoryPreview /></div><div className="catalog-copy"><div className="game-meta"><span>MEMORIA</span><span>1 jugador</span></div><h3>Memoria Gorila</h3><p>Descubre las cartas, conecta las parejas y completa el desafío.</p><span className="catalog-play">Jugar ahora <span>↗</span></span></div></a>
