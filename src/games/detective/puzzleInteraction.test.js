@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { addSequence, moveSequence, assignPuzzle, draftComplete, puzzleDrop } from './puzzleInteraction.js'
+import { addSequence, moveSequence, assignPuzzle, draftComplete, puzzleDrop, suppressDropClick } from './puzzleInteraction.js'
 import { OBJECTS } from './objects.js'
 import { insideRegion } from './geometry.js'
 const items=[{id:'one'},{id:'two'},{id:'three'}],targets=[{id:'left'},{id:'middle'},{id:'right'}]
@@ -54,4 +54,12 @@ test('a selective recipe can use three of four ingredients, leaving the distract
  assert.equal(draftComplete(puzzle,['one','two']),false)
  const full=['one','two','three'];assert.equal(addSequence(full,'salt',choices,3),full)
  assert.deepEqual(addSequence(['one','two'],'three',choices,3),full)
+})
+
+test('drag suppresses only its synthetic click, never the next independent tap or keyboard action',()=>{
+ const drop={x:100,y:100,timeStamp:1000}
+ assert.equal(suppressDropClick(drop,{clientX:100,clientY:100,timeStamp:1001,detail:1}),true)
+ assert.equal(suppressDropClick(drop,{clientX:200,clientY:100,timeStamp:1010,detail:1}),false)
+ assert.equal(suppressDropClick(drop,{clientX:100,clientY:100,timeStamp:1600,detail:1}),false)
+ assert.equal(suppressDropClick(drop,{clientX:100,clientY:100,timeStamp:1001,detail:0}),false)
 })

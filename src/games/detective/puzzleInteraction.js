@@ -26,3 +26,5 @@ export function puzzleDrop(gesture,point,targetId,insideBoard=true){
  if(!gesture||!insideBoard||targetId===undefined||targetId===null||![point?.x,point?.y,gesture.x,gesture.y].every(Number.isFinite))return null
  return Math.hypot(point.x-gesture.x,point.y-gesture.y)>10?{id:gesture.id,target:String(targetId)}:null
 }
+
+export const suppressDropClick=(drop,event)=>!!drop&&event.detail>0&&event.timeStamp>=drop.timeStamp&&event.timeStamp-drop.timeStamp<500&&Math.hypot(event.clientX-drop.x,event.clientY-drop.y)<12

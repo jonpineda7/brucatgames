@@ -1,0 +1,22 @@
+{
+  "tool": "ImageGen integrated",
+  "date": "2026-11-10",
+  "source": "/Users/jonathanpineda/.codex/generated_images/01a1c349-4068-7220-89ae-ca8f2bcd386c/exec-9b5b389f-7ddf-47a9-be87-3d919c94ff3c.png",
+  "prompt": "Use case: illustration-story. Asset type: square original background for a real premium children's educational adventure game, BruCat Math Adventure, first world 'Jungle of Numbers'. Create ONE complete illustrated jungle scene, no collage, no UI. Rich hand-painted storybook cartoon art, crisp dark ink contours, softly shaded dimensional forms, beautiful textures, magical warm golden sunlight through green rainforest canopy, violet orchids, electric-cyan/turquoise water and gold stone accents. Uplifting exploration for ages 5–12. Composition: deep layered jungle and turquoise river that opens into a broad calm pool across the lower half; small expedition camp with purple canopy on the distant upper left, vine-wrapped ancient golden stone portal and ruins on distant upper right, a broken rope-and-plank footbridge crossing in the middle distance. Three low natural mossy islands/stone banks in foreground, arranged left, middle and right, with ample calm water and clear space between them. Left island gives a safe place for the official gorilla character to stand later; do NOT draw the character now. Clear lower-center play space for SVG answer platforms and bridge pieces that will be rendered separately; avoid dense leaves obscuring these areas. The scenery itself tells a magical expedition story, with rich environmental details at edges, ferns, enormous leaves, distant cascades, warm firefly light points. Keep the foreground safe, friendly and legible with no threatening falls. NO people, animals, gorilla, written numbers, arithmetic, letters, text, answer platforms with labels, UI, interface, logo, watermark or collectible coins/stars. Square1024x1024, polished professional illustrated game background.",
+  "assets": [
+    {
+      "file": "jungle.jpg",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1037385,
+      "sha256": "33170a2bf01e6d647fde1084f8bf026321a7be74080fbf0e910d76af3ff988c6"
+    },
+    {
+      "file": "jungle-thumb.jpg",
+      "width": 480,
+      "height": 480,
+      "bytes": 157898,
+      "sha256": "357f74aa873b754e74638d57384698d7b3243f833e834a2cad562f3851da0c8e"
+    }
+  ]
+}

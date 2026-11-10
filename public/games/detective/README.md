@@ -4,7 +4,7 @@
 
 El prompt solicitó superficies de colocación aproximadas; después se inspeccionó el escenario obtenido y se fijaron las zonas finales sobre los muebles reales. V2 define diez zonas y cuatro distribuciones en `src/games/detective/scenes.js`; `placements.js` valida límites, ausencia de superposición y regiones seleccionables. La distribución activa gobierna tanto dibujo como detección y se conserva al restaurar la investigación. Los objetivos son recursos vectoriales propios de `ObjectArt.jsx`/`objects.js`, visibles en el SVG de la escena. El fondo no determina los aciertos.
 
-BruCat reutiliza `public/images/categories/gorilla-playing.png`, imagen oficial previamente proporcionada por el usuario. Victoria: `public/images/results/victory.png`. La ilustración específica con gabardina/lupa queda pendiente, sin reemplazar la identidad por otro gorila.
+BruCat reutiliza `public/images/categories/gorilla-playing.png`, imagen oficial previamente proporcionada por el usuario. Victoria: `public/images/results/victory.png`. V3 añade `detective-brucat.png`, basado en el personaje oficial, con gabardina, lupa y cuaderno; conserva su identidad.
 
 ## Prompt final utilizado (herramienta integrada, no CLI)
 
@@ -16,4 +16,4 @@ Las cuatro distribuciones reutilizan este fondo limpio. Llave, lupa, pergamino, 
 
 `ObjectVisual` admite `art: {src}` para incorporar PNG/WebP transparentes en el mismo marco local 100 × 100. La imagen debe respetar ese encuadre y la máscara de `objects.js`; si cambia la silueta, hay que actualizar y verificar su región de selección. No basta con cambiar el archivo y conservar una máscara que ya no coincide.
 
-Los catorce casos pendientes necesitan sus propios fondos limpios, objetos y distribuciones validadas. Una ilustración de BruCat detective sigue siendo una mejora gráfica opcional; la interfaz utiliza el personaje oficial existente.
+V3 incorpora los catorce fondos restantes, miniaturas y mascota detective. Recursos, prompts completos y procedencia en `scenes/README.md`. Los quince casos están implementados.
