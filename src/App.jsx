@@ -3,49 +3,36 @@ import MemoryGame from './games/MemoryGame'
 import GorilaLoco from './games/gorila-loco/GorilaLoco'
 import ConectaColores from './games/conecta-colores/ConectaColores'
 import CategoryView from './categories/CategoryView'
-import { symbols } from './games/memory'
+import Home from './home/Home.jsx'
+import { availableCategories,availableGames,allAvailableGames,isAvailableRoute } from './catalog/catalog.js'
+import { revealSection,returnToTop } from './home/navigation.js'
 import './App.css'
 
 const MathAdventure = lazy(() => import('./games/math-adventure/MathAdventure'))
 const DetectiveBruCat = lazy(() => import('./games/detective/DetectiveBruCat'))
 const LaUltimaMordida = lazy(() => import('./games/ultima-mordida/LaUltimaMordida'))
 const base = import.meta.env.BASE_URL
+const gameViews={memory:MemoryGame,'gorila-loco':GorilaLoco,'conecta-colores':ConectaColores,'ultima-mordida':LaUltimaMordida,detective:DetectiveBruCat,math:MathAdventure}
 const subscribe = callback => { window.addEventListener('hashchange', callback); return () => window.removeEventListener('hashchange', callback) }
 const getRoute = () => window.location.hash.slice(1) || '/'
 
-function MemoryPreview() {
-  const preview = [symbols[0], null, symbols[3], null, symbols[5], null]
-  return <div className="memory-preview" aria-hidden="true">{preview.map((card, index) => (
-    <span className={`preview-card preview-${index}`} key={index}>
-      {card ? <img src={`${base}${card.image}`} alt="" loading="lazy" width="384" height="384" /> : 'B'}
-    </span>
-  ))}</div>
-}
-function GameCard() {
-  return <a className="catalog-game" href="#/infantil/memoria"><div className="catalog-art"><span className="game-tag">DEMO JUGABLE</span><MemoryPreview /></div><div className="catalog-copy"><div className="game-meta"><span>MEMORIA</span><span>1 jugador</span></div><h3>Memoria Gorila</h3><p>Descubre las cartas, conecta las parejas y completa el desafío.</p><span className="catalog-play">Jugar ahora <span>↗</span></span></div></a>
-}
-function Home() {
-  return <>
-    <section className="platform-hero" aria-labelledby="home-title"><div className="hero-copy"><span className="eyebrow"><span className="live-dot" /> TU NUEVO PUNTO DE ENCUENTRO</span><h1 id="home-title">Un universo de juegos.<br /><span className="gradient-text">Tu próxima partida.</span></h1><p>Una plataforma para todos los que disfrutan jugar. Explora nuestras categorías y encuentra tu próximo desafío.</p><div className="actions"><a className="primary-button" href="#/infantil">Explorar Infantil <span>↗</span></a><a className="text-link" href="#/infantil/memoria">Probar la demo →</a></div><div className="hero-notes"><span>✦ Directo en tu navegador</span><span>✦ Sin registro</span></div></div><div className="hero-brand"><img src={`${base}images/brucatgames-logo.png`} alt="BruCat Games, gorila gamer con audífonos y control" width="1536" height="1024" fetchPriority="high" /><span className="hero-brand-caption">ENCUENTRA TU SIGUIENTE DESAFÍO</span></div></section>
-    <section className="category-section" aria-labelledby="categories-title"><div className="section-heading"><div><span className="eyebrow">ELIGE TU MUNDO</span><h2 id="categories-title">Cada jugador tiene su lugar<span className="cyan">.</span></h2></div><span className="muted section-note">Estamos empezando. Esto recién comienza.</span></div><div className="category-grid"><a className="category-card category-kids" href="#/infantil"><div className="category-top"><span className="category-symbol">✦</span><span className="available-tag">DISPONIBLE</span></div><h3>Infantil</h3><p>Curiosidad, colores y pequeños grandes desafíos.</p><span className="category-bottom">6 juegos para descubrir <strong>↗</strong></span></a><div className="category-card category-coming"><div className="category-top"><span className="category-symbol">◈</span><span className="coming-tag">PRÓXIMAMENTE</span></div><h3>Más formas de jugar</h3><p>La plataforma seguirá creciendo con nuevas categorías para distintos gustos y edades.</p><span className="category-bottom">El universo BruCatGames se expande</span></div></div></section>
-    <section className="featured-section" aria-labelledby="featured-title"><div className="section-heading"><div><span className="eyebrow">TU PRIMERA PARTIDA</span><h2 id="featured-title">Empieza con una buena pareja</h2></div><a className="text-link" href="#/infantil">Ver Infantil →</a></div><div className="featured-layout"><GameCard /><div className="featured-note"><span className="note-number">01</span><h3>Pequeño juego.<br />Grandes descubrimientos.</h3><p>Nuestra primera demo abre las puertas de Infantil. Seis parejas, un tablero y toda la curiosidad para encontrarlas.</p><span className="pill">Sin tiempo límite</span><span className="pill">Para jugar a tu ritmo</span></div></div></section>
-  </>
-}
 function NotFound() {
   return <main className="not-found"><h1 className="sr-only">404: Página no encontrada</h1><div className="error-artwork"><img src={`${base}images/brucatgames-404.png`} alt="Un gorila gamer perdido en el mapa. Página no encontrada." /><a className="artwork-home-link" href={base} aria-label="Volver al inicio" /></div></main>
 }
 export default function App() {
   const route = useSyncExternalStore(subscribe, getRoute)
+  const categories=availableCategories(),category=categories.find(item=>item.href.slice(1)===route),game=allAvailableGames().find(item=>item.href.slice(1)===route),Game=game?gameViews[game.id]:null
+  const title=category?.name||game?.title||'Juegos para todos'
   const main = useRef(null)
   const firstRender = useRef(true)
   useEffect(() => {
-    document.title = `${route === '/infantil/math-adventure' ? 'BruCat Math Adventure' : route === '/infantil/detective' ? 'Detective BruCat' : route === '/infantil/ultima-mordida' ? 'La Última Mordida' : route === '/infantil/conecta-colores' ? 'Conecta los Colores' : route === '/infantil/gorila-loco' ? 'Gorila Loco' : route === '/infantil/memoria' ? 'Memoria Gorila' : route === '/infantil' ? 'Infantil' : 'Juegos para todos'} · BruCatGames`
+    document.title = `${title} · BruCatGames`
     if (firstRender.current) { firstRender.current = false; return }
     window.scrollTo(0, 0)
     main.current?.focus({ preventScroll: true })
-  }, [route])
+  }, [route,title])
   const path = window.location.pathname.replace(/\/+$/, '')
   const home = base.replace(/\/+$/, '')
-  if (![home, `${home}/index.html`].includes(path) || !['/', '/infantil', '/infantil/memoria', '/infantil/gorila-loco', '/infantil/conecta-colores', '/infantil/ultima-mordida', '/infantil/detective', '/infantil/math-adventure'].includes(route)) return <NotFound />
-  return <div className={`platform-shell ${route === '/infantil' ? 'category-shell' : ''}`}><a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); main.current?.focus() }}>Saltar al contenido</a><header className="platform-header"><a className="wordmark" href="#/" aria-label="BruCatGames, inicio"><span className="brand-emblem" aria-hidden="true">B<span>✦</span></span><span>BruCat<span className="cyan">Games</span><small>EL JUEGO NOS CONECTA</small></span></a><nav aria-label="Navegación principal"><a href="#/" aria-current={route === '/' ? 'page' : undefined}>Inicio</a><a href="#/infantil" aria-current={route.startsWith('/infantil') ? 'page' : undefined}>Infantil <span className="nav-count">06</span></a></nav><span className="header-label"><span className="live-dot" /> MODO EXPLORAR</span></header><main id="main-content" ref={main} tabIndex={-1} className="platform-main">{route === '/' ? <Home /> : route === '/infantil' ? <CategoryView categoryId="infantil" /> : route === '/infantil/gorila-loco' ? <GorilaLoco /> : route === '/infantil/conecta-colores' ? <ConectaColores /> : route === '/infantil/math-adventure' ? <Suspense fallback={<p role="status">Preparando la selva de los números…</p>}><MathAdventure /></Suspense> : route === '/infantil/detective' ? <Suspense fallback={<p role="status">Preparando la investigación…</p>}><DetectiveBruCat /></Suspense> : route === '/infantil/ultima-mordida' ? <Suspense fallback={<p role="status">Preparando el gran banquete…</p>}><LaUltimaMordida /></Suspense> : <MemoryGame />}</main><footer className="platform-footer"><span>BruCat<span className="cyan">Games</span> <span className="muted">· Un lugar para cada jugador.</span></span><a href="#/">Volver al inicio ↑</a></footer></div>
+  if (![home, `${home}/index.html`].includes(path) || !isAvailableRoute(route) || (game&&!Game)) return <NotFound />
+  return <div className={`platform-shell ${category ? 'category-shell' : route==='/'?'home-shell':''}`}><a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); revealSection(main.current) }}>Saltar al contenido</a><header className="platform-header"><a className="wordmark" href="#/" aria-label="BruCatGames, inicio"><img className="brand-emblem" src={`${base}brand/gorilla-icon-96.png`} width="96" height="96" alt=""/><span>BruCat<span className="cyan">Games</span><small>EL JUEGO NOS CONECTA</small></span></a><nav aria-label="Navegación principal"><a href="#/" aria-current={route === '/' ? 'page' : undefined}>Inicio</a>{categories.map(item=><a key={item.id} href={item.href} aria-current={category?.id===item.id||game?.categoryId===item.id?'page':undefined}>{item.name} <span className="nav-count">{String(availableGames(item.id).length).padStart(2,'0')}</span></a>)}</nav><span className="header-label"><span className="live-dot" /> MODO EXPLORAR</span></header><main id="main-content" ref={main} tabIndex={-1} className="platform-main">{route==='/'?<Home/>:category?<CategoryView categoryId={category.id}/>:Game?<Suspense fallback={<p role="status">Preparando {game.title}…</p>}><Game/></Suspense>:<NotFound/>}</main><footer className="platform-footer"><span>BruCat<span className="cyan">Games</span> <span className="muted">· Un lugar para cada jugador.</span></span>{route==='/'?<button type="button" className="footer-top" onClick={()=>returnToTop(main.current)}>Subir al inicio ↑</button>:<a href="#/">Volver al inicio</a>}</footer></div>
 }
