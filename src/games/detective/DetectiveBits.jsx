@@ -1,0 +1,3 @@
+const base=import.meta.env.BASE_URL
+export function Mascot({win=false,className=''}){return <img className={`detective-mascot ${className}`} src={`${base}${win?'images/results/victory.png':'games/detective/detective-brucat.png'}`} alt={win?'BruCat celebra el caso resuelto':'BruCat detective con lupa y cuaderno'} width={win?1351:1109} height={win?1163:1419} draggable={false}/>}
+export function Stars({count}){return <span className="detective-stars" aria-label={`${count} de 3 estrellas`}>{[1,2,3].map(number=><span key={number} aria-hidden="true" className={number<=count?'earned':''}>★</span>)}</span>}

@@ -1,0 +1,1892 @@
+// Surface positions inspected on generated clean backgrounds. Normalized to 0–1.
+export const SCENE_ZONES = {
+  "2": {
+    "zones": [
+      {
+        "id": "leftShelf",
+        "name": "La estantería izquierda",
+        "location": "en el espacio de la estantería izquierda",
+        "cx": 0.17,
+        "cy": 0.28,
+        "bounds": [
+          0.095,
+          0.205,
+          0.245,
+          0.355
+        ]
+      },
+      {
+        "id": "rightShelf",
+        "name": "La estantería derecha",
+        "location": "en el espacio de la estantería derecha",
+        "cx": 0.695,
+        "cy": 0.282,
+        "bounds": [
+          0.62,
+          0.207,
+          0.77,
+          0.357
+        ]
+      },
+      {
+        "id": "stairs",
+        "name": "La escalera de piedra",
+        "location": "en el escalón de piedra, junto al arco",
+        "cx": 0.5,
+        "cy": 0.425,
+        "bounds": [
+          0.425,
+          0.35,
+          0.575,
+          0.5
+        ]
+      },
+      {
+        "id": "leftTable",
+        "name": "El mueble izquierdo",
+        "location": "sobre el mueble de madera de la izquierda",
+        "cx": 0.185,
+        "cy": 0.48,
+        "bounds": [
+          0.11,
+          0.405,
+          0.26,
+          0.555
+        ]
+      },
+      {
+        "id": "rightTable",
+        "name": "El mueble de la ventana",
+        "location": "sobre el mueble que está bajo la ventana",
+        "cx": 0.835,
+        "cy": 0.48,
+        "bounds": [
+          0.76,
+          0.405,
+          0.91,
+          0.555
+        ]
+      },
+      {
+        "id": "deskLeft",
+        "name": "La mesa de lectura",
+        "location": "sobre la parte izquierda de la mesa de lectura",
+        "cx": 0.46,
+        "cy": 0.576,
+        "bounds": [
+          0.385,
+          0.501,
+          0.535,
+          0.651
+        ]
+      },
+      {
+        "id": "deskRight",
+        "name": "La mesa de lectura",
+        "location": "sobre la parte derecha de la mesa de lectura",
+        "cx": 0.65,
+        "cy": 0.58,
+        "bounds": [
+          0.575,
+          0.505,
+          0.725,
+          0.655
+        ]
+      },
+      {
+        "id": "leftStool",
+        "name": "El taburete izquierdo",
+        "location": "sobre el taburete morado izquierdo",
+        "cx": 0.19,
+        "cy": 0.745,
+        "bounds": [
+          0.115,
+          0.67,
+          0.265,
+          0.82
+        ]
+      },
+      {
+        "id": "rightStool",
+        "name": "El taburete derecho",
+        "location": "sobre el taburete morado derecho",
+        "cx": 0.84,
+        "cy": 0.745,
+        "bounds": [
+          0.765,
+          0.67,
+          0.915,
+          0.82
+        ]
+      },
+      {
+        "id": "rug",
+        "name": "La alfombra violeta",
+        "location": "en el centro de la alfombra violeta",
+        "cx": 0.49,
+        "cy": 0.89,
+        "bounds": [
+          0.415,
+          0.815,
+          0.565,
+          0.965
+        ]
+      }
+    ]
+  },
+  "3": {
+    "zones": [
+      {
+        "id": "leftLedge",
+        "name": "La repisa de amatistas",
+        "location": "en la repisa bajo las amatistas de la izquierda",
+        "cx": 0.15,
+        "cy": 0.26,
+        "bounds": [
+          0.08,
+          0.19,
+          0.22,
+          0.33
+        ]
+      },
+      {
+        "id": "rightLedge",
+        "name": "La repisa azul",
+        "location": "en la repisa bajo los cristales azules de la derecha",
+        "cx": 0.85,
+        "cy": 0.26,
+        "bounds": [
+          0.78,
+          0.19,
+          0.92,
+          0.33
+        ]
+      },
+      {
+        "id": "bigChest",
+        "name": "El gran cofre",
+        "location": "sobre la tapa del gran cofre del fondo",
+        "cx": 0.5,
+        "cy": 0.25,
+        "bounds": [
+          0.43,
+          0.18,
+          0.57,
+          0.32
+        ]
+      },
+      {
+        "id": "leftTable",
+        "name": "El pedestal izquierdo",
+        "location": "sobre el pedestal de piedra izquierdo",
+        "cx": 0.19,
+        "cy": 0.45,
+        "bounds": [
+          0.12,
+          0.38,
+          0.26,
+          0.52
+        ]
+      },
+      {
+        "id": "steps",
+        "name": "La escalinata",
+        "location": "en el escalón bajo el gran cofre",
+        "cx": 0.5,
+        "cy": 0.425,
+        "bounds": [
+          0.43,
+          0.355,
+          0.57,
+          0.495
+        ]
+      },
+      {
+        "id": "rightTable",
+        "name": "El pedestal derecho",
+        "location": "sobre el pedestal de piedra derecho",
+        "cx": 0.82,
+        "cy": 0.45,
+        "bounds": [
+          0.75,
+          0.38,
+          0.89,
+          0.52
+        ]
+      },
+      {
+        "id": "roundTable",
+        "name": "La mesa redonda",
+        "location": "sobre la mesa redonda del centro",
+        "cx": 0.5,
+        "cy": 0.51,
+        "bounds": [
+          0.43,
+          0.44,
+          0.57,
+          0.58
+        ]
+      },
+      {
+        "id": "leftBench",
+        "name": "El banco izquierdo",
+        "location": "sobre el banco tapizado de la izquierda",
+        "cx": 0.15,
+        "cy": 0.65,
+        "bounds": [
+          0.08,
+          0.58,
+          0.22,
+          0.72
+        ]
+      },
+      {
+        "id": "rightBench",
+        "name": "El banco derecho",
+        "location": "sobre el banco tapizado de la derecha",
+        "cx": 0.85,
+        "cy": 0.65,
+        "bounds": [
+          0.78,
+          0.58,
+          0.92,
+          0.72
+        ]
+      },
+      {
+        "id": "frontBench",
+        "name": "El banco delantero",
+        "location": "sobre el banco morado que está delante",
+        "cx": 0.5,
+        "cy": 0.835,
+        "bounds": [
+          0.43,
+          0.765,
+          0.57,
+          0.905
+        ]
+      }
+    ]
+  },
+  "4": {
+    "zones": [
+      {
+        "id": "campCrate",
+        "name": "La caja de la tienda",
+        "location": "sobre la caja junto a la tienda morada",
+        "cx": 0.17,
+        "cy": 0.335,
+        "bounds": [
+          0.1,
+          0.265,
+          0.24,
+          0.405
+        ]
+      },
+      {
+        "id": "backRock",
+        "name": "La roca del río",
+        "location": "sobre la roca plana que está junto al río",
+        "cx": 0.5,
+        "cy": 0.33,
+        "bounds": [
+          0.43,
+          0.26,
+          0.57,
+          0.4
+        ]
+      },
+      {
+        "id": "upperShelf",
+        "name": "La repisa alta",
+        "location": "en la repisa alta del cobertizo",
+        "cx": 0.84,
+        "cy": 0.315,
+        "bounds": [
+          0.77,
+          0.245,
+          0.91,
+          0.385
+        ]
+      },
+      {
+        "id": "middleShelf",
+        "name": "La repisa central",
+        "location": "en la repisa central del cobertizo",
+        "cx": 0.84,
+        "cy": 0.415,
+        "bounds": [
+          0.77,
+          0.345,
+          0.91,
+          0.485
+        ]
+      },
+      {
+        "id": "lowerShelf",
+        "name": "La repisa baja",
+        "location": "en la repisa baja del cobertizo",
+        "cx": 0.84,
+        "cy": 0.515,
+        "bounds": [
+          0.77,
+          0.445,
+          0.91,
+          0.585
+        ]
+      },
+      {
+        "id": "workTable",
+        "name": "La mesa del campamento",
+        "location": "sobre la mesa de madera del centro",
+        "cx": 0.51,
+        "cy": 0.48,
+        "bounds": [
+          0.44,
+          0.41,
+          0.58,
+          0.55
+        ]
+      },
+      {
+        "id": "leftBench",
+        "name": "El banco de cuerda",
+        "location": "sobre el banco de madera de la izquierda",
+        "cx": 0.17,
+        "cy": 0.5,
+        "bounds": [
+          0.1,
+          0.43,
+          0.24,
+          0.57
+        ]
+      },
+      {
+        "id": "frontCrate",
+        "name": "La caja delantera",
+        "location": "sobre la caja de madera delantera",
+        "cx": 0.16,
+        "cy": 0.675,
+        "bounds": [
+          0.09,
+          0.605,
+          0.23,
+          0.745
+        ]
+      },
+      {
+        "id": "stump",
+        "name": "El tocón",
+        "location": "sobre el tocón de árbol del centro",
+        "cx": 0.49,
+        "cy": 0.69,
+        "bounds": [
+          0.42,
+          0.62,
+          0.56,
+          0.76
+        ]
+      },
+      {
+        "id": "frontRock",
+        "name": "La roca derecha",
+        "location": "sobre la roca plana del lado derecho",
+        "cx": 0.83,
+        "cy": 0.7,
+        "bounds": [
+          0.76,
+          0.63,
+          0.9,
+          0.77
+        ]
+      },
+      {
+        "id": "rug",
+        "name": "La alfombra del campamento",
+        "location": "en el centro de la alfombra morada",
+        "cx": 0.49,
+        "cy": 0.875,
+        "bounds": [
+          0.42,
+          0.805,
+          0.56,
+          0.945
+        ]
+      }
+    ]
+  },
+  "5": {
+    "zones": [
+      {
+        "id": "leftShelf",
+        "name": "La repisa del árbol",
+        "location": "sobre la repisa de madera del árbol izquierdo",
+        "cx": 0.17,
+        "cy": 0.27,
+        "bounds": [
+          0.1,
+          0.2,
+          0.24,
+          0.34
+        ]
+      },
+      {
+        "id": "steps",
+        "name": "El escalón del sendero",
+        "location": "sobre el escalón ancho del sendero",
+        "cx": 0.46,
+        "cy": 0.335,
+        "bounds": [
+          0.39,
+          0.265,
+          0.53,
+          0.405
+        ]
+      },
+      {
+        "id": "rightShelf",
+        "name": "La repisa musgosa",
+        "location": "sobre la repisa musgosa del árbol derecho",
+        "cx": 0.83,
+        "cy": 0.27,
+        "bounds": [
+          0.76,
+          0.2,
+          0.9,
+          0.34
+        ]
+      },
+      {
+        "id": "leftRock",
+        "name": "La roca izquierda",
+        "location": "sobre la roca plana de la izquierda",
+        "cx": 0.16,
+        "cy": 0.47,
+        "bounds": [
+          0.09,
+          0.4,
+          0.23,
+          0.54
+        ]
+      },
+      {
+        "id": "middleLog",
+        "name": "El tronco caído",
+        "location": "sobre el tronco caído del centro",
+        "cx": 0.5,
+        "cy": 0.435,
+        "bounds": [
+          0.43,
+          0.365,
+          0.57,
+          0.505
+        ]
+      },
+      {
+        "id": "rightRock",
+        "name": "La roca del arroyo",
+        "location": "sobre la roca junto al arroyo, a la derecha",
+        "cx": 0.83,
+        "cy": 0.505,
+        "bounds": [
+          0.76,
+          0.435,
+          0.9,
+          0.575
+        ]
+      },
+      {
+        "id": "frontLog",
+        "name": "El tronco delantero",
+        "location": "sobre el tronco que está delante a la izquierda",
+        "cx": 0.18,
+        "cy": 0.7,
+        "bounds": [
+          0.11,
+          0.63,
+          0.25,
+          0.77
+        ]
+      },
+      {
+        "id": "path",
+        "name": "El claro del sendero",
+        "location": "en el claro del sendero de tierra",
+        "cx": 0.49,
+        "cy": 0.665,
+        "bounds": [
+          0.42,
+          0.595,
+          0.56,
+          0.735
+        ]
+      },
+      {
+        "id": "frontRock",
+        "name": "La roca musgosa",
+        "location": "sobre la roca musgosa del primer plano derecho",
+        "cx": 0.83,
+        "cy": 0.71,
+        "bounds": [
+          0.76,
+          0.64,
+          0.9,
+          0.78
+        ]
+      },
+      {
+        "id": "bottomRock",
+        "name": "La gran roca del camino",
+        "location": "sobre la gran roca que está delante en el camino",
+        "cx": 0.5,
+        "cy": 0.87,
+        "bounds": [
+          0.43,
+          0.8,
+          0.57,
+          0.94
+        ]
+      }
+    ]
+  },
+  "6": {
+    "zones": [
+      {
+        "id": "leftTop",
+        "name": "La cornisa izquierda",
+        "location": "en la cornisa alta de las ruinas izquierdas",
+        "cx": 0.16,
+        "cy": 0.32,
+        "bounds": [
+          0.09,
+          0.25,
+          0.23,
+          0.39
+        ]
+      },
+      {
+        "id": "centerTop",
+        "name": "La roca de la cascada",
+        "location": "sobre la roca alta frente a la cascada",
+        "cx": 0.5,
+        "cy": 0.32,
+        "bounds": [
+          0.43,
+          0.25,
+          0.57,
+          0.39
+        ]
+      },
+      {
+        "id": "rightTop",
+        "name": "La cornisa del jaguar",
+        "location": "en la cornisa alta bajo el relieve del jaguar",
+        "cx": 0.84,
+        "cy": 0.32,
+        "bounds": [
+          0.77,
+          0.25,
+          0.91,
+          0.39
+        ]
+      },
+      {
+        "id": "leftBench",
+        "name": "El banco de piedra",
+        "location": "sobre el banco de piedra izquierdo",
+        "cx": 0.16,
+        "cy": 0.5,
+        "bounds": [
+          0.09,
+          0.43,
+          0.23,
+          0.57
+        ]
+      },
+      {
+        "id": "middleRock",
+        "name": "La roca del estanque",
+        "location": "sobre la roca ancha del centro del estanque",
+        "cx": 0.5,
+        "cy": 0.51,
+        "bounds": [
+          0.43,
+          0.44,
+          0.57,
+          0.58
+        ]
+      },
+      {
+        "id": "rightBench",
+        "name": "La repisa de las flores",
+        "location": "en la repisa derecha junto a las flores",
+        "cx": 0.84,
+        "cy": 0.5,
+        "bounds": [
+          0.77,
+          0.43,
+          0.91,
+          0.57
+        ]
+      },
+      {
+        "id": "leftFront",
+        "name": "La roca izquierda",
+        "location": "sobre la roca plana del primer plano izquierdo",
+        "cx": 0.17,
+        "cy": 0.7,
+        "bounds": [
+          0.1,
+          0.63,
+          0.24,
+          0.77
+        ]
+      },
+      {
+        "id": "rightFront",
+        "name": "La roca derecha",
+        "location": "sobre la roca plana del primer plano derecho",
+        "cx": 0.83,
+        "cy": 0.69,
+        "bounds": [
+          0.76,
+          0.62,
+          0.9,
+          0.76
+        ]
+      },
+      {
+        "id": "steppingStone",
+        "name": "El paso de piedra",
+        "location": "sobre el paso de piedra frente al estanque",
+        "cx": 0.45,
+        "cy": 0.76,
+        "bounds": [
+          0.38,
+          0.69,
+          0.52,
+          0.83
+        ]
+      },
+      {
+        "id": "platform",
+        "name": "El altar delantero",
+        "location": "sobre el gran altar de piedra delantero",
+        "cx": 0.5,
+        "cy": 0.85,
+        "bounds": [
+          0.43,
+          0.78,
+          0.57,
+          0.92
+        ]
+      }
+    ]
+  },
+  "7": {
+    "zones": [
+      {
+        "id": "leftShelf",
+        "name": "La repisa de piedra",
+        "location": "en la repisa de piedra bajo el terrario",
+        "cx": 0.2,
+        "cy": 0.3,
+        "bounds": [
+          0.13,
+          0.23,
+          0.27,
+          0.37
+        ]
+      },
+      {
+        "id": "copperTable",
+        "name": "La mesa de cobre",
+        "location": "sobre la mesa redonda junto al destilador de cobre",
+        "cx": 0.5,
+        "cy": 0.3,
+        "bounds": [
+          0.43,
+          0.23,
+          0.57,
+          0.37
+        ]
+      },
+      {
+        "id": "window",
+        "name": "El alféizar violeta",
+        "location": "sobre el alféizar de la ventana violeta",
+        "cx": 0.835,
+        "cy": 0.3,
+        "bounds": [
+          0.765,
+          0.23,
+          0.905,
+          0.37
+        ]
+      },
+      {
+        "id": "leftDesk",
+        "name": "La mesa izquierda",
+        "location": "sobre la mesa pequeña izquierda",
+        "cx": 0.18,
+        "cy": 0.47,
+        "bounds": [
+          0.11,
+          0.4,
+          0.25,
+          0.54
+        ]
+      },
+      {
+        "id": "desk",
+        "name": "El escritorio",
+        "location": "sobre el escritorio del laboratorio",
+        "cx": 0.5,
+        "cy": 0.44,
+        "bounds": [
+          0.43,
+          0.37,
+          0.57,
+          0.51
+        ]
+      },
+      {
+        "id": "roundTable",
+        "name": "La mesa redonda derecha",
+        "location": "sobre la mesa redonda de la derecha",
+        "cx": 0.82,
+        "cy": 0.47,
+        "bounds": [
+          0.75,
+          0.4,
+          0.89,
+          0.54
+        ]
+      },
+      {
+        "id": "frontBench",
+        "name": "El banco delantero",
+        "location": "sobre el banco de madera delantero",
+        "cx": 0.19,
+        "cy": 0.675,
+        "bounds": [
+          0.12,
+          0.605,
+          0.26,
+          0.745
+        ]
+      },
+      {
+        "id": "stool",
+        "name": "El taburete violeta",
+        "location": "sobre el taburete violeta del centro",
+        "cx": 0.5,
+        "cy": 0.63,
+        "bounds": [
+          0.43,
+          0.56,
+          0.57,
+          0.7
+        ]
+      },
+      {
+        "id": "rock",
+        "name": "La roca del laboratorio",
+        "location": "sobre la roca plana de la derecha",
+        "cx": 0.82,
+        "cy": 0.68,
+        "bounds": [
+          0.75,
+          0.61,
+          0.89,
+          0.75
+        ]
+      },
+      {
+        "id": "mosaic",
+        "name": "El mosaico del suelo",
+        "location": "sobre el mosaico redondo del suelo",
+        "cx": 0.5,
+        "cy": 0.83,
+        "bounds": [
+          0.43,
+          0.76,
+          0.57,
+          0.9
+        ]
+      }
+    ]
+  },
+  "8": {
+    "zones": [
+      {
+        "id": "leftShelf",
+        "name": "La repisa metálica",
+        "location": "sobre la repisa metálica izquierda",
+        "cx": 0.17,
+        "cy": 0.29,
+        "bounds": [
+          0.1,
+          0.22,
+          0.24,
+          0.36
+        ]
+      },
+      {
+        "id": "cabinet",
+        "name": "El archivador de piezas",
+        "location": "sobre el archivador morado junto al robot",
+        "cx": 0.715,
+        "cy": 0.245,
+        "bounds": [
+          0.645,
+          0.175,
+          0.785,
+          0.315
+        ]
+      },
+      {
+        "id": "rightShelf",
+        "name": "La repisa de engranajes",
+        "location": "sobre la repisa de madera a la derecha",
+        "cx": 0.85,
+        "cy": 0.29,
+        "bounds": [
+          0.78,
+          0.22,
+          0.92,
+          0.36
+        ]
+      },
+      {
+        "id": "leftBench",
+        "name": "El banco azul izquierdo",
+        "location": "sobre el banco azul de trabajo izquierdo",
+        "cx": 0.18,
+        "cy": 0.47,
+        "bounds": [
+          0.11,
+          0.4,
+          0.25,
+          0.54
+        ]
+      },
+      {
+        "id": "roundTable",
+        "name": "La mesa de reparación",
+        "location": "sobre la mesa redonda de reparación",
+        "cx": 0.5,
+        "cy": 0.455,
+        "bounds": [
+          0.43,
+          0.385,
+          0.57,
+          0.525
+        ]
+      },
+      {
+        "id": "rightBench",
+        "name": "El banco azul derecho",
+        "location": "sobre el banco azul de trabajo derecho",
+        "cx": 0.82,
+        "cy": 0.47,
+        "bounds": [
+          0.75,
+          0.4,
+          0.89,
+          0.54
+        ]
+      },
+      {
+        "id": "stool",
+        "name": "El taburete del taller",
+        "location": "sobre el taburete morado del taller",
+        "cx": 0.17,
+        "cy": 0.68,
+        "bounds": [
+          0.1,
+          0.61,
+          0.24,
+          0.75
+        ]
+      },
+      {
+        "id": "purpleCrate",
+        "name": "El baúl de herramientas",
+        "location": "sobre el baúl morado del centro",
+        "cx": 0.5,
+        "cy": 0.64,
+        "bounds": [
+          0.43,
+          0.57,
+          0.57,
+          0.71
+        ]
+      },
+      {
+        "id": "rock",
+        "name": "La mesa de piedra",
+        "location": "sobre la mesa de piedra de la derecha",
+        "cx": 0.85,
+        "cy": 0.67,
+        "bounds": [
+          0.78,
+          0.6,
+          0.92,
+          0.74
+        ]
+      },
+      {
+        "id": "frontBench",
+        "name": "El banco de madera",
+        "location": "sobre el banco de madera delantero",
+        "cx": 0.5,
+        "cy": 0.835,
+        "bounds": [
+          0.43,
+          0.765,
+          0.57,
+          0.905
+        ]
+      }
+    ]
+  },
+  "9": {
+    "zones": [
+      {
+        "id": "leftShelf",
+        "name": "La repisa de la ventana",
+        "location": "sobre la repisa junto a la ventana dorada",
+        "cx": 0.18,
+        "cy": 0.28,
+        "bounds": [
+          0.11,
+          0.21,
+          0.25,
+          0.35
+        ]
+      },
+      {
+        "id": "machine",
+        "name": "La plataforma de la máquina",
+        "location": "sobre la plataforma redonda frente a la máquina",
+        "cx": 0.52,
+        "cy": 0.28,
+        "bounds": [
+          0.45,
+          0.21,
+          0.59,
+          0.35
+        ]
+      },
+      {
+        "id": "rightShelf",
+        "name": "La repisa metálica",
+        "location": "sobre la repisa metálica superior derecha",
+        "cx": 0.83,
+        "cy": 0.28,
+        "bounds": [
+          0.76,
+          0.21,
+          0.9,
+          0.35
+        ]
+      },
+      {
+        "id": "leftTable",
+        "name": "La mesa de madera",
+        "location": "sobre la mesa de madera izquierda",
+        "cx": 0.17,
+        "cy": 0.46,
+        "bounds": [
+          0.1,
+          0.39,
+          0.24,
+          0.53
+        ]
+      },
+      {
+        "id": "console",
+        "name": "La consola central",
+        "location": "sobre la consola central de activación",
+        "cx": 0.5,
+        "cy": 0.43,
+        "bounds": [
+          0.43,
+          0.36,
+          0.57,
+          0.5
+        ]
+      },
+      {
+        "id": "rightTable",
+        "name": "La mesa metálica",
+        "location": "sobre la mesa metálica derecha",
+        "cx": 0.83,
+        "cy": 0.46,
+        "bounds": [
+          0.76,
+          0.39,
+          0.9,
+          0.53
+        ]
+      },
+      {
+        "id": "stool",
+        "name": "El taburete de madera",
+        "location": "sobre el taburete de madera izquierdo",
+        "cx": 0.15,
+        "cy": 0.63,
+        "bounds": [
+          0.08,
+          0.56,
+          0.22,
+          0.7
+        ]
+      },
+      {
+        "id": "bench",
+        "name": "El banco de piedra",
+        "location": "sobre el banco de piedra del centro",
+        "cx": 0.49,
+        "cy": 0.625,
+        "bounds": [
+          0.42,
+          0.555,
+          0.56,
+          0.695
+        ]
+      },
+      {
+        "id": "rock",
+        "name": "La roca de los cristales",
+        "location": "sobre la roca plana junto a los cristales",
+        "cx": 0.83,
+        "cy": 0.66,
+        "bounds": [
+          0.76,
+          0.59,
+          0.9,
+          0.73
+        ]
+      },
+      {
+        "id": "frontTable",
+        "name": "La mesa dorada",
+        "location": "sobre la mesa redonda dorada delantera",
+        "cx": 0.5,
+        "cy": 0.79,
+        "bounds": [
+          0.43,
+          0.72,
+          0.57,
+          0.86
+        ]
+      }
+    ]
+  },
+  "10": {
+    "zones": [
+      {
+        "id": "leftLedge",
+        "name": "El murete de la plaza",
+        "location": "sobre el murete de piedra de la izquierda",
+        "cx": 0.17,
+        "cy": 0.305,
+        "bounds": [
+          0.1,
+          0.235,
+          0.24,
+          0.375
+        ]
+      },
+      {
+        "id": "gazebo",
+        "name": "El quiosco violeta",
+        "location": "en el suelo del quiosco violeta",
+        "cx": 0.5,
+        "cy": 0.3,
+        "bounds": [
+          0.43,
+          0.23,
+          0.57,
+          0.37
+        ]
+      },
+      {
+        "id": "shop",
+        "name": "El mostrador azul",
+        "location": "sobre el mostrador azul de la tienda",
+        "cx": 0.83,
+        "cy": 0.305,
+        "bounds": [
+          0.76,
+          0.235,
+          0.9,
+          0.375
+        ]
+      },
+      {
+        "id": "bench",
+        "name": "El banco de la plaza",
+        "location": "sobre el banco de madera de la plaza",
+        "cx": 0.18,
+        "cy": 0.52,
+        "bounds": [
+          0.11,
+          0.45,
+          0.25,
+          0.59
+        ]
+      },
+      {
+        "id": "fountain",
+        "name": "El borde de la fuente",
+        "location": "sobre el borde delantero de la fuente",
+        "cx": 0.5,
+        "cy": 0.55,
+        "bounds": [
+          0.43,
+          0.48,
+          0.57,
+          0.62
+        ]
+      },
+      {
+        "id": "cafe",
+        "name": "La mesa del café",
+        "location": "sobre la mesa redonda del café",
+        "cx": 0.83,
+        "cy": 0.5,
+        "bounds": [
+          0.76,
+          0.43,
+          0.9,
+          0.57
+        ]
+      },
+      {
+        "id": "rock",
+        "name": "La roca de las flores",
+        "location": "sobre la roca plana junto a las flores",
+        "cx": 0.18,
+        "cy": 0.735,
+        "bounds": [
+          0.11,
+          0.665,
+          0.25,
+          0.805
+        ]
+      },
+      {
+        "id": "stool",
+        "name": "El taburete de la plaza",
+        "location": "sobre el taburete de madera de la plaza",
+        "cx": 0.5,
+        "cy": 0.675,
+        "bounds": [
+          0.43,
+          0.605,
+          0.57,
+          0.745
+        ]
+      },
+      {
+        "id": "crate",
+        "name": "La caja del puesto",
+        "location": "sobre la caja grande del puesto derecho",
+        "cx": 0.83,
+        "cy": 0.68,
+        "bounds": [
+          0.76,
+          0.61,
+          0.9,
+          0.75
+        ]
+      },
+      {
+        "id": "frontBench",
+        "name": "El banco de piedra",
+        "location": "sobre el banco de piedra delantero",
+        "cx": 0.5,
+        "cy": 0.84,
+        "bounds": [
+          0.43,
+          0.77,
+          0.57,
+          0.91
+        ]
+      }
+    ]
+  },
+  "11": {
+    "zones": [
+      {
+        "id": "leftStall",
+        "name": "El puesto izquierdo",
+        "location": "sobre el mostrador del puesto izquierdo",
+        "cx": 0.2,
+        "cy": 0.335,
+        "bounds": [
+          0.13,
+          0.265,
+          0.27,
+          0.405
+        ]
+      },
+      {
+        "id": "wall",
+        "name": "El murete del mercado",
+        "location": "sobre el murete de piedra del centro",
+        "cx": 0.5,
+        "cy": 0.325,
+        "bounds": [
+          0.43,
+          0.255,
+          0.57,
+          0.395
+        ]
+      },
+      {
+        "id": "rightStall",
+        "name": "El puesto derecho",
+        "location": "sobre el mostrador del puesto derecho",
+        "cx": 0.8,
+        "cy": 0.335,
+        "bounds": [
+          0.73,
+          0.265,
+          0.87,
+          0.405
+        ]
+      },
+      {
+        "id": "leftCrate",
+        "name": "La caja izquierda",
+        "location": "sobre la caja de madera izquierda",
+        "cx": 0.18,
+        "cy": 0.49,
+        "bounds": [
+          0.11,
+          0.42,
+          0.25,
+          0.56
+        ]
+      },
+      {
+        "id": "table",
+        "name": "La mesa del mercado",
+        "location": "sobre la mesa central del mercado",
+        "cx": 0.5,
+        "cy": 0.47,
+        "bounds": [
+          0.43,
+          0.4,
+          0.57,
+          0.54
+        ]
+      },
+      {
+        "id": "rightCrate",
+        "name": "La caja derecha",
+        "location": "sobre la caja de madera derecha",
+        "cx": 0.8,
+        "cy": 0.49,
+        "bounds": [
+          0.73,
+          0.42,
+          0.87,
+          0.56
+        ]
+      },
+      {
+        "id": "leftStool",
+        "name": "El taburete izquierdo",
+        "location": "sobre el taburete de madera izquierdo",
+        "cx": 0.2,
+        "cy": 0.68,
+        "bounds": [
+          0.13,
+          0.61,
+          0.27,
+          0.75
+        ]
+      },
+      {
+        "id": "stone",
+        "name": "La piedra del mercado",
+        "location": "sobre la piedra redonda central",
+        "cx": 0.5,
+        "cy": 0.67,
+        "bounds": [
+          0.43,
+          0.6,
+          0.57,
+          0.74
+        ]
+      },
+      {
+        "id": "rightStool",
+        "name": "El taburete derecho",
+        "location": "sobre el taburete de madera derecho",
+        "cx": 0.8,
+        "cy": 0.68,
+        "bounds": [
+          0.73,
+          0.61,
+          0.87,
+          0.75
+        ]
+      },
+      {
+        "id": "bench",
+        "name": "El banco delantero",
+        "location": "sobre el banco de madera delantero",
+        "cx": 0.5,
+        "cy": 0.83,
+        "bounds": [
+          0.43,
+          0.76,
+          0.57,
+          0.9
+        ]
+      }
+    ]
+  },
+  "12": {
+    "zones": [
+      {
+        "id": "leftShelf",
+        "name": "La repisa del tubo",
+        "location": "sobre la repisa junto al tubo de correo",
+        "cx": 0.17,
+        "cy": 0.3,
+        "bounds": [
+          0.1,
+          0.23,
+          0.24,
+          0.37
+        ]
+      },
+      {
+        "id": "sortingShelf",
+        "name": "La estantería de clasificación",
+        "location": "sobre la repisa alta de clasificación de cartas",
+        "cx": 0.5,
+        "cy": 0.315,
+        "bounds": [
+          0.43,
+          0.245,
+          0.57,
+          0.385
+        ]
+      },
+      {
+        "id": "rightShelf",
+        "name": "La repisa de la ventana",
+        "location": "sobre la repisa que está bajo la ventana",
+        "cx": 0.82,
+        "cy": 0.3,
+        "bounds": [
+          0.75,
+          0.23,
+          0.89,
+          0.37
+        ]
+      },
+      {
+        "id": "leftCounter",
+        "name": "El mostrador izquierdo",
+        "location": "sobre el mostrador morado izquierdo",
+        "cx": 0.18,
+        "cy": 0.54,
+        "bounds": [
+          0.11,
+          0.47,
+          0.25,
+          0.61
+        ]
+      },
+      {
+        "id": "desk",
+        "name": "La mesa de clasificación",
+        "location": "sobre la mesa central de clasificación",
+        "cx": 0.5,
+        "cy": 0.5,
+        "bounds": [
+          0.43,
+          0.43,
+          0.57,
+          0.57
+        ]
+      },
+      {
+        "id": "rightCounter",
+        "name": "El mostrador derecho",
+        "location": "sobre el mostrador morado derecho",
+        "cx": 0.84,
+        "cy": 0.54,
+        "bounds": [
+          0.77,
+          0.47,
+          0.91,
+          0.61
+        ]
+      },
+      {
+        "id": "stoneBench",
+        "name": "El banco de piedra",
+        "location": "sobre el banco de piedra izquierdo",
+        "cx": 0.18,
+        "cy": 0.75,
+        "bounds": [
+          0.11,
+          0.68,
+          0.25,
+          0.82
+        ]
+      },
+      {
+        "id": "roundTable",
+        "name": "La mesa redonda",
+        "location": "sobre la mesa redonda de correos",
+        "cx": 0.5,
+        "cy": 0.66,
+        "bounds": [
+          0.43,
+          0.59,
+          0.57,
+          0.73
+        ]
+      },
+      {
+        "id": "velvetBench",
+        "name": "El banco acolchado",
+        "location": "sobre el banco acolchado de la derecha",
+        "cx": 0.82,
+        "cy": 0.745,
+        "bounds": [
+          0.75,
+          0.675,
+          0.89,
+          0.815
+        ]
+      },
+      {
+        "id": "stool",
+        "name": "El taburete delantero",
+        "location": "sobre el taburete morado delantero",
+        "cx": 0.5,
+        "cy": 0.86,
+        "bounds": [
+          0.43,
+          0.79,
+          0.57,
+          0.93
+        ]
+      }
+    ]
+  },
+  "13": {
+    "zones": [
+      {
+        "id": "leftShelf",
+        "name": "La repisa del reloj pequeño",
+        "location": "sobre la repisa bajo los relojes izquierdos",
+        "cx": 0.19,
+        "cy": 0.28,
+        "bounds": [
+          0.12,
+          0.21,
+          0.26,
+          0.35
+        ]
+      },
+      {
+        "id": "window",
+        "name": "El alféizar de la luna",
+        "location": "en el alféizar bajo la gran ventana de la luna",
+        "cx": 0.5,
+        "cy": 0.39,
+        "bounds": [
+          0.43,
+          0.32,
+          0.57,
+          0.46
+        ]
+      },
+      {
+        "id": "rightShelf",
+        "name": "La repisa del cuco",
+        "location": "sobre la repisa bajo el reloj de cuco",
+        "cx": 0.81,
+        "cy": 0.3,
+        "bounds": [
+          0.74,
+          0.23,
+          0.88,
+          0.37
+        ]
+      },
+      {
+        "id": "leftDesk",
+        "name": "El escritorio izquierdo",
+        "location": "sobre el escritorio de madera izquierdo",
+        "cx": 0.18,
+        "cy": 0.49,
+        "bounds": [
+          0.11,
+          0.42,
+          0.25,
+          0.56
+        ]
+      },
+      {
+        "id": "roundTable",
+        "name": "La mesa redonda",
+        "location": "sobre la mesa redonda azul del centro",
+        "cx": 0.5,
+        "cy": 0.505,
+        "bounds": [
+          0.43,
+          0.435,
+          0.57,
+          0.575
+        ]
+      },
+      {
+        "id": "rightDesk",
+        "name": "El escritorio de engranajes",
+        "location": "sobre el escritorio de engranajes de la derecha",
+        "cx": 0.83,
+        "cy": 0.49,
+        "bounds": [
+          0.76,
+          0.42,
+          0.9,
+          0.56
+        ]
+      },
+      {
+        "id": "leftPedestal",
+        "name": "El pedestal izquierdo",
+        "location": "sobre el pedestal de piedra izquierdo",
+        "cx": 0.16,
+        "cy": 0.67,
+        "bounds": [
+          0.09,
+          0.6,
+          0.23,
+          0.74
+        ]
+      },
+      {
+        "id": "bench",
+        "name": "El banco del centro",
+        "location": "sobre el banco acolchado del centro",
+        "cx": 0.5,
+        "cy": 0.675,
+        "bounds": [
+          0.43,
+          0.605,
+          0.57,
+          0.745
+        ]
+      },
+      {
+        "id": "rightPedestal",
+        "name": "El pedestal derecho",
+        "location": "sobre el pedestal de piedra derecho",
+        "cx": 0.84,
+        "cy": 0.67,
+        "bounds": [
+          0.77,
+          0.6,
+          0.91,
+          0.74
+        ]
+      },
+      {
+        "id": "frontTable",
+        "name": "La mesa delantera",
+        "location": "sobre la mesa ovalada delantera",
+        "cx": 0.5,
+        "cy": 0.835,
+        "bounds": [
+          0.43,
+          0.765,
+          0.57,
+          0.905
+        ]
+      }
+    ]
+  },
+  "14": {
+    "zones": [
+      {
+        "id": "leftShelf",
+        "name": "La repisa de las montañas",
+        "location": "sobre la repisa bajo el cuadro de las montañas",
+        "cx": 0.235,
+        "cy": 0.33,
+        "bounds": [
+          0.165,
+          0.26,
+          0.305,
+          0.4
+        ]
+      },
+      {
+        "id": "windowShelf",
+        "name": "La repisa de la ventana",
+        "location": "sobre la repisa central de la ventana",
+        "cx": 0.5,
+        "cy": 0.34,
+        "bounds": [
+          0.43,
+          0.27,
+          0.57,
+          0.41
+        ]
+      },
+      {
+        "id": "rightShelf",
+        "name": "La repisa del faro",
+        "location": "sobre la repisa bajo el cuadro del faro",
+        "cx": 0.77,
+        "cy": 0.33,
+        "bounds": [
+          0.7,
+          0.26,
+          0.84,
+          0.4
+        ]
+      },
+      {
+        "id": "leftPedestal",
+        "name": "El pedestal de mármol izquierdo",
+        "location": "sobre el pedestal de mármol de la izquierda",
+        "cx": 0.2,
+        "cy": 0.51,
+        "bounds": [
+          0.13,
+          0.44,
+          0.27,
+          0.58
+        ]
+      },
+      {
+        "id": "roundTable",
+        "name": "La mesa central",
+        "location": "sobre la mesa redonda de mármol central",
+        "cx": 0.5,
+        "cy": 0.52,
+        "bounds": [
+          0.43,
+          0.45,
+          0.57,
+          0.59
+        ]
+      },
+      {
+        "id": "rightPedestal",
+        "name": "El pedestal de mármol derecho",
+        "location": "sobre el pedestal de mármol de la derecha",
+        "cx": 0.8,
+        "cy": 0.51,
+        "bounds": [
+          0.73,
+          0.44,
+          0.87,
+          0.58
+        ]
+      },
+      {
+        "id": "leftBench",
+        "name": "El banco izquierdo",
+        "location": "sobre el banco morado de la izquierda",
+        "cx": 0.18,
+        "cy": 0.715,
+        "bounds": [
+          0.11,
+          0.645,
+          0.25,
+          0.785
+        ]
+      },
+      {
+        "id": "smallTable",
+        "name": "La mesita dorada",
+        "location": "sobre la mesita dorada del centro",
+        "cx": 0.5,
+        "cy": 0.7,
+        "bounds": [
+          0.43,
+          0.63,
+          0.57,
+          0.77
+        ]
+      },
+      {
+        "id": "rightBench",
+        "name": "El banco derecho",
+        "location": "sobre el banco morado de la derecha",
+        "cx": 0.82,
+        "cy": 0.715,
+        "bounds": [
+          0.75,
+          0.645,
+          0.89,
+          0.785
+        ]
+      },
+      {
+        "id": "frontBench",
+        "name": "El banco delantero",
+        "location": "sobre el gran banco morado delantero",
+        "cx": 0.5,
+        "cy": 0.86,
+        "bounds": [
+          0.43,
+          0.79,
+          0.57,
+          0.93
+        ]
+      }
+    ]
+  },
+  "15": {
+    "zones": [
+      {
+        "id": "leftShelf",
+        "name": "La repisa del castillo",
+        "location": "sobre la repisa bajo el mural del castillo",
+        "cx": 0.195,
+        "cy": 0.315,
+        "bounds": [
+          0.125,
+          0.245,
+          0.265,
+          0.385
+        ]
+      },
+      {
+        "id": "rightShelf",
+        "name": "La repisa de la fiesta",
+        "location": "sobre la repisa bajo el mural de la fiesta",
+        "cx": 0.81,
+        "cy": 0.315,
+        "bounds": [
+          0.74,
+          0.245,
+          0.88,
+          0.385
+        ]
+      },
+      {
+        "id": "leftCabinet",
+        "name": "El armario de recuerdos izquierdo",
+        "location": "sobre el armario de recuerdos izquierdo",
+        "cx": 0.18,
+        "cy": 0.51,
+        "bounds": [
+          0.11,
+          0.44,
+          0.25,
+          0.58
+        ]
+      },
+      {
+        "id": "rightCabinet",
+        "name": "El armario de recuerdos derecho",
+        "location": "sobre el armario de recuerdos derecho",
+        "cx": 0.83,
+        "cy": 0.51,
+        "bounds": [
+          0.76,
+          0.44,
+          0.9,
+          0.58
+        ]
+      },
+      {
+        "id": "tableLeft",
+        "name": "La mesa del secreto",
+        "location": "sobre la parte izquierda de la mesa del secreto",
+        "cx": 0.43,
+        "cy": 0.55,
+        "bounds": [
+          0.36,
+          0.48,
+          0.5,
+          0.62
+        ]
+      },
+      {
+        "id": "tableRight",
+        "name": "La mesa del secreto",
+        "location": "sobre la parte derecha de la mesa del secreto",
+        "cx": 0.6,
+        "cy": 0.55,
+        "bounds": [
+          0.53,
+          0.48,
+          0.67,
+          0.62
+        ]
+      },
+      {
+        "id": "leftBench",
+        "name": "El banco izquierdo",
+        "location": "sobre el banco violeta izquierdo",
+        "cx": 0.15,
+        "cy": 0.69,
+        "bounds": [
+          0.08,
+          0.62,
+          0.22,
+          0.76
+        ]
+      },
+      {
+        "id": "stool",
+        "name": "El taburete de la estrella",
+        "location": "sobre el taburete redondo del centro",
+        "cx": 0.5,
+        "cy": 0.715,
+        "bounds": [
+          0.43,
+          0.645,
+          0.57,
+          0.785
+        ]
+      },
+      {
+        "id": "rightBench",
+        "name": "El banco derecho",
+        "location": "sobre el banco violeta derecho",
+        "cx": 0.85,
+        "cy": 0.69,
+        "bounds": [
+          0.78,
+          0.62,
+          0.92,
+          0.76
+        ]
+      },
+      {
+        "id": "frontBench",
+        "name": "El banco de la celebración",
+        "location": "sobre el gran banco delantero de la celebración",
+        "cx": 0.5,
+        "cy": 0.86,
+        "bounds": [
+          0.43,
+          0.79,
+          0.57,
+          0.93
+        ]
+      }
+    ]
+  }
+}

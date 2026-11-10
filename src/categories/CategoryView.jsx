@@ -8,6 +8,7 @@ const kidsGames = [
   { id: 'gorila-loco', title: 'Gorila Loco', text: 'Atrapa animales, evita trampas y supera tu récord.', skill: 'Reflejos y coordinación', color: 'green', href: '#/infantil/gorila-loco', age: '4–10 años' },
   { id: 'conecta-colores', title: 'Conecta los Colores', text: 'Une las parejas sin cruzar caminos. 30 niveles para explorar.', skill: 'Lógica · Fácil a difícil', color: 'pink', href: '#/infantil/conecta-colores', age: '4–10 años' },
   { id: 'ultima-mordida', title: 'La Última Mordida', text: 'Lee las pistas, reparte los platos y pulsa «¡A comer!».', skill: 'Deducción y estrategia', color: 'gold', href: '#/infantil/ultima-mordida', age: '6–10 años' },
+  { id: 'detective', title: 'Detective BruCat', text: 'Encuentra cinco objetos, reúne las pistas y resuelve el misterio del castillo.', skill: 'Observación y lógica', color: 'blue', href: '#/infantil/detective', age: '5–10 años' },
   { id: 'puzzle', title: 'Rompecabezas BruCat', text: 'Arma imágenes divertidas, pieza por pieza.', skill: 'Lógica y motricidad', color: 'blue' },
   { id: 'math', title: 'Aventura Matemática', text: 'Resuelve desafíos y descubre nuevos caminos.', skill: 'Matemáticas', color: 'green' },
   { id: 'words', title: 'Sopa de Letras', text: 'Explora el tablero y encuentra las palabras.', skill: 'Vocabulario', color: 'orange' },
@@ -15,7 +16,6 @@ const kidsGames = [
   { id: 'color', title: 'Colorea BruCat', text: 'Dale tu toque de color al universo BruCat.', skill: 'Creatividad', color: 'teal' },
   { id: 'story', title: 'Ordena la Historia', text: 'Ordena las escenas y descubre qué sucede.', skill: 'Comprensión lectora', color: 'pink' },
   { id: 'maze', title: 'Laberintos de Aventuras', text: 'Encuentra el camino y llega hasta la meta.', skill: 'Orientación y lógica', color: 'blue' },
-  { id: 'detective', title: 'Detective BruCat', text: 'Observa los detalles y sigue las pistas.', skill: 'Observación', color: 'gold' },
   { id: 'fruit', title: 'Atrapa las Frutas', text: 'Atrapa frutas y pon a prueba tus reflejos.', skill: 'Reflejos y coordinación', color: 'red' },
 ]
 
@@ -52,7 +52,7 @@ function GameArtwork({ kind }) {
     case 'maze':
       return <svg className="tile-maze" viewBox="0 0 200 160" fill="none"><path d="M12 12H188V148H12V12ZM12 46H80V80H46V114H112V80H150V46H188M46 12V26H112V46M12 80H28M80 148V130M112 114H170V148M150 12V28M188 80H170V100M80 46V28M46 148V130" stroke="currentColor" strokeWidth="9" strokeLinejoin="round" /><text x="125" y="136" fontSize="24">♛</text><text x="155" y="38" fontSize="24">⚑</text></svg>
     case 'detective':
-      return <div className="tile-detective"><Character name="orange-cat" /><span className="detective-hat">◢</span><span className="detective-glass">⌕</span><i>· · ·</i></div>
+      return <div className="tile-detective-game"><img src={`${base}games/detective/castle-study.png`} alt="" loading="lazy" width="1254" height="1254"/><img src={`${base}images/categories/gorilla-playing.png`} alt="" loading="lazy" width="1109" height="1419"/><span>⌕</span></div>
     case 'fruit':
       return <div className="tile-fruit"><span>🍓</span><span>🍌</span><span>🍎</span><Character name="llama" /><div className="fruit-basket" /></div>
     default: return null
@@ -93,7 +93,7 @@ export default function CategoryView({ categoryId = 'infantil' }) {
         <div className="neon-games-grid">
           {category.games.map((game, index) => <CategoryTile key={game.id} game={game} index={index} />)}
         </div>
-        <p className="category-roadmap-note">Elige Memoria Gorila, Gorila Loco, Conecta los Colores o La Última Mordida. Los juegos marcados como «Próximamente» todavía están en preparación.</p>
+        <p className="category-roadmap-note">Elige Memoria Gorila, Gorila Loco, Conecta los Colores La Última Mordida o Detective BruCat. Los juegos marcados como «Próximamente» todavía están en preparación.</p>
       </div>
     </section>
   )

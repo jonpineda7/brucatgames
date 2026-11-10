@@ -1,0 +1,48 @@
+.detective-puzzle-board { text-align:left; margin:14px 0; }
+.detective-puzzle-board h3 { text-align:center; color:#fff0d4; }
+.detective-puzzle-stage { text-align:center; font-weight:800; color:#aee9ed!important; letter-spacing:.06em; }
+.detective-puzzle-instruction { font-size:.75rem!important; line-height:1.6!important; }
+.detective-puzzle-choices,.detective-puzzle-bank { display:grid; grid-template-columns:repeat(auto-fit,minmax(105px,1fr)); gap:9px; margin:16px 0; }
+.detective-puzzle-choices button,.detective-puzzle-bank button,.detective-puzzle-targets button { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; min-height:100px; border:1px solid #ab8bbb; border-radius:13px; padding:10px; background:#3b2d4e; color:#fcead0; font:inherit; font-size:.76rem; line-height:1.45; cursor:pointer; overflow-wrap:anywhere; }
+.detective-puzzle-bank button { min-height:92px; touch-action:none; }
+.detective-puzzle-bank button.has-place { background:#2c4144; border-color:#7ab6ad; }
+.detective-puzzle-bank button small { color:#c7e8dd; font-size:.63rem; }
+.detective-puzzle-choices button:hover:not(:disabled),.detective-puzzle-bank button:hover:not(:disabled),.detective-puzzle-targets button:hover:not(:disabled) { background:#554064; border-color:#efd28c; }
+.detective-puzzle-choices button[aria-pressed=true],.detective-puzzle-bank button[aria-pressed=true] { background:#493c63; border:2px solid #a6e8ee; box-shadow:0 0 0 2px #a6e8ee44; }
+.detective-puzzle-board :is(button,select,summary):focus-visible { outline:3px solid #a6edff; outline-offset:4px; }
+.detective-puzzle-board :is(.detective-object-icon,.detective-puzzle-fragment) { width:58px; height:58px; flex:none; pointer-events:none; }
+.detective-puzzle-symbol { font-size:2rem; color:#ffdf8f; }
+.detective-pattern { display:flex; align-items:center; justify-content:center; gap:7px; width:100%; }
+.detective-pattern svg { width:32px; height:32px; min-width:0; flex-shrink:1; }
+.detective-pattern-reference { padding:12px; border:1px solid #b39c78; background:#30283b; border-radius:12px; display:grid; gap:12px; color:#ffe4a0; text-align:center; font-size:.73rem; }
+.detective-pattern-reference svg { width:42px; height:42px; }
+.detective-sequence { display:grid; grid-template-columns:repeat(auto-fit,minmax(105px,1fr)); gap:9px; list-style:none; padding:0; min-height:55px; margin:16px 0; }
+.detective-sequence li { border:1px solid #9574aa; border-radius:13px; background:#32253f; overflow:hidden; }
+.detective-sequence-tile { width:100%; min-height:110px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; padding:9px; font:inherit; font-size:.72rem; color:#fce8c4; background:#493357; border:0; touch-action:none; cursor:grab; }
+.detective-sequence-tile:active { cursor:grabbing; }
+.detective-sequence-tile b { display:grid; place-items:center; width:25px; height:25px; border-radius:50%; background:#eece8f; color:#3b2a49; }
+.detective-sequence-arrows { display:flex; gap:1px; }
+.detective-sequence-arrows button { flex:1; min-height:44px; border:0; border-top:1px solid #816b91; background:#3c314c; color:#e3e3f7; font-size:1.2rem; cursor:pointer; }
+.detective-puzzle-targets { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:18px 0; }
+.detective-target-label { font-weight:700; color:#c3edf1; font-size:.7rem; }
+.detective-empty-slot { display:grid; place-items:center; color:#a695bc; font-size:2rem; width:58px; height:58px; border:1px dashed #a58db6; border-radius:10px; }
+.detective-puzzle-targets.layout-map { gap:3px; padding:6px; background:#9a7957; border:2px solid #dec796; border-radius:12px; }
+.detective-puzzle-targets.layout-map button { border-radius:5px; min-height:150px; background:#53454b; border-color:#c2a47b; }
+.detective-puzzle-targets.layout-map .detective-puzzle-fragment { width:100%; height:100px; }
+.detective-robot-blueprint { display:block; width:min(240px,100%); height:130px; margin:12px auto -10px; filter:drop-shadow(0 4px 12px #05030b66); }
+.detective-puzzle-keyboard { border:1px solid #8d769f; border-radius:12px; padding:4px 12px; }
+.detective-puzzle-keyboard summary { display:flex; align-items:center; min-height:44px; cursor:pointer; color:#bde8ed; font-size:.75rem; }
+.detective-puzzle-keyboard label { display:grid; gap:6px; margin:12px 0; color:#f5dfbb; font-size:.75rem; }
+.detective-puzzle-keyboard select { width:100%; min-height:44px; font:inherit; color:#fff0d6; background:#473454; border:1px solid #b39bc2; border-radius:8px; padding:8px; }
+.detective-draft-status { text-align:center; color:#bfece4!important; min-height:26px; font-size:.74rem!important; }
+.detective-puzzle-submit { width:100%; min-height:48px; cursor:pointer; }
+@media(max-width:480px) { .detective-puzzle-choices,.detective-puzzle-bank,.detective-sequence { grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }.detective-puzzle-choices button,.detective-puzzle-bank button { font-size:.71rem; padding:8px 5px; }.detective-puzzle-targets button { font-size:.68rem; padding:9px 5px; }.detective-puzzle-targets.layout-map button { min-height:130px; }.detective-puzzle-board .detective-object-icon { width:48px; height:48px; } }
+@media(prefers-reduced-motion:reduce) { .detective-puzzle-board * { animation:none!important; transition:none!important; } }
+
+/* Placed map fragments meet at their real edges to reconstruct one continuous image. */
+.detective-puzzle-targets.layout-map { gap:0; padding:0; overflow:hidden; }
+.detective-puzzle-targets.layout-map button { position:relative; aspect-ratio:1; min-height:0; padding:0; border-radius:0; gap:0; overflow:hidden; }
+.detective-puzzle-targets.layout-map .detective-puzzle-fragment { position:absolute; inset:0; width:100%; height:100%; }
+.detective-puzzle-targets.layout-map :is(.detective-target-label,.detective-placed-piece-label) { position:absolute; z-index:1; max-width:calc(100% - 10px); border-radius:4px; background:#2b223cde; color:#f8eccd; padding:3px 5px; line-height:1.35; font-size:.61rem; }
+.detective-puzzle-targets.layout-map .detective-target-label { left:5px; top:5px; }
+.detective-puzzle-targets.layout-map .detective-placed-piece-label { right:5px; bottom:5px; }
