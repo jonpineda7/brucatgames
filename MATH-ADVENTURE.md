@@ -1,86 +1,62 @@
-# BruCat Math Adventure — juego 6
+# BruCat Math Adventure
 
-Integrado en Infantil en `#/infantil/math-adventure`. Reutiliza React, JavaScript, Vite, la navegación y el gorila oficial. No añade dependencias. React, SVG y CSS bastan para esta aventura de avance dirigido; no incorpora físicas de plataformas continuas.
+Juego de Infantil en `/#/infantil/math-adventure`. Reutiliza React, JavaScript, SVG, CSS, el fondo ilustrado, el explorador albino y los diez jefes existentes. No añade dependencias ni un motor de físicas.
 
-## Contenido terminado
+## Estructura vigente
 
-La Selva de los Números contiene diez desafíos completos. Cada acierto mueve a BruCat, entrega cinco monedas internas y abre la siguiente zona. Las operaciones se generan para la selección del jugador, independientemente de la zona.
+Cada zona comienza con una entrada breve, seguida por **tres obstáculos matemáticos**, un desplazamiento hasta la arena, presentación omisible del jefe y combate final. La victoria se conserva hasta pulsar «Siguiente zona». El jefe y su energía no aparecen durante el recorrido; sus aciertos no descuentan energía ni conceden monedas.
 
-| Zona | Desafío | Interacción |
+| Zona | Recorrido: tres obstáculos | Jefe final |
 |---|---|---|
-| 1 | El puente interrumpido | Elegir plataforma y saltar |
-| 2 | La puerta de las raíces | Introducir el código |
-| 3 | Provisiones para el camino | Arrastrar una cantidad o seleccionarla y colocarla |
-| 4 | El ascensor de bambú | Construir el número con incrementos |
-| 5 | El claro de las luciérnagas | Repartir cantidades o formar grupos |
-| 6 | Los tres senderos | Elegir camino |
-| 7 | El santuario escondido | Descifrar el código |
-| 8 | El tesoro de la selva | Colocar cantidades en la mochila |
-| 9 | El gran salto | Elegir plataforma |
-| 10 | El portal de los números | Activar el portal y celebrar |
+| El puente interrumpido | Puente, ascensor, puerta | Rey Burbuja |
+| La puerta de las raíces | Sendero, ascensor, puerta | Capitán Crujiente |
+| Provisiones para el camino | Puente, mochila, luces/grupos | Remolino Dulzón |
+| El ascensor de bambú | Sendero, ascensor, puente | Scroll Infinito |
+| El claro de las luciérnagas | Puente, luces/grupos, puerta | Píxel Desvelado |
+| Los tres senderos | Sendero, mochila, puerta | Don Sofanazo |
+| El santuario escondido | Puente, luces/grupos, puerta | Pelusa Enredada |
+| El tesoro de la selva | Sendero, mochila, ascensor | Torbellino Apurado |
+| El gran salto | Puente, ascensor, sendero | Bocina Boom |
+| El portal de los números | Sendero, luces/grupos, portal | Mochila Caótica |
 
-Aprender y Aventura comparten el motor. Se pueden practicar sumas, restas, multiplicaciones, divisiones o una selección mixta configurable. Novato, Audaz y Guerrero están disponibles para todas las operaciones. Guerrero introduce ejercicios de dos pasos de la misma operación seleccionada.
+Cada respuesta correcta repara un elemento y bloquea nuevas confirmaciones mientras BruCat avanza al siguiente apoyo. La cámara recorre tres paneles conectados del fondo existente; los ascensores cambian la altura de destino. La arena tiene otro encuadre y presenta al jefe por primera vez. El mapa distingue pendiente, recorrido en progreso, jefe pendiente y completada, además del progreso global de diez zonas.
 
-Las ayudas muestran agrupaciones, objetos retirados, arreglos rectangulares, reparto equitativo y descomposición de cantidades. Las representaciones grandes son compactas. La primera ayuda orienta; la segunda explica la solución. Los errores permiten reintentar sin perder monedas ni bloquear el avance. No hay tiempo límite ni vidas.
+## Aprendizaje y premios
 
-La adaptación permanece dentro de la dificultad elegida: tres aciertos consecutivos aumentan el nivel interno de exigencia y dos errores lo reducen. Nunca cambia automáticamente de Novato a otra dificultad.
+Se mantienen Aprender y Aventura, las cuatro operaciones, mixto restringido, Novato/Audaz/Guerrero y los ejercicios de dos pasos. El contexto matemático conserva la operación, dificultad elegida y nivel de zona tanto en recorrido como en combate. La adaptación pedagógica previa sigue respondiendo al desempeño dentro del nivel elegido; no hay un incremento especial por entrar en la arena.
 
-## Recompensas y persistencia
+Plataformas y senderos utilizan selección; mochilas permiten selección/colocación y arrastre; puertas y mecanismos utilizan cantidades; los grupos emplean reparto o agrupación cuando corresponde. Las ayudas SVG se conservan. En combate las opciones anuncian «Lanzar respuesta». Los ejercicios de dos pasos no usan un reparto que represente solo su primera operación.
 
-Diez aciertos dan 50 monedas. La puntuación final es 1000 más 100 por estrella. Se obtienen tres estrellas con hasta un error y una ayuda; dos con hasta cinco de cada; una en los demás casos. Repetir no reduce el mejor registro.
+Los errores conservan pregunta y apoyo y permiten reintentar sin perder monedas, energía ni zonas. Las pistas no reducen daño ni premios. No hay reloj obligatorio ni vidas.
 
-`localStorage` guarda preferencias, estadísticas por operación y dificultad, mejores resultados y ruta activa con sus desafíos completados, pregunta exacta, ayudas y borrador. Si falla el almacenamiento se puede seguir jugando. No se recopilan datos personales.
+Cada jefe requiere 3, 4 o 5 aciertos, según `bosses.js`; cada segmento equivale a 10 puntos. Una zona completada entrega cinco monedas y su insignia previsible. Diez zonas suman 50 monedas; ahora hay 30 ejercicios de recorrido y 40 aciertos de jefe en una expedición sin errores. Se conserva la puntuación `1000 + estrellas × 100` y la regla ya vigente de estrellas por reintentos (hasta 1: tres; hasta 5: dos; después: una), sin penalizar pistas. Los récords previos no se recalculan ni degradan.
 
-El motor bloquea respuestas duplicadas y protege las transiciones mediante identificadores de partida. Los temporizadores se cancelan al desmontar. Los diálogos gestionan el foco, hay alternativas de teclado al arrastre y se respeta movimiento reducido. El audio es sintético, opcional y se activa desde un gesto del usuario.
+## Estado y guardado
 
-## Archivos principales
+El reducer distingue introducción (`EXPLORE`), obstáculo (`OBSTACLE`), reparación (`OBSTACLE_RESOLVING`), desplazamiento (`MOVING`/`ARENA_MOVING`), presentación (`BOSS_INTRO`), combate (`CHALLENGE`), efecto (`RESOLVING`), impacto (`IMPACT`), victoria con zona completada (`VICTORY`), pausa y resultado global. La sesión y el token de transición rechazan callbacks antiguos. La victoria registra una zona y su premio una sola vez.
 
-- `math.js`: generador, rangos, distractores y explicaciones puras.
-- `difficulty.js`: adaptación pedagógica.
-- `engine.js`: fases, avance, recompensas y reinicio.
-- `progress.js`: validación y persistencia.
-- `LearningVisual.jsx` y `learningModel.js`: apoyos pedagógicos SVG.
-- `WorldScene.jsx`: escenario, personaje y mecanismos.
-- `QuantityBuilder.jsx` e `interaction.js`: construcción, reparto y arrastre.
-- `MathAdventure.jsx`, `MathDialog.jsx` y hojas CSS: menús, HUD y resultados.
-- `useMathAdventure.js`: integración, audio y transiciones.
-- `src/App.jsx` y `src/categories/CategoryView.*`: ruta y tarjeta del catálogo.
-- `public/games/math-adventure/`: fondo original, miniatura y procedencia de recursos.
+Se conserva la clave `brucatgames:math-adventure:v1` y se versiona el contenido de la partida activa con **esquema 3**: zona, fase estable, índice/lista de obstáculos resueltos, pregunta pendiente, energía, zonas premiadas, ayudas y borrador. No se guardan coordenadas intermedias. Al aceptar un acierto se prepara la próxima pregunta; un cierre durante la reparación o el movimiento se recupera en el apoyo de destino, sin repetir el acierto. Un último golpe interrumpido se recupera como victoria sin duplicar recompensas.
 
-## Verificación
+Migración: las zonas ya completadas permanecen completadas. Una partida del antiguo sistema de jefes con pregunta o daño pendiente continúa en su arena, conservando energía y ejercicio; se considera su recorrido ya transitado, **sin añadir monedas ni zonas**. Una presentación antigua aún sin jugar comienza el nuevo recorrido. Un guardado anterior al sistema de jefes conserva su ejercicio como primer obstáculo pendiente. Se validan datos inconsistentes y se conservan preferencias, estadísticas y mejores resultados.
 
-La suite del repositorio incluye pruebas del generador con 7200 ejercicios, rangos, aritmética, distractores únicos, divisiones exactas, dos pasos, ayudas y representaciones. También cubre los 30 perfiles de modo/dificultad/operación a través de las diez zonas, modo mixto restringido, errores, doble envío, progresión, recompensas, reinicio, pausa, persistencia, fallos de almacenamiento y semántica del arrastre.
+La pausa detiene animaciones y conserva el tiempo restante de los efectos/movimientos. Salir o reiniciar cancela temporizadores. Las transiciones lógicas no dependen de eventos CSS. Movimiento reducido utiliza pose neutral, posiciones finales inmediatas y temporizadores breves.
 
-Verificación manual realizada en Safari: expedición completa de diez zonas con divisiones Novato y modo Aprender; error y reintento, recarga y recuperación de la misma pregunta, arrastre real, colocación por clic, engranajes, reparto equitativo, pausa y victoria con 50 monedas. En Chrome se comprobó la vista emulada a 375 × 812 y la progresión mixta suma/resta en Guerrero. Se corrigió el desborde móvil detectado.
+## Archivos
 
-## Contenido previsto y límites
+- `journey.js`: diez recorridos, obstáculos, apoyos, destinos, jefe, recompensa y salida.
+- `JourneyScene.jsx/.css`: escenario conectado, cambios de obstáculos, cámara, saltos y elevador.
+- `WorldScene.jsx`: presentación y arena, mapa, jefe, escudo, impacto y victoria.
+- `engine.js`, `progress.js`, `useMathAdventure.js`: estado, persistencia/migración y reloj cancelable.
+- `MathAdventure.jsx`, `MathAdventure.css`, `QuantityBuilder.jsx`: HUD contextual, respuestas y ayudas compactas.
+- `BruCatCharacter.jsx`: conserva sus secuencias y añade selección explícita de la pose de salto existente.
+- `math.js`, `difficulty.js`, `learningModel.js`, `LearningVisual.jsx`: generador y apoyos educativos reutilizados.
 
-Cavernas, Castillo y Galaxia están identificados como próximos mundos; no se presentan como jugables ni se desbloquea contenido vacío. Sus escenarios y desafíos son la siguiente ampliación.
+## Verificación y límites
 
-BruCat utiliza ahora la hoja animada de explorador aportada por el usuario: espera/parpadeo, celebración y ayuda con cuaderno. Se prepararon sus doce celdas para limpiar halos y estabilizar el anclaje. Quedan para una ampliación animaciones específicas de caminar. No se ha realizado una auditoría formal con lector de pantalla, audición de efectos ni prueba en dispositivos físicos móviles. No se ha publicado esta modificación.
+`npm test`: **175 pruebas aprobadas**, incluidas 46 de Math Adventure. Se recorren las diez zonas con los 30 perfiles de modo/dificultad/operación, verificando tres obstáculos por zona y los jefes. Se prueban daño/premios únicos, errores, pistas, pausa, callbacks, posiciones configuradas, guardados estables e interrumpidos y migración en las diez posiciones anteriores. Build, lint y comprobación del artefacto de Pages correctos.
 
-## Integración del explorador animado
+Se recorrió **una zona completa en Safari**, desde entrada y tres obstáculos hasta los tres aciertos del jefe, victoria y avance explícito a zona 2. La recarga durante combate conservó la pregunta y el escudo. Chrome permitió revisar los tres obstáculos, pausa/reanudación, guardado del tercer obstáculo, aparición del jefe y error sin penalización. Las capturas de 360, 375 y 390 px se inspeccionaron sin superposiciones ni desbordamientos visibles. No se afirma haber completado manualmente las diez zonas de esta versión.
 
-`BruCatCharacter.jsx/.css` recorta discretamente una celda de la hoja 4×3 en un espacio cuadrado reservado. `characterAnimation.js` separa secuencias, reloj y prioridad de la lógica educativa. Las pruebas están en `characterAnimation.test.js`. `WorldScene.jsx` conecta aciertos, ayudas y errores; una clave por partida/zona descarta la animación anterior. Los intervalos y la carga de imagen se limpian al desmontar. La pausa congela el reloj; movimiento reducido usa la pose neutral. Si falla la precarga se utiliza la ilustración estática. No se modificó la mascota de la plataforma ni el catálogo.
+Informe y capturas: [docs/math-journey/README.md](docs/math-journey/README.md).
 
-Verificado manualmente en Safari: ayuda real, respuesta correcta, pausa/reanudación y cambio de zona. La vista temporal de revisión reprodujo las secuencias a 160 y 100 px, simuló movimiento reducido y una URL de sprite inexistente para comprobar la imagen de respaldo. Se revisó el juego dentro de un viewport de 375×812 sin superposición sobre operaciones ni controles. La vista temporal fue retirada del proyecto.
-
-Los doce dibujos se inspeccionaron; no hay celdas vecinas visibles ni recortes de cabeza/pies en el recurso preparado. Se conservan pequeñas variaciones propias del dibujo generado y la flexión/salto intencionales de celebración. Falta prueba en teléfono físico.
-
-## Ajuste UI/UX: inicio y partida compactos
-
-El menú presenta un resumen de la configuración guardada, inicio rápido «Jugar ahora» y personalización desplegable con grupos de selección semánticos. Cuando hay una ruta guardada se prioriza «Continuar aventura», con su propia operación, modo, dificultad y zona. La opción de nueva aventura muestra por separado la configuración que usará. Los ejemplos de dificultad se generan con el motor real, también en modo mixto. La selva se identifica como disponible; los otros tres mundos se agrupan en «Próximas aventuras» sin controles jugables.
-
-La acción atómica `play` combina inicio y apertura del primer reto; no concede puntos ni altera las reglas. Las zonas siguientes conservan el avance mediante el recorrido. Se redujeron encabezado, HUD y alturas de escena; el problema y «Ver pista» quedan juntos. Reiniciar se encuentra en pausa con confirmación. La ayuda mantiene su representación educativa junto a la interacción. El personaje, el fondo de selva y la paleta se conservan.
-
-Se corrigieron tamaños intrínsecos con `min-width:0`, anchos del contenedor y `box-sizing:border-box`, sin introducir `overflow-x:hidden`. El mapa desplegable usa una cuadrícula de cinco columnas para no desbordarse en escenas estrechas. Los controles nuevos alcanzan 44×44 px; el foco se gestiona al entrar, personalizar, mostrar ayuda, responder incorrectamente, reintentar y cerrar pausa. Escape devuelve el foco a su botón.
-
-### Verificación ejecutada
-
-- Chrome: inicio desde personalización directo al primer reto, configuración mixta guardada en Guerrero, respuesta incorrecta y reintento, pista, acierto, apertura de puerta con entrada numérica, avance hasta un problema real de dos pasos, salida, continuación guardada, pausa/reanudación y reinicio confirmado.
-- Vista local temporal con iframes de 360, 375 y 390×812, 812×375 y escritorio 1200×812: medición del ancho de documento y controles, sin desbordamiento horizontal; ningún botón, enlace del juego o desplegable visible menor de 44×44 en las pantallas medidas. Se comprobó mapa abierto en móvil y horizontal, y ayudas de varias cifras. Chrome reserva 15 px de barra vertical en estos iframes: el ancho útil fue respectivamente 345/360/375/797/1185 px; `scrollWidth` no excedió ese ancho.
-- Se revisaron visualmente menú, personalización, escena, controles y ayudas mediante capturas de la herramienta.
-- Contraste calculado para seis pares de colores nuevos de texto/fondo: entre 12,35:1 y 14,58:1, por encima de AA. Esto no equivale a una auditoría WCAG completa de toda la plataforma.
-- La suite incluye pruebas del inicio directo, ejemplos, persistencia exacta, reinicio y pausa sobre errores.
-
-La vista temporal de medición se retira antes de entregar. No se añadieron dependencias y no se desplegó. Pendientes: prueba en dispositivos físicos y auditoría formal con lector de pantalla.
+No hay ciclo de caminar en el recurso aportado: los cruces usan la pose de salto existente con una trayectoria breve y las subidas emplean una plataforma que transporta al personaje. No se inventaron fotogramas. Quedan como verificaciones adicionales teléfonos físicos, lector de pantalla y emulación visual de movimiento reducido en este nuevo recorrido; la lógica y las reglas de movimiento reducido están cubiertas sin depender de animaciones. Los demás mundos siguen anunciados como futuros. No se ha publicado ni desplegado esta modificación.

@@ -1,3 +1,4 @@
+import { solve, toBoss } from './testHelpers.js'
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { reducer, initialGame, PHASES, snapshot, starsFor } from './engine.js'
@@ -8,8 +9,8 @@ import { adaptMastery } from './difficulty.js'
 import { quantityDrop } from './interaction.js'
 const act=(state,type,data={})=>reducer(state,{type,session:state.session,transition:state.transition,...data})
 const start=settings=>act(act(initialGame(),'settings',{value:settings}),'start')
-function hit(state){state=act(state,'answer',{value:state.problem.answer});state=act(state,'resolved');return act(state,'impact-ended',{roll:.42})}
-function win(state){while(state.bossEnergy>0)state=hit(state);return state}
+const hit=solve
+function win(state){state=toBoss(state);while(state.bossEnergy>0)state=hit(state);return state}
 function finish(state){for(let index=0;index<10;index++){state=act(state,'explore',{roll:.123});assert.equal(validProblem(state.problem),true);state=win(state);state=act(state,'next-zone')}return state}
 test('ten authored zones vary between platforms, doors, quantities, mechanisms and equal groups',()=>{
  assert.equal(CHALLENGES.length,10);assert.equal(new Set(CHALLENGES.map(stage=>stage.id)).size,10)
@@ -24,6 +25,7 @@ test('all operation/difficulty/mode combinations finish ten real challenges and 
    state=act(state,'explore',{roll:index/11})
    assert.equal(state.settings.difficulty,difficulty);assert.equal(state.problem.difficulty,difficulty)
    assert.ok((operation==='mixed'?['subtract','divide']:[operation]).includes(state.problem.op))
+   state=toBoss(state)
    const key=statKey(state.problem.op,difficulty),correct=state.progress.stats[key]?.correct||0
    const energy=state.bossEnergy
    state=act(state,'answer',{value:state.problem.answer});assert.equal(state.phase,PHASES.RESOLVING)
@@ -45,7 +47,7 @@ test('an incorrect platform locks duplicate events, loses no zones or coins, and
  state=act(state,'answer',{value:problem.choices.find(value=>value!==problem.answer)})
  assert.equal(state.phase,PHASES.FEEDBACK);assert.equal(state.errors,1);assert.deepEqual(state.completed,[])
  assert.equal(act(state,'answer',{value:problem.answer}),state)
- state=act(state,'retry');assert.equal(state.problem,problem);assert.equal(state.phase,PHASES.CHALLENGE)
+ state=act(state,'retry');assert.equal(state.problem,problem);assert.equal(state.phase,PHASES.OBSTACLE)
  state=win(state);assert.equal(state.completed.length,1)
 })
 test('quantity drafts and hints do not resolve challenges, while malformed numeric submissions cannot mutate stats',()=>{
@@ -55,7 +57,7 @@ test('quantity drafts and hints do not resolve challenges, while malformed numer
  state=act(state,'draft',{value:state.problem.answer});assert.equal(state.completed.length,0)
  state=act(state,'help');state=act(state,'help');assert.equal(state.helps,2);assert.equal(state.helpLevel,2)
  assert.equal(act(state,'help'),state)
- state=act(state,'answer');assert.equal(state.phase,PHASES.RESOLVING)
+ state=act(state,'answer');assert.equal(state.phase,PHASES.OBSTACLE_RESOLVING)
 })
 test('adaptive support stays inside the chosen difficulty and tracks concepts independently',()=>{
  let mastery={tier:0,streak:0,misses:0};for(let i=0;i<3;i++)mastery=adaptMastery(mastery,true)

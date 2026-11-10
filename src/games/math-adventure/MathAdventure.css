@@ -192,3 +192,16 @@
 .zone-decoration{top:46%;left:46%;font-size:1rem}.mechanic-groups .zone-decoration{left:36%;top:48%}
 .effect-leaves .math-projectile{border-radius:45% 5% 45% 5%;background:#3d7667}.effect-sparks .math-projectile{background:#785699}
 @media(max-width:560px){.zone-scene-art{height:50px;bottom:65px}.zone-decoration{top:51%}}
+
+/* Route navigation and encounter status share space; the map expands in normal flow. */
+.math-encounter-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border:1px solid #76618f;border-radius:12px;padding:8px 12px;background:#231c34}
+.math-encounter-header>p{margin:0;color:#ffe1a0;font-weight:800;font-size:.9rem}.math-encounter-header .math-map{position:static;inset:auto;pointer-events:auto;z-index:auto}
+.math-encounter-header .math-map>summary{background:#332b47;border-color:#8d7b9c;font-size:.75rem}.math-encounter-header .math-map[open]{width:100%}.math-encounter-header .math-map .math-route{display:grid;position:static;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:8px}
+.math-encounter-header .math-route li{display:flex;flex-direction:column;gap:4px;padding:4px}.math-route small{font-size:.55rem;text-align:center;line-height:1.4;color:#eee3ff;overflow-wrap:anywhere}
+.math-world.boss-arena{background:#203e54;animation:arena-arrive .3s ease-out}.boss-arena .math-jungle{object-position:82% center;filter:hue-rotate(12deg) brightness(.75)}
+.boss-arena .boss-shield{top:16px}.boss-arena .zone-scene-art{display:none}.math-challenge-panel>.math-interaction-goal{margin:0 0 10px;color:#f3dfb8}
+@keyframes arena-arrive{from{opacity:.5}to{opacity:1}}
+@media(max-width:560px){.math-encounter-header{padding:6px 8px;gap:5px}.math-encounter-header>p{font-size:.8rem}.math-encounter-header .math-map>summary{padding:6px 8px;font-size:.65rem}.boss-arena .boss-shield{top:14px}}
+.math-platforms.combat-answers svg{display:none}.math-platforms.combat-answers button{border:1px solid #a38fb5;border-radius:14px;background:#352946;padding:12px 6px;color:#fff1c7;filter:none;min-height:94px}.math-platforms.combat-answers button>span{margin:0 auto;background:#634482;color:#fff5cf;border-color:#e9cf90}.math-platforms.combat-answers small{display:block;font-size:.66rem;margin-top:10px;color:#e9dcf5}
+.math-game .math-world.journey-world{height:340px}
+@media(max-width:560px){.math-game .math-world.journey-world{height:250px}}

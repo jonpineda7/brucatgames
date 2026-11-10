@@ -1,0 +1,27 @@
+.journey-world.math-world{height:340px;isolation:isolate;background:#175a55;position:relative}
+.journey-camera{position:absolute;inset:0 auto 0 0;width:270%;height:100%;transform:translateX(var(--camera));}
+.journey-backdrop{position:absolute;top:0;bottom:0;width:37.0371%;background-size:cover;background-repeat:no-repeat;filter:brightness(.82)}
+.journey-backdrop::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#173d422b,transparent 15%,transparent 85%,#173d422b)}
+.journey-trail{position:absolute;width:100%;height:100%;inset:0}
+.journey-support{position:absolute;width:10%;height:26px;transform:translate(-50%,-3px);border:2px solid #ead393;border-radius:50%;background:linear-gradient(#acd884 40%,#6f7140 45%,#927049);box-shadow:0 8px 0 -1px #243e35}
+.journey-support.visited{border-color:#e9ffb9}.journey-support.destination{box-shadow:0 0 12px #e3fca9}
+.journey-support>span{position:absolute;top:30px;left:0;right:0;text-align:center;font-size:.55rem;letter-spacing:.08em;color:#fff1c9;background:#172f3ec9;border-radius:5px;padding:3px}
+.journey-character{--hero-size:120px;position:absolute;left:var(--from-x);top:calc(var(--from-y) - var(--hero-size)*.967);width:var(--hero-size);height:var(--hero-size);transform:translateX(-50%);z-index:3;pointer-events:none}
+.journey-character .brucat-sprite{width:100%;height:100%}.journey-character .brucat-sprite>img{filter:none;animation:none}
+.journey-character.moving-jump{animation:journey-hop .85s ease-in-out forwards}.journey-character.moving-lift{animation:journey-lift .85s ease-in-out forwards}
+.journey-moving-deck{position:absolute;left:10%;right:10%;bottom:0;height:12px;border:2px solid #e3ce91;border-radius:5px;background:#709a64;z-index:-1}
+.journey-prop{position:absolute;width:7%;transform:translateX(-50%);text-align:center;z-index:1}
+.journey-prop>span{display:block;position:absolute;width:180%;left:-40%;font-size:.57rem;color:#fff3cd;background:#182e3ded;padding:4px;border-radius:6px;line-height:1.4}
+.journey-obstacle-art{width:100%;height:auto;display:block;overflow:visible;filter:drop-shadow(0 3px 3px #23344b)}
+.journey-obstacle-art .repair-piece{opacity:0}.journey-obstacle-art.repaired .repair-piece{opacity:1}.journey-obstacle-art.repaired .gate-leaf{opacity:0}
+.journey-obstacle-art .route-light{fill:#59677a}.journey-obstacle-art.repaired .route-light{fill:#fff6a1;filter:drop-shadow(0 0 5px #fff686)}
+.journey-obstacle-art.repaired .lift-deck{transform:translateY(-20px)}
+.journey-destination{position:absolute;right:10px;top:10px;max-width:55%;border:1px solid #aecc92;background:#18313deb;color:#fff1c4;border-radius:8px;padding:9px;font-size:.7rem;line-height:1.4}
+.journey-status{position:absolute;bottom:0;left:0;right:0;background:#182838ed;color:#fff3cc;padding:8px 10px;margin:0;font-size:.77rem;line-height:1.4;z-index:4}
+.journey-camera.camera-advancing{animation:journey-pan .55s ease-out both}
+@keyframes journey-pan{from{transform:translateX(var(--camera-from))}to{transform:translateX(var(--camera))}}
+@keyframes journey-hop{0%{left:var(--from-x);top:calc(var(--from-y) - var(--hero-size)*.967)}50%{left:calc((var(--from-x) + var(--to-x))/2);top:calc((var(--from-y) + var(--to-y))/2 - var(--hero-size)*.967 - 30px)}100%{left:var(--to-x);top:calc(var(--to-y) - var(--hero-size)*.967)}}
+@keyframes journey-lift{0%{left:var(--from-x);top:calc(var(--from-y) - var(--hero-size)*.967)}100%{left:var(--to-x);top:calc(var(--to-y) - var(--hero-size)*.967)}}
+@media(max-width:560px){.math-world.journey-world{height:280px}.journey-character{--hero-size:88px}.journey-support{height:22px}.journey-prop>span{font-size:.5rem;width:220%;left:-60%}.journey-destination{font-size:.64rem;padding:7px;max-width:61%}.journey-status{font-size:.7rem;padding:6px}.journey-support>span{font-size:.49rem}}
+@media(prefers-reduced-motion:reduce){.journey-camera.camera-advancing{animation:none!important}.journey-character.moving-jump,.journey-character.moving-lift{animation:none!important;left:var(--to-x);top:calc(var(--to-y) - var(--hero-size)*.967)}}
+.journey-world{border-color:var(--zone-accent)}.journey-support.visited{border-color:var(--zone-accent)}.journey-destination{border-color:var(--zone-accent)}

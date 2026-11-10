@@ -99,4 +99,4 @@ Informe de contenido, arquitectura, recursos, pruebas y limitaciones: [DETECTIVE
 
 ## BruCat Math Adventure
 
-Sexto juego de Infantil: una selva con diez desafíos, cuatro operaciones, tres dificultades y modos Aprender y Aventura. Incluye ayudas visuales, avance, recompensas y guardado local. Consulta [contenido, arquitectura y verificación](MATH-ADVENTURE.md).
+Sexto juego de Infantil: diez zonas con tres obstáculos y un jefe final por zona, cuatro operaciones, tres dificultades y modos Aprender y Aventura. Incluye ayudas visuales, avance, recompensas y guardado local. Consulta [contenido, arquitectura y verificación](MATH-ADVENTURE.md).
