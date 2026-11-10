@@ -9,3 +9,138 @@
 /* Constrain the replaced-image scene to its container on narrow screens. */
 .math-world{width:100%;min-width:0;box-sizing:border-box}
 @media(max-width:560px){.math-world{aspect-ratio:auto;height:390px}}
+
+/* A fixed square reserves every pose. Keep the explorer below the operation and above answers. */
+.math-character{width:clamp(100px,15%,165px);height:auto;aspect-ratio:1;bottom:30%}
+@media(max-width:560px){.math-character{width:100px;bottom:29%}}
+
+/* Compact adventure shell: intrinsic sizes must never widen the scene or its grid. */
+.math-game,.math-game *,.math-dialog,.math-dialog *{box-sizing:border-box}
+.math-game{width:100%;min-width:0}
+.math-game :is(.math-stage-column,.math-challenge-panel,.math-hero-copy,.math-play-layout){min-width:0}
+.math-heading{margin:12px 0 16px;gap:12px}
+.math-heading h1{font-size:clamp(1.65rem,3vw,2.5rem);margin:4px 0;line-height:1.12}
+.math-heading p{margin:6px 0 0;font-size:.9rem}
+.math-heading>div:last-child{gap:12px;flex-wrap:wrap}
+.math-game :is(button,.text-link,.math-customize>summary,.math-map>summary){min-height:44px}
+.math-game .text-link{display:inline-flex;align-items:center}
+.math-menu-hero{min-height:270px;align-items:center}
+.math-menu-hero>.math-hero-copy{padding:24px 28px;width:76%;max-width:850px}
+.math-menu-hero::after{background:linear-gradient(90deg,#171329fa 0%,#171329ed 65%,#17132977 100%)}
+.math-menu-hero h2{font-size:clamp(1.7rem,3.1vw,2.6rem);margin:12px 0 8px;width:auto}
+.math-menu-hero p{font-size:.9rem;margin:8px 0;max-width:550px;line-height:1.5}
+.math-menu-brucat{right:1%;width:23%;height:90%;bottom:0;opacity:1}
+.math-available{display:inline-block;color:#baf2de;font-size:.8rem;font-weight:750;line-height:1.4}
+.math-quick-summary{display:flex;flex-wrap:wrap;gap:5px 12px;color:#f8e2b1;margin:14px 0 12px;font-size:.88rem}
+.math-quick-summary strong{overflow-wrap:anywhere}
+.math-quick-summary span{color:#e1d7f1}
+.math-quick-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.math-quick-actions :is(button){padding:11px 15px}
+.math-new-summary{display:block;margin-top:10px;line-height:1.5;color:#dfd6ef}
+.math-no-clock{margin-top:10px;font-size:.77rem;max-width:none;line-height:1.5}
+.math-customize{margin:16px 0;border:1px solid #705a8b;border-radius:16px;background:#1b162c;padding:0 18px 16px}
+.math-customize:not([open]){padding-bottom:0}
+.math-customize>summary{cursor:pointer;padding:14px 0;color:#f2e6ff;font-weight:750}
+.math-customize>summary span{font-size:.8rem;font-weight:400;margin-left:10px;color:#cbbddd}
+.math-customize h2{font-size:1.25rem;margin:5px 0 0}
+.math-settings{margin:18px 0;gap:14px}
+.math-settings fieldset{padding:14px}
+.math-settings label{padding:12px;align-content:start}
+.math-examples{display:flex!important;flex-wrap:wrap;gap:5px}
+.math-examples em{font-style:normal;font-size:.92rem;font-weight:750;color:#ffe1a1;background:#1e1930;padding:5px 8px;border-radius:7px}
+.math-world-menu{margin-top:24px}
+.math-world-menu h2{font-size:1.2rem;margin-bottom:5px}
+.math-world-menu>p{font-size:.85rem;color:#cfc5df;margin:6px 0 12px}
+.math-world-menu>div{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.math-world-menu article{display:flex;gap:12px;align-items:center;padding:14px;border-color:#514360;background:#191626}
+.math-world-menu article>div{min-width:0}
+.math-world-menu article>div>span{font-size:.6rem;color:#c4b5d6;letter-spacing:.06em}
+.math-world-menu .math-world-symbol{display:grid;flex:0 0 40px;width:40px;height:48px;margin:0;background:transparent;font-size:2rem;color:#bea5de}
+.math-world-menu h3{margin:5px 0;font-size:.95rem}
+.math-world-menu article p{margin:0;font-size:.78rem}
+.math-playing .math-heading{margin:8px 0 10px}
+.math-playing .math-heading h1{font-size:clamp(1.3rem,2.5vw,1.9rem)}
+.math-playing .math-heading .eyebrow{font-size:.6rem}
+.math-mission{margin:10px 0 12px;padding:12px 16px;border-radius:14px;align-items:center}
+.math-mission h2{font-size:1.15rem;line-height:1.3;margin:4px 0 0}
+.math-mission .eyebrow{font-size:.6rem}
+.math-hud{max-width:none;gap:6px;flex-wrap:wrap}
+.math-hud>span{padding:5px 7px;font-size:.76rem}
+.math-hud button{padding:8px 10px}
+.math-play-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:start;gap:16px}
+.math-stage-column{display:grid;gap:10px}
+.math-problem-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #bda574;border-radius:14px;background:#211b32;padding:12px 15px;min-width:0}
+.math-problem-bar>div{min-width:0}
+.math-problem-bar span{font-size:.65rem;letter-spacing:.05em;color:#b9e9e6}
+.math-problem-bar h3{font-size:clamp(1.35rem,2.4vw,2rem);line-height:1.25;color:#fff0c0;margin:4px 0 0;overflow-wrap:anywhere}
+.math-problem-bar button{flex:none;white-space:normal;max-width:100px;padding:8px 11px;font-size:.8rem}
+.math-world{width:100%;min-width:0;height:340px;min-height:0;max-height:none;aspect-ratio:auto;border-radius:16px}
+.math-character{width:125px;max-width:27%;bottom:35%}
+.math-map{position:absolute;top:6px;left:10px;right:10px;z-index:4;pointer-events:none}
+.math-map>summary{display:flex;align-items:center;width:max-content;max-width:100%;padding:6px 12px;border:1px solid #b9d0bc;background:#162c39eb;color:#fff0c3;border-radius:10px;font-size:.75rem;cursor:pointer;pointer-events:auto;list-style:none}
+.math-map>summary::before{content:'⌄';margin-right:7px}
+.math-map[open]>summary::before{content:'⌃'}
+.math-map .math-route{position:relative;inset:auto;margin-top:5px;padding:8px;background:#152434f5;border-radius:12px;gap:2px;pointer-events:auto}
+.math-route :is(button,li>span),.math-route .current>button{width:44px;height:44px;font-size:.75rem}
+.math-map .math-route li{min-width:0}
+.math-platforms{left:7%;right:7%;bottom:7%;gap:10px}
+.math-platforms button{min-width:0;min-height:72px}
+.math-platforms button>span{min-width:0;max-width:100%;font-size:1.35rem;padding:6px 10px}
+.math-explore-card{left:32%;right:4%;bottom:8%;padding:13px}
+.math-explore-card p{margin:6px 0 10px}
+.math-earned{font-size:.75rem;padding:9px 13px;max-width:96%;white-space:normal;text-align:center}
+.math-challenge-panel{padding:16px;margin:0;border-radius:16px}
+.math-interaction-goal{font-size:.87rem;line-height:1.5;color:#e3d5f2;margin:0 0 10px}
+.math-quantity-builder>p{font-size:.85rem;margin:10px auto;line-height:1.5}
+.math-number-tools{margin:10px 0;gap:7px}
+.math-number-field{font-size:.8rem;gap:6px}
+.math-number-field input{min-height:48px;font-size:1.4rem}
+.math-basket-target{min-height:100px;margin:10px auto}
+.math-basket-target svg{height:60px}
+.math-help-content{min-width:0;margin-top:12px}
+.math-help-content>p{font-size:.9rem;line-height:1.5;color:#e5d8f1;background:#352944;border-radius:10px;padding:12px;margin:0 0 10px}
+.math-help-content:focus-visible,.math-customize h2:focus-visible,.math-mission h2:focus-visible,.math-hero-copy h2:focus-visible{outline:3px solid #9eeaf0;outline-offset:4px;border-radius:4px}
+.math-help-content .math-learning{padding:12px;border-radius:12px}
+.math-help-content .math-learning-svg{max-height:195px;margin:10px auto}
+.math-help-content .math-learning h3{font-size:1rem}
+.math-help-content .math-learning header p{font-size:.8rem}
+.math-help-content .math-learning-prompt{font-size:.85rem;margin-top:8px}
+.math-help-content .math-learning header{padding-bottom:8px}
+.math-game :is(summary,button,input):focus-visible{outline:3px solid #9eeaf0;outline-offset:4px}
+@media(max-width:950px){.math-play-layout{grid-template-columns:1fr}.math-world{height:300px}.math-mission{flex-direction:row;align-items:center}.math-world-menu>div{grid-template-columns:1fr}.math-challenge-panel{margin:0}}
+@media(max-width:560px){
+ .math-heading{flex-direction:row;align-items:center;flex-wrap:wrap;margin:8px 0 12px;gap:10px}
+ .math-heading>div:first-child{width:100%}.math-heading>div:last-child{width:100%;justify-content:space-between;gap:8px}
+ .math-heading h1{font-size:1.75rem}.math-heading p{font-size:.83rem;margin-top:4px}.math-heading .eyebrow{font-size:.55rem}
+ .math-heading button{padding:8px 12px;font-size:.8rem}
+ .math-menu-hero{min-height:0;border-radius:18px;align-items:start}
+ .math-menu-hero>.math-hero-copy{padding:20px 17px;width:100%;max-width:none}
+ .math-menu-hero::after{background:linear-gradient(100deg,#171329fc,#171329f2)}
+ .math-menu-hero>img:first-child{opacity:.45}.math-menu-hero .math-menu-brucat{width:82px;height:115px;right:4px;top:10px;bottom:auto;opacity:1}
+ .math-menu-hero h2{font-size:1.65rem;max-width:calc(100% - 55px);margin:12px 0 8px}
+ .math-menu-hero p{font-size:.85rem;max-width:100%;line-height:1.5;margin-top:15px}
+ .math-available{font-size:.72rem;max-width:calc(100% - 60px)}
+ .math-quick-summary{display:grid;gap:4px;margin:12px 0;font-size:.87rem}
+ .math-quick-actions{gap:8px}.math-quick-actions .primary-button{width:100%}.math-quick-actions .secondary-button{flex:1}.math-quick-actions button{font-size:.85rem;padding:10px 12px}
+ .math-no-clock{font-size:.76rem;max-width:none;margin-top:10px}
+ .math-customize{padding:0 12px 12px;margin:12px 0}.math-customize>summary span{display:block;margin:4px 0 0 18px;font-size:.75rem}
+ .math-settings{gap:12px;margin-top:14px}.math-settings fieldset{padding:10px}.math-mode-options,.math-difficulty-options{grid-template-columns:1fr}.math-operation-options{grid-template-columns:repeat(2,minmax(0,1fr))}.math-settings label{padding:11px;min-height:48px}
+ .math-examples em{font-size:.9rem}.math-world-menu{margin-top:20px}.math-world-menu>div{grid-template-columns:1fr}
+ .math-playing .math-heading{gap:4px;margin:5px 0 8px}.math-playing .math-heading h1{font-size:1.25rem}.math-playing .math-heading .eyebrow{display:none}.math-playing .math-heading>div:first-child{width:auto;flex:1}.math-playing .math-heading>div:last-child{width:auto;gap:8px}.math-playing .math-heading .icon-button{font-size:.7rem;padding:7px}.math-playing .math-heading .text-link{font-size:.8rem}
+ .math-mission{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:10px 12px;margin:6px 0 10px}.math-mission h2{font-size:1.05rem}.math-mission .eyebrow{font-size:.54rem}.math-hud{display:flex;flex-wrap:wrap;align-items:center;justify-content:start;gap:5px}.math-hud button{font-size:.75rem;padding:7px 9px}.math-hud>span{font-size:.72rem;padding:5px 6px}
+ .math-play-layout{gap:10px}.math-stage-column{gap:8px}.math-problem-bar{padding:9px 11px;gap:8px}.math-problem-bar h3{font-size:clamp(1.15rem,5.5vw,1.45rem);margin-top:3px}.math-problem-bar span{font-size:.56rem}.math-problem-bar button{max-width:88px;min-width:68px;padding:7px 9px;font-size:.75rem}
+ .math-world{width:100%;height:230px;min-height:0;max-height:none;aspect-ratio:auto}
+ .math-character{width:90px;max-width:27%;bottom:38%}
+ .math-map{top:4px;left:6px;right:6px}.math-map .math-route{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:5px;gap:3px}.math-route li::after{display:none}.math-route :is(button,li>span),.math-route .current>button{width:44px;height:44px}
+ .math-platforms{left:5%;right:5%;gap:8px;bottom:7%}.math-platforms button>span{font-size:1.2rem;padding:5px 8px;min-height:44px}.math-platforms svg{height:30px}.math-platforms button{min-height:66px}
+ .math-explore-card{left:31%;right:3%;bottom:7%;padding:10px}.math-explore-card>span{font-size:.5rem}.math-explore-card h3{font-size:.85rem;margin:5px 0}.math-explore-card p{font-size:.73rem;margin:5px 0 8px}.math-explore-card .primary-button{min-height:44px;font-size:.73rem;padding:7px}
+ .math-challenge-panel{padding:12px;width:100%;min-width:0}.math-interaction-goal{font-size:.82rem;margin-bottom:8px}
+ .math-quantity-tokens{gap:8px;margin:10px 0}.math-quantity-tokens button{min-width:0;flex:1;min-height:48px;font-size:1.2rem}.math-number-tools>span{min-width:0;gap:3px}.math-number-tools button{min-width:44px;min-height:44px}.math-number-tools{gap:5px;flex-wrap:wrap}.math-activate{margin-top:8px;width:100%}.math-help-content{margin-top:10px}.math-help-content .math-learning-svg{max-height:170px}.math-learning-badge{width:40px;height:40px;flex:none}
+}
+@media(max-height:500px) and (min-width:561px){.math-playing .math-heading{margin:4px 0}.math-mission{margin:5px 0;padding:8px 12px}.math-world{height:230px}.math-play-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}.math-character{width:90px}}
+
+.math-game button{min-width:44px}
+@media(max-width:560px){.math-menu-hero h2{max-width:calc(100% - 82px);font-size:1.5rem}}
+.math-map .math-route{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.math-map .math-route li::after{display:none}
+@media(max-width:560px){.math-world:not(.mechanic-bridge):not(.mechanic-paths){height:180px}.math-world:not(.mechanic-bridge):not(.mechanic-paths) .math-character{width:85px;bottom:15%}}

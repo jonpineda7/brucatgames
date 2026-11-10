@@ -30,6 +30,10 @@ export function reducer(state,action){
    return {...state,settings,progress:{...state.progress,settings}}
   }
   case 'sound':{const settings={...state.settings,sound:!state.settings.sound};return {...state,settings,progress:{...state.progress,settings}}}
+  case 'play':{
+   const started=reducer(state,{type:'start',session:state.session})
+   return reducer(started,{type:'explore',session:started.session,roll:action.roll})
+  }
   case 'start':return event({...initialGame({...state.progress,settings:state.settings}),phase:PHASES.EXPLORE,session:state.session+1,transition:state.transition+1},'start')
   case 'resume-run':{
    if(state.phase!==PHASES.MENU)return state
@@ -37,7 +41,7 @@ export function reducer(state,action){
    return run?{...initialGame(state.progress),...run,session:state.session+1,transition:state.transition+1}:state
   }
   case 'menu':return {...phase(state,PHASES.MENU),session:state.session+1,resumeRun:snapshot(state)}
-  case 'pause':return [PHASES.EXPLORE,PHASES.CHALLENGE].includes(state.phase)?{...phase(state,PHASES.PAUSED),pausedPhase:state.phase}:state
+  case 'pause':return [PHASES.EXPLORE,PHASES.CHALLENGE,PHASES.FEEDBACK].includes(state.phase)?{...phase(state,PHASES.PAUSED),pausedPhase:state.phase}:state
   case 'resume':return state.phase===PHASES.PAUSED?phase(state,state.pausedPhase):state
   case 'explore':{
    if(state.phase!==PHASES.EXPLORE)return state

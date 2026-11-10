@@ -1,0 +1,170 @@
+[
+  {
+    "index": 0,
+    "sourceBounds": [
+      73,
+      10,
+      313,
+      351
+    ],
+    "offset": [
+      -12,
+      -1
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 1,
+    "sourceBounds": [
+      73,
+      9,
+      313,
+      352
+    ],
+    "offset": [
+      -12,
+      -2
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 2,
+    "sourceBounds": [
+      74,
+      8,
+      313,
+      352
+    ],
+    "offset": [
+      -12,
+      -2
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 3,
+    "sourceBounds": [
+      73,
+      11,
+      313,
+      351
+    ],
+    "offset": [
+      -12,
+      -1
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 4,
+    "sourceBounds": [
+      65,
+      33,
+      321,
+      350
+    ],
+    "offset": [
+      -12,
+      0
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 5,
+    "sourceBounds": [
+      72,
+      5,
+      320,
+      327
+    ],
+    "offset": [
+      -12,
+      0
+    ],
+    "discardedComponents": 3
+  },
+  {
+    "index": 6,
+    "sourceBounds": [
+      70,
+      29,
+      319,
+      351
+    ],
+    "offset": [
+      -12,
+      -1
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 7,
+    "sourceBounds": [
+      73,
+      11,
+      313,
+      351
+    ],
+    "offset": [
+      -12,
+      -1
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 8,
+    "sourceBounds": [
+      73,
+      11,
+      313,
+      351
+    ],
+    "offset": [
+      -12,
+      -1
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 9,
+    "sourceBounds": [
+      74,
+      7,
+      330,
+      351
+    ],
+    "offset": [
+      -12,
+      -1
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 10,
+    "sourceBounds": [
+      80,
+      9,
+      325,
+      351
+    ],
+    "offset": [
+      -12,
+      -1
+    ],
+    "discardedComponents": 0
+  },
+  {
+    "index": 11,
+    "sourceBounds": [
+      73,
+      11,
+      313,
+      351
+    ],
+    "offset": [
+      -12,
+      -1
+    ],
+    "discardedComponents": 0
+  }
+]
