@@ -16,6 +16,7 @@ npm run dev
 ```sh
 npm run lint
 npm run build
+npm run check:build
 npm run preview
 ```
 
@@ -23,21 +24,26 @@ npm run preview
 
 Configurar Settings → Pages → Source: GitHub Actions. Cada push a main compila y publica dist automáticamente. No se necesita una rama gh-pages ni npm run deploy.
 
-URL: https://jonpineda7.github.io/brucatgames/
+Dominio personalizado: https://brucatgames.cl/ (configurado en Settings → Pages). Se conserva la publicación mediante GitHub Actions; no hay que cambiar DNS ni el método de publicación para esta corrección.
+
+Vite utiliza `base: '/'`, porque el dominio sirve la aplicación desde la raíz. No añadir `--base /brucatgames/` al script o al workflow. `npm run check:build` comprueba los recursos del artefacto antes de subirlo a Pages y rechaza el prefijo antiguo. Las rutas siguen usando hashes; no necesitan reglas de reescritura.
+
+Para comprobar la compilación local, ejecutar `npm run preview -- --host 127.0.0.1` y visitar `/`, `/#/infantil` y `/#/infantil/math-adventure`. El preview sirve `dist`; no confundirlo con el servidor de desarrollo.
 
 BruCatGames es una plataforma para todo público. La primera categoría es Infantil, con Memoria Gorila: doce cartas, seis parejas, sin reloj ni vidas, sonido opcional y reinicio.
 
 Rutas compatibles con GitHub Pages:
-- Inicio: `/brucatgames/`
-- Infantil: `/brucatgames/#/infantil`
-- Memoria: `/brucatgames/#/infantil/memoria`
+- Inicio: `/`
+- Infantil: `/#/infantil`
+- Memoria: `/#/infantil/memoria`
+- BruCat Math Adventure: `/#/infantil/math-adventure`
 
 `npm test` verifica el tablero, los bloqueos de selección, las parejas y el reinicio.
 
 
 ## Gorila Loco
 
-Ruta: `/brucatgames/#/infantil/gorila-loco`. Arcade de 60 segundos con 9 agujeros. Fácil: 1 personaje, visible 1800 ms. Normal: hasta 2, 1200 ms. Difícil: hasta 3, 800 ms. La dificultad permanece fija en cada ronda.
+Ruta: `/#/infantil/gorila-loco`. Arcade de 60 segundos con 9 agujeros. Fácil: 1 personaje, visible 1800 ms. Normal: hasta 2, 1200 ms. Difícil: hasta 3, 800 ms. La dificultad permanece fija en cada ronda.
 
 Animal +10, banana dorada +30 y trampa −10 (mínimo cero). El tercer acierto seguido activa ×2 y el sexto ×3; el multiplicador aplica al acierto que lo activa. Tocar vacío, una trampa o dejar escapar un animal rompe la racha. Los errores incluyen toques fallidos y animales que escaparon; evitar una trampa no penaliza.
 

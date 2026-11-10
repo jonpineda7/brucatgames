@@ -1,3 +1,4 @@
+import { BOSSES } from './bosses.js'
 import { OPERATIONS, DIFFICULTIES, validProblem, explain } from './math.js'
 import { CHALLENGES } from './data.js'
 export const STORAGE_KEY='brucatgames:math-adventure:v1'
@@ -21,11 +22,20 @@ export function cleanProgress(value){
 export function cleanRun(value,progress){
  if(!value||value.world!=='jungle')return null
  const settings=cleanSettings(value.settings),index=value.index
- if(!integer(index,9)||!integer(value.errors)||!integer(value.helps)||!integer(value.stageErrors)||!Array.isArray(value.completed)||value.completed.length!==index||value.completed.some((id,i)=>id!==CHALLENGES[i].id))return null
+ if(!integer(index,9)||!integer(value.errors)||!integer(value.helps)||!integer(value.stageErrors)||!Array.isArray(value.completed)||value.completed.length!==index+(value.version===2&&value.victorious?1:0)||value.completed.some((id,i)=>id!==CHALLENGES[i].id))return null
  const problem=value.problem
  if(problem&&(!validProblem(problem)||problem.difficulty!==settings.difficulty||!(settings.operation==='mixed'?settings.enabled:[settings.operation]).includes(problem.op)))return null
- const phase=problem?'CHALLENGE':'EXPLORE'
- return {world:'jungle',settings,index,completed:[...value.completed],errors:value.errors,helps:value.helps,stageErrors:value.stageErrors,phase,problem:problem?{...problem,steps:explain(problem.op,problem.a,problem.b,problem.c)}:null,helpLevel:integer(value.helpLevel,2)?value.helpLevel:0,draft:/^\d{0,4}$/.test(String(value.draft??''))?String(value.draft??''):'',history:Array.isArray(value.history)?value.history.filter(key=>typeof key==='string').slice(-20):[],progress}
+ const boss=BOSSES[index]
+ if(value.version===2&&(value.bossId!==boss.id||!integer(value.bossEnergy,boss.maxEnergy)||value.bossEnergy%boss.damage!==0))return null
+ if(value.version===2&&value.victorious&&value.bossEnergy!==0)return null
+ const bossEnergy=value.version===2?value.bossEnergy:boss.maxEnergy
+ // Resolve saved post-hit states to a stable question or victory, never replay damage.
+ const victorious=bossEnergy===0
+ const phase=victorious?'VICTORY':value.pending?'EXPLORE':problem?'CHALLENGE':'EXPLORE'
+ const completed=victorious?CHALLENGES.slice(0,index+1).map(zone=>zone.id):[...value.completed]
+ const result=victorious&&index===9?{stars:value.errors<=1?3:value.errors<=5?2:1,errors:value.errors,helps:value.helps}:null
+ if(result)result.score=1000+result.stars*100
+ return {world:'jungle',version:2,bossId:boss.id,victorious,settings,index,completed,bossEnergy,result,errors:value.errors,helps:value.helps,stageErrors:value.stageErrors,phase,problem:problem&&!value.pending?{...problem,steps:explain(problem.op,problem.a,problem.b,problem.c)}:null,helpLevel:integer(value.helpLevel,2)?value.helpLevel:0,draft:/^\d{0,4}$/.test(String(value.draft??''))?String(value.draft??''):'',history:Array.isArray(value.history)?value.history.filter(key=>typeof key==='string').slice(-20):[],progress}
 }
 export function loadGame(storage){try{const value=JSON.parse(storage.getItem(STORAGE_KEY)),progress=cleanProgress(value);return {progress,run:cleanRun(value?.activeRun,progress)}}catch{return {progress:cleanProgress(),run:null}}}
 export function saveGame(storage,progress,activeRun){try{storage.setItem(STORAGE_KEY,JSON.stringify({...cleanProgress(progress),activeRun}));return true}catch{return false}}

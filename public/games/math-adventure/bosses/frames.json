@@ -1,0 +1,572 @@
+[
+  {
+    "file": "01-idle.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      8,
+      12,
+      313,
+      318
+    ],
+    "offset": [
+      16,
+      18
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "02-idle.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      347,
+      12,
+      637,
+      323
+    ],
+    "offset": [
+      -316,
+      13
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "03-idle.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      661,
+      51,
+      958,
+      319
+    ],
+    "offset": [
+      -633,
+      17
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "04-idle.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      974,
+      23,
+      1268,
+      318
+    ],
+    "offset": [
+      -945,
+      18
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "05-idle.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      1288,
+      17,
+      1607,
+      318
+    ],
+    "offset": [
+      -1272,
+      18
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "01-impact.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      12,
+      333,
+      311,
+      652
+    ],
+    "offset": [
+      14,
+      -316
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "02-impact.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      333,
+      357,
+      633,
+      654
+    ],
+    "offset": [
+      -307,
+      -318
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "03-impact.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      649,
+      386,
+      961,
+      646
+    ],
+    "offset": [
+      -629,
+      -310
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "04-impact.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      970,
+      360,
+      1272,
+      653
+    ],
+    "offset": [
+      -945,
+      -317
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "05-impact.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      1287,
+      365,
+      1611,
+      651
+    ],
+    "offset": [
+      -1273,
+      -315
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "01-friendly.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      51,
+      684,
+      265,
+      957
+    ],
+    "offset": [
+      18,
+      -621
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "02-friendly.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      367,
+      704,
+      601,
+      953
+    ],
+    "offset": [
+      -308,
+      -617
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "03-friendly.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      670,
+      726,
+      941,
+      948
+    ],
+    "offset": [
+      -630,
+      -612
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "04-friendly.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      1002,
+      713,
+      1231,
+      953
+    ],
+    "offset": [
+      -940,
+      -617
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "05-friendly.png",
+    "source": "brucat-bosses-01-05.png",
+    "crop": [
+      1318,
+      715,
+      1576,
+      952
+    ],
+    "offset": [
+      -1271,
+      -616
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "06-idle.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      33,
+      19,
+      333,
+      310
+    ],
+    "offset": [
+      -7,
+      26
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "07-idle.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      366,
+      21,
+      639,
+      310
+    ],
+    "offset": [
+      -326,
+      26
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "08-idle.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      682,
+      14,
+      943,
+      309
+    ],
+    "offset": [
+      -636,
+      27
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "09-idle.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      984,
+      19,
+      1257,
+      309
+    ],
+    "offset": [
+      -944,
+      27
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "10-idle.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      1295,
+      12,
+      1578,
+      310
+    ],
+    "offset": [
+      -1261,
+      26
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "06-impact.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      32,
+      339,
+      332,
+      631
+    ],
+    "offset": [
+      -6,
+      -295
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "07-impact.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      348,
+      339,
+      643,
+      627
+    ],
+    "offset": [
+      -320,
+      -291
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "08-impact.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      658,
+      335,
+      958,
+      620
+    ],
+    "offset": [
+      -632,
+      -284
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "09-impact.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      973,
+      337,
+      1265,
+      629
+    ],
+    "offset": [
+      -943,
+      -293
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "10-impact.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      1293,
+      333,
+      1586,
+      631
+    ],
+    "offset": [
+      -1263,
+      -295
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "06-friendly.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      39,
+      659,
+      324,
+      950
+    ],
+    "offset": [
+      -5,
+      -614
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "07-friendly.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      363,
+      663,
+      625,
+      944
+    ],
+    "offset": [
+      -318,
+      -608
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "08-friendly.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      679,
+      663,
+      937,
+      944
+    ],
+    "offset": [
+      -632,
+      -608
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "09-friendly.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      984,
+      663,
+      1247,
+      947
+    ],
+    "offset": [
+      -940,
+      -611
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  },
+  {
+    "file": "10-friendly.png",
+    "source": "brucat-bosses-06-10.png",
+    "crop": [
+      1300,
+      660,
+      1574,
+      947
+    ],
+    "offset": [
+      -1261,
+      -611
+    ],
+    "baseline": 336,
+    "canvas": [
+      352,
+      352
+    ]
+  }
+]

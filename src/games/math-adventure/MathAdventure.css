@@ -144,3 +144,51 @@
 .math-map .math-route{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
 .math-map .math-route li::after{display:none}
 @media(max-width:560px){.math-world:not(.mechanic-bridge):not(.mechanic-paths){height:180px}.math-world:not(.mechanic-bridge):not(.mechanic-paths) .math-character{width:85px;bottom:15%}}
+
+/* Boss encounter: separate character, action and reading areas. */
+.math-transition{grid-template-columns:minmax(0,820px);justify-content:center}
+.math-transition .math-stage-column{gap:12px}
+.math-world.boss-arena{height:340px;position:relative}
+.boss-arena .math-character{left:24%;bottom:46px;width:150px;max-width:32%;height:auto;transform:translateX(-50%);transition:none}
+.math-boss{position:absolute;left:76%;bottom:46px;width:160px;max-width:34%;transform:translateX(-50%);z-index:2}
+.math-boss img{display:block;width:100%;height:auto;filter:drop-shadow(0 5px 3px #14203370);animation:boss-breathe 3s ease-in-out infinite;transform-origin:50% 95%}
+.math-boss.pose-impact img{animation:boss-impact .3s ease-out}
+.math-boss.pose-friendly img{animation:none}
+.math-island{position:absolute;bottom:36px;width:38%;height:40px;background:radial-gradient(ellipse at 50% 0,#b4e592 0 36%,#567545 40% 57%,#82613e 60%);border:2px solid #dbd08f;border-radius:50%;box-shadow:0 12px 0 -3px #18484380}
+.hero-island{left:5%}.boss-island{right:5%}
+.boss-shield{position:absolute;top:58px;left:12px;right:12px;text-align:center;padding:10px 12px;border:1px solid var(--shield);background:#1c2035ed;border-radius:14px;color:#fff3d7}
+.boss-shield strong{display:block;font-size:1rem}.boss-shield small{font-size:.68rem;color:#e2dfeb;display:block;margin-top:5px}
+.boss-segments{display:flex;gap:5px;margin:8px auto 0;max-width:240px}.boss-segments span{height:9px;flex:1;border:1px solid var(--shield);border-radius:4px;background:#25243a}.boss-segments .filled{background:var(--shield)}
+.boss-status{position:absolute;bottom:0;left:4px;right:4px;text-align:center;color:#fff2c0;background:#19243cdd;font-size:.75rem;line-height:1.4;margin:0;padding:6px;min-height:28px}
+.boss-status:empty{background:transparent}
+.math-stage-column .math-platforms{position:static;margin:0;gap:10px;padding:8px 10px;background:#292339;border:1px solid #9d8970;border-radius:14px}
+.math-stage-column .math-explore-card{position:static;margin:0;padding:18px;background:#252037;border-color:#9276a5}
+.math-explore-card p{font-size:.9rem;line-height:1.5}.math-explore-card h3{font-size:1.25rem}.math-explore-card>span{font-size:.7rem}
+.math-challenge-panel .math-problem-bar{margin-bottom:12px;padding:10px}.math-challenge-panel .math-problem-bar h3{font-size:1.7rem}
+.math-help-content>summary{cursor:pointer;display:flex;align-items:center;font-size:.85rem;color:#d5f1eb;min-height:44px}
+.math-help-content:not([open]){margin-top:4px}.math-quantity-builder output{display:block;color:#ffe2a0;font-size:.95rem;margin:8px 0}
+.zone-decoration{position:absolute;top:48%;left:44%;font-size:2rem;color:#ffe39c;text-shadow:0 0 12px #dbffc2;opacity:.7;pointer-events:none}
+.is-restored .zone-decoration{color:#fffbd1;opacity:1;text-shadow:0 0 18px #f8ff69}
+.mechanic-groups .zone-decoration{font-size:1rem;letter-spacing:10px;left:38%;animation:fireflies 3s ease-in-out infinite}
+.math-projectile{position:absolute;top:60%;left:28%;color:#fff3aa;background:#784ca7;border:2px solid #ffdf80;border-radius:50%;width:34px;height:34px;display:grid;place-items:center;font-size:1.5rem;font-weight:900;animation:math-projectile .45s ease-in forwards;z-index:3}
+.is-paused *{animation-play-state:paused!important}
+@keyframes boss-breathe{50%{scale:1.015 1.025}}
+@keyframes boss-impact{35%{transform:translateX(6px) rotate(3deg)}100%{transform:none}}
+@keyframes math-projectile{to{left:73%;opacity:.3;transform:scale(.7)}}
+@keyframes fireflies{50%{opacity:.35}}
+@media(max-width:560px){
+ .math-world.boss-arena,.math-world.boss-arena:not(.mechanic-bridge):not(.mechanic-paths){height:280px}
+ .boss-arena .math-character{width:113px;max-width:35%;bottom:36px}.math-boss{width:120px;max-width:37%;bottom:36px}
+ .math-island{bottom:27px;height:32px}.boss-shield{top:54px;padding:7px}.boss-shield strong{font-size:.9rem}.boss-shield small{font-size:.6rem}
+ .boss-segments{margin-top:6px}.boss-status{font-size:.68rem;min-height:24px;padding:4px}.zone-decoration{top:53%}
+ .math-explore-card .primary-button{font-size:.87rem}.math-explore-card h3{font-size:1.1rem}.math-explore-card p{font-size:.85rem}
+ .math-menu-hero{display:grid;grid-template-columns:minmax(0,1fr) 75px;align-items:center}.math-menu-hero>.math-hero-copy{grid-column:1;padding:16px 8px 16px 16px}.math-menu-hero .math-menu-brucat{position:static;grid-column:2;width:70px;height:100px;max-width:100%;align-self:start;margin-top:20px}
+ .math-menu-hero h2,.math-menu-hero .math-available{max-width:100%;width:auto}.math-menu-hero h2{font-size:1.4rem}
+}
+@media(prefers-reduced-motion:reduce){.math-boss img,.zone-decoration,.math-projectile{animation:none!important}.math-projectile{left:50%}}
+.math-challenge-panel .math-platforms{position:static;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:8px 0;margin:0;gap:10px}
+@media(min-width:561px){.math-menu-hero>.math-hero-copy{width:72%}.math-menu-brucat{right:1%;width:24%}}
+.zone-scene-art{position:absolute;width:16%;height:80px;left:42%;bottom:75px;opacity:.9;pointer-events:none}.zone-restored-piece{opacity:0}.is-restored .zone-restored-piece{opacity:1}.is-restored .zone-door-leaf{opacity:0}.is-restored .zone-scene-art{filter:drop-shadow(0 0 6px #f5ec9a)}
+.zone-decoration{top:46%;left:46%;font-size:1rem}.mechanic-groups .zone-decoration{left:36%;top:48%}
+.effect-leaves .math-projectile{border-radius:45% 5% 45% 5%;background:#3d7667}.effect-sparks .math-projectile{background:#785699}
+@media(max-width:560px){.zone-scene-art{height:50px;bottom:65px}.zone-decoration{top:51%}}
