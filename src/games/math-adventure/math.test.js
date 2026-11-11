@@ -25,6 +25,11 @@ test('division by zero, non-exact division, out-of-range values and duplicate an
  assert.throws(()=>generateProblem({op:'unknown'}),RangeError)
  assert.throws(()=>generateProblem({op:'add',difficulty:'adult'}),RangeError)
 })
+test('inherited difficulty names are rejected before generating or restoring exercises',()=>{
+ assert.throws(()=>generateProblem({op:'add',difficulty:'toString',roll:.2}),RangeError)
+ const valid=generateProblem({op:'add',difficulty:'guerrero',roll:.2})
+ assert.equal(validProblem({...valid,difficulty:'constructor'}),false)
+})
 test('recent exercise history avoids immediate repetition even in a small novice multiplication pool',()=>{
  for(const op of Object.keys(OPERATIONS)){
   const history=[]

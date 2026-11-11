@@ -2,7 +2,7 @@
 .category-shell .platform-header { min-height: 80px; }
 .category-shell .platform-main { padding: 28px 0 36px; }
 .neon-category { display: grid; grid-template-columns: minmax(180px, 245px) minmax(0, 1fr); gap: 24px; position: relative; isolation: isolate; }
-.neon-category::before { content: ''; position: absolute; inset: -28px -24px -36px; background: radial-gradient(ellipse at 0 40%, #7a09c733, transparent 45%), radial-gradient(ellipse at 95% 0, #123b792b, transparent 50%); z-index: -1; pointer-events: none; }
+.neon-category::before { content: ''; position: absolute; inset: -28px 0 -36px; background: radial-gradient(ellipse at 0 40%, #7a09c733, transparent 45%), radial-gradient(ellipse at 95% 0, #123b792b, transparent 50%); z-index: -1; pointer-events: none; }
 .category-mascot { position: sticky; top: 18px; align-self: start; display: flex; flex-direction: column; align-items: center; padding-top: 8px; text-align: center; min-width: 0; }
 .category-brand-art { display: block; width: 100%; height: auto; border-radius: 18px; border: 1px solid #68378f; box-shadow: 0 0 22px #b221dd30; }
 .category-gorilla { display: block; width: 115%; max-width: 300px; height: auto; margin: 16px -8% 0; filter: drop-shadow(0 0 16px #a23cf34d); }

@@ -6,8 +6,8 @@ export const STORAGE_KEY='brucatgames:math-adventure:v1'
 const integer=(n,max=1000000)=>Number.isInteger(n)&&n>=0&&n<=max
 export function cleanSettings(value={}){
  value=value&&typeof value==='object'?value:{}
- const enabled=Array.isArray(value.enabled)?[...new Set(value.enabled)].filter(op=>OPERATIONS[op]):Object.keys(OPERATIONS)
- return {difficulty:DIFFICULTIES[value.difficulty]?value.difficulty:'novato',operation:OPERATIONS[value.operation]||value.operation==='mixed'?value.operation:'add',enabled:enabled.length?enabled:['add'],mode:value.mode==='learn'?'learn':'adventure',sound:value.sound===true}
+ const enabled=Array.isArray(value.enabled)?[...new Set(value.enabled)].filter(op=>Object.hasOwn(OPERATIONS,op)):Object.keys(OPERATIONS)
+ return {difficulty:Object.hasOwn(DIFFICULTIES,value.difficulty)?value.difficulty:'novato',operation:Object.hasOwn(OPERATIONS,value.operation)||value.operation==='mixed'?value.operation:'add',enabled:enabled.length?enabled:['add'],mode:value.mode==='learn'?'learn':'adventure',sound:value.sound===true}
 }
 export const runKey=settings=>`jungle:${settings.mode}:${settings.difficulty}:${settings.operation==='mixed'?[...settings.enabled].sort().join(','):settings.operation}`
 export const statKey=(op,difficulty)=>`${op}:${difficulty}`

@@ -86,6 +86,15 @@ test('settings cannot enable unknown operations or an empty mixed set and cannot
  assert.equal(cleanSettings(null).difficulty,'novato')
  const state=start({operation:'divide'});assert.equal(act(state,'settings',{value:{operation:'add'}}),state)
 })
+test('corrupt saved settings cannot select inherited object keys as operations or difficulties',()=>{
+ const storage={getItem:()=>JSON.stringify({settings:{operation:'constructor',difficulty:'toString',enabled:['__proto__','divide']}})}
+ const {progress}=loadGame(storage)
+ assert.deepEqual(progress.settings,{operation:'add',difficulty:'novato',enabled:['divide'],mode:'adventure',sound:false})
+ const next=act(initialGame(progress),'start')
+ assert.equal(next.settings.operation,'add')
+ const playing=act(next,'explore',{roll:.2})
+ assert.equal(validProblem(playing.problem),true)
+})
 test('partial routes round-trip, preserve the exact problem, and victory snapshots await explicit advancement',()=>{
  const values=new Map(),storage={getItem:key=>values.get(key),setItem:(key,value)=>values.set(key,value)}
  let state=act(start({difficulty:'audaz',operation:'subtract'}),'explore',{roll:.55});state=act(state,'help')

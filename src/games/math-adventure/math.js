@@ -34,7 +34,7 @@ function operands(op,difficulty,tier,rng){
  const b=range(6,20);return [b*range(10,30),b]
 }
 export function generateProblem({op,difficulty='novato',level=1,history=[],pedagogy={},roll=0}){
- if(!OPERATIONS[op]||!DIFFICULTIES[difficulty])throw new RangeError('Operación o dificultad desconocida')
+ if(!Object.hasOwn(OPERATIONS,op)||!Object.hasOwn(DIFFICULTIES,difficulty))throw new RangeError('Operación o dificultad desconocida')
  const rng=random(roll+level*.0021),tier=clamp(Number.isInteger(pedagogy.tier)?pedagogy.tier:0,0,2)
  let a,b,c=null,key
  for(let attempt=0;attempt<80;attempt++){
@@ -66,7 +66,7 @@ export function operandsInRange(p){
  return b>=6&&b<=20&&(multi?c>=2&&c<=4&&a/b/c>=10&&a/b/c<=25:a/b>=10&&a/b<=30)
 }
 export function validProblem(problem){
- if(!problem||!OPERATIONS[problem.op]||!DIFFICULTIES[problem.difficulty]||![problem.a,problem.b,problem.answer].every(Number.isSafeInteger)||problem.a<0||problem.b<0)return false
+ if(!problem||!Object.hasOwn(OPERATIONS,problem.op)||!Object.hasOwn(DIFFICULTIES,problem.difficulty)||![problem.a,problem.b,problem.answer].every(Number.isSafeInteger)||problem.a<0||problem.b<0)return false
  const {op,a,b,c,answer,choices}=problem
  if(!operandsInRange(problem)||c!==null&&c!==undefined&&!Number.isSafeInteger(c))return false
  if(op==='divide'&&(b===0||a%b!==0||c!==null&&c!==undefined&&(c===0||(a/b)%c!==0)))return false
