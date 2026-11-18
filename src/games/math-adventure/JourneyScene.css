@@ -27,6 +27,9 @@
 .journey-world{border-color:var(--zone-accent)}.journey-support.visited{border-color:var(--zone-accent)}.journey-destination{border-color:var(--zone-accent)}
 
 /* The obstacle sits midway between the current and destination supports. */
+/* Keep the active prop label out of the character's path. */
+.journey-prop-slip>span,
+.journey-camera:has(.moving-lift) .journey-prop.kind-gears.is-open>span{visibility:hidden}
 .journey-prop-slip .journey-obstacle-art{animation:journey-platform-slip 1.05s ease both}
 .journey-selected-answer{position:absolute;top:0;left:50%;transform:translate(-50%,-40%);padding:3px 8px;border:1px solid #f3cb9b;border-radius:8px;background:#402f3d;color:#fff2d7}
 .journey-character.journey-miss-splash{animation:journey-miss-splash 1.05s ease-in-out both}
@@ -47,8 +50,12 @@
   0%,54%{opacity:1}
   32%{left:calc((var(--from-x) + var(--to-x))/2);top:calc((var(--from-y) + var(--to-y))/2 - var(--hero-size)*.967 - 25px);transform:translateX(-50%) rotate(8deg)}
   49%{left:calc((var(--from-x) + var(--to-x))/2);transform:translateX(-50%) rotate(-17deg)}
-  68%,74%{left:calc((var(--from-x) + var(--to-x))/2);top:calc(var(--from-y) - var(--hero-size)*.33);transform:translateX(-50%) rotate(19deg);opacity:0}
-  75%{opacity:0}
+  68%,74%{
+    left:calc((var(--from-x) + var(--to-x))/2);
+    top:min(calc(var(--from-y) - var(--hero-size)*.62),calc(100% - var(--hero-size) - 39px));
+    transform:translateX(-50%) rotate(13deg);
+    opacity:.78;
+  }
   100%{opacity:1}
 }
 @keyframes journey-miss-stumble{
