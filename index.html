@@ -28,5 +28,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Cloudflare Web Analytics -->
+    <script type="module">
+      if (window.location.origin === 'https://brucatgames.cl') {
+        const beacon = document.createElement('script')
+        beacon.type = 'module'
+        beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js'
+        beacon.dataset.cfBeacon = '{"token":"28e56c4fe43a45a3935a6c13a0e8a968"}'
+        document.body.append(beacon)
+      }
+    </script>
+    <!-- End Cloudflare Web Analytics -->
   </body>
 </html>

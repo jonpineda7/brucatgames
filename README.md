@@ -100,3 +100,13 @@ Informe de contenido, arquitectura, recursos, pruebas y limitaciones: [DETECTIVE
 ## BruCat Math Adventure
 
 Sexto juego de Infantil: diez zonas con tres obstáculos y un jefe final por zona, cuatro operaciones, tres dificultades y modos Aprender y Aventura. Incluye ayudas visuales, avance, recompensas y guardado local. Consulta [contenido, arquitectura y verificación](MATH-ADVENTURE.md).
+
+## Cloudflare Web Analytics
+
+El beacon oficial se carga una vez por documento, al final de `index.html`, únicamente en `https://brucatgames.cl`. Tanto el servidor de desarrollo como el preview en localhost quedan fuera de la medición.
+
+En una prueba de Chrome con el build local servido bajo el origen de producción y los envíos interceptados, el beacon detectó cambios entre Inicio, Infantil y los seis juegos. Los eventos de navegación enviaron `location` como `https://brucatgames.cl/` sin el fragmento `#/infantil/…`. La medición puede mostrar actividad agregada en la raíz. Para obtener un desglose por juego con Cloudflare, una opción futura es dar a cada juego una ruta real servida por el hosting y dejar que el beacon mida la navegación automáticamente. La integración actual conserva las rutas hash y utiliza solo el beacon oficial.
+
+Cloudflare describe Web Analytics como un servicio que no recopila ni usa datos personales de los visitantes. La integración no lee el progreso de los juegos y los envíos inspeccionados no incluyeron el dato de prueba guardado en `localStorage`. [Información de Cloudflare sobre Web Analytics](https://developers.cloudflare.com/web-analytics/about/)
+
+Después de desplegar, abrir el sitio en una ventana sin bloqueadores, recorrer el catálogo y cambiar de pestaña para que el beacon pueda enviar las últimas métricas. Revisar en la pestaña Red que el script se descargue y que los envíos del beacon reciban una respuesta satisfactoria. Confirmar después las visitas y páginas vistas del dominio en el panel **Web Analytics** de Cloudflare. La prueba local interceptó los envíos, por lo que no confirma la recepción ni el conteo del panel.
