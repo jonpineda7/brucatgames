@@ -25,7 +25,7 @@ test('damage clamps energy and quick duplicate inputs cannot damage or reward tw
 test('errors and hints preserve energy, question, coins and the available reward',()=>{
  let s=start(),question=s.problem;const energy=s.bossEnergy
  s=act(s,'help');assert.equal(s.bossEnergy,energy);s=act(s,'answer',{value:question.answer+1});assert.equal(s.bossEnergy,energy);assert.deepEqual(s.completed,[])
- s=act(s,'retry');assert.equal(s.problem,question)
+ s=act(act(s,'recovered'),'retry');assert.equal(s.problem,question)
  assert.equal(starsFor(0,100),starsFor(0,0))
 })
 test('every animated phase pauses, rejects stale callbacks and resumes without repeating damage',()=>{

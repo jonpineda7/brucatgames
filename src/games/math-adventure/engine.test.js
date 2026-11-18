@@ -47,7 +47,7 @@ test('an incorrect platform locks duplicate events, loses no zones or coins, and
  state=act(state,'answer',{value:problem.choices.find(value=>value!==problem.answer)})
  assert.equal(state.phase,PHASES.FEEDBACK);assert.equal(state.errors,1);assert.deepEqual(state.completed,[])
  assert.equal(act(state,'answer',{value:problem.answer}),state)
- state=act(state,'retry');assert.equal(state.problem,problem);assert.equal(state.phase,PHASES.OBSTACLE)
+ state=act(act(state,'recovered'),'retry');assert.equal(state.problem,problem);assert.equal(state.phase,PHASES.OBSTACLE)
  state=win(state);assert.equal(state.completed.length,1)
 })
 test('quantity drafts and hints do not resolve challenges, while malformed numeric submissions cannot mutate stats',()=>{
@@ -63,7 +63,7 @@ test('adaptive support stays inside the chosen difficulty and tracks concepts in
  let mastery={tier:0,streak:0,misses:0};for(let i=0;i<3;i++)mastery=adaptMastery(mastery,true)
  assert.equal(mastery.tier,1);mastery=adaptMastery(adaptMastery(mastery,false),false);assert.equal(mastery.tier,0)
  let state=act(start({difficulty:'guerrero',operation:'mixed',enabled:['add','divide']}),'explore',{roll:.3})
- state=act(state,'answer',{value:state.problem.answer+1});state=act(state,'retry');state=act(state,'answer',{value:state.problem.answer+1})
+ state=act(state,'answer',{value:state.problem.answer+1});state=act(act(state,'recovered'),'retry');state=act(state,'answer',{value:state.problem.answer+1})
  assert.equal(state.settings.difficulty,'guerrero');assert.equal(state.progress.stats['add:guerrero'].errors,2);assert.equal(state.progress.stats['divide:guerrero'],undefined)
  assert.equal(state.helpLevel,1)
 })
@@ -111,4 +111,21 @@ test('pointer drag requires displacement and a real drop zone; tap and cancellat
  assert.equal(quantityDrop({x:0,y:0},{x:4,y:2},true),false)
  assert.equal(quantityDrop({x:0,y:0},{x:30,y:30},false),false)
  assert.equal(quantityDrop({x:0,y:0},{x:30,y:30},true),true)
+})
+
+test('error reaction locks retry until recovery and rejects obsolete callbacks',()=>{
+ let state=act(start({}),'explore')
+ state=act(state,'answer',{value:state.problem.answer+1})
+ const {session,transition}=state
+ assert.equal(act(state,'retry'),state)
+ let paused=act(state,'pause')
+ assert.equal(reducer(paused,{type:'recovered',session,transition}),paused)
+ state=act(paused,'resume')
+ assert.equal(reducer(state,{type:'recovered',session,transition}),state)
+ const resumedCallback={type:'recovered',session:state.session,transition:state.transition}
+ const exited=act(state,'menu'),restarted=act(state,'start')
+ assert.equal(reducer(exited,resumedCallback),exited)
+ assert.equal(reducer(restarted,resumedCallback),restarted)
+ state=act(state,'recovered')
+ assert.equal(act(state,'retry').phase,PHASES.OBSTACLE)
 })

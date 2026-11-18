@@ -36,7 +36,7 @@ test('errors and hints keep the same obstacle, point, exercise, energy and rewar
  let state=start(),question=state.problem
  state=act(state,'help');state=act(state,'answer',{value:question.answer+1})
  assert.equal(state.phase,PHASES.FEEDBACK);assert.equal(state.obstacleIndex,0);assert.equal(state.bossEnergy,30);assert.equal(state.completed.length,0)
- state=act(state,'retry');assert.equal(state.phase,PHASES.OBSTACLE);assert.deepEqual(state.problem,question)
+ state=act(act(state,'recovered'),'retry');assert.equal(state.phase,PHASES.OBSTACLE);assert.deepEqual(state.problem,question)
  state=toBoss(state);assert.equal(state.obstacleIndex,3);assert.equal(state.bossEnergy,30)
 })
 test('every movement, repair and impact can pause/resume without stale events or duplicated progress',()=>{
@@ -104,4 +104,30 @@ test('migration preserves every previously completed zone and pending boss damag
   assert.equal(won.phase,PHASES.VICTORY);assert.equal(won.completed.length,index+1)
   assert.equal(cleanRun(won,reference.progress).completed.length,index+1)
  }
+})
+
+test('all ten zones recover from misses on every obstacle and in the arena without losing progress',()=>{
+ let state=act(initialGame(),'start')
+ for(const [index,zone] of ZONES.entries()){
+  state=act(state,'explore')
+  for(const obstacle of [...zone.obstacles,zone.boss]){
+   if(obstacle===zone.boss)state=act(state,'fight')
+   const {problem,bossEnergy,obstacleIndex,completed}=state
+   state=act(state,'answer',{value:problem.answer+1})
+   assert.equal(act(state,'retry'),state)
+   assert.equal(state.bossEnergy,bossEnergy)
+   assert.equal(state.obstacleIndex,obstacleIndex)
+   assert.equal(state.completed,completed)
+   assert.equal(restore(state).errors,state.errors)
+   state=act(act(state,'recovered'),'retry')
+   assert.equal(state.problem,problem)
+   state=solve(state)
+  }
+  while(state.phase===PHASES.CHALLENGE)state=solve(state)
+  assert.equal(state.completed.length,index+1)
+  state=act(state,'next-zone')
+ }
+ assert.equal(state.phase,PHASES.RESULT)
+ assert.equal(state.errors,40)
+ assert.ok(Object.keys(state.progress.records).length)
 })

@@ -20,8 +20,64 @@
 .journey-status{position:absolute;bottom:0;left:0;right:0;background:#182838ed;color:#fff3cc;padding:8px 10px;margin:0;font-size:.77rem;line-height:1.4;z-index:4}
 .journey-camera.camera-advancing{animation:journey-pan .55s ease-out both}
 @keyframes journey-pan{from{transform:translateX(var(--camera-from))}to{transform:translateX(var(--camera))}}
-@keyframes journey-hop{0%{left:var(--from-x);top:calc(var(--from-y) - var(--hero-size)*.967)}50%{left:calc((var(--from-x) + var(--to-x))/2);top:calc((var(--from-y) + var(--to-y))/2 - var(--hero-size)*.967 - 30px)}100%{left:var(--to-x);top:calc(var(--to-y) - var(--hero-size)*.967)}}
+@keyframes journey-hop{0%{left:var(--from-x);top:calc(var(--from-y) - var(--hero-size)*.967)}35%{left:calc((var(--from-x) + var(--to-x))/2);top:calc((var(--from-y) + var(--to-y))/2 - var(--hero-size)*.967 - 30px)}70%,100%{left:var(--to-x);top:calc(var(--to-y) - var(--hero-size)*.967)}}
 @keyframes journey-lift{0%{left:var(--from-x);top:calc(var(--from-y) - var(--hero-size)*.967)}100%{left:var(--to-x);top:calc(var(--to-y) - var(--hero-size)*.967)}}
 @media(max-width:560px){.math-world.journey-world{height:280px}.journey-character{--hero-size:88px}.journey-support{height:22px}.journey-prop>span{font-size:.5rem;width:220%;left:-60%}.journey-destination{font-size:.64rem;padding:7px;max-width:61%}.journey-status{font-size:.7rem;padding:6px}.journey-support>span{font-size:.49rem}}
 @media(prefers-reduced-motion:reduce){.journey-camera.camera-advancing{animation:none!important}.journey-character.moving-jump,.journey-character.moving-lift{animation:none!important;left:var(--to-x);top:calc(var(--to-y) - var(--hero-size)*.967)}}
 .journey-world{border-color:var(--zone-accent)}.journey-support.visited{border-color:var(--zone-accent)}.journey-destination{border-color:var(--zone-accent)}
+
+/* The obstacle sits midway between the current and destination supports. */
+.journey-prop-slip .journey-obstacle-art{animation:journey-platform-slip 1.05s ease both}
+.journey-selected-answer{position:absolute;top:0;left:50%;transform:translate(-50%,-40%);padding:3px 8px;border:1px solid #f3cb9b;border-radius:8px;background:#402f3d;color:#fff2d7}
+.journey-character.journey-miss-splash{animation:journey-miss-splash 1.05s ease-in-out both}
+.journey-character.journey-miss-stumble{animation:journey-miss-stumble 1.05s ease-in-out both}
+.journey-character.journey-miss-recoil,.math-character.math-character-recoil{animation:journey-recoil .72s ease-in-out both}
+.journey-splash,.journey-landing{position:absolute;z-index:2;pointer-events:none}
+.journey-splash{width:40px;height:12px;border:3px solid #baf7fa;border-radius:50%;animation:journey-splash 1.05s ease-out both}
+.journey-landing{color:#ffeb9b;font-size:1.2rem;white-space:nowrap;text-shadow:0 0 6px #263c31;animation:journey-landing .85s ease-out both}
+.moving-jump .brucat-sprite{animation:journey-land-pose .85s ease-out both;transform-origin:center bottom}
+.math-platforms button[data-answer="incorrect"] span{border-color:#f6b8ab;background:#fbe4d5}
+.math-platforms button[data-answer="correct"] span{border-color:#9adb95;background:#e2f6c9}
+
+@keyframes journey-platform-slip{
+  0%,32%,100%{transform:none}
+  53%,70%{transform:translateY(7px) rotate(15deg)}
+}
+@keyframes journey-miss-splash{
+  0%,54%{opacity:1}
+  32%{left:calc((var(--from-x) + var(--to-x))/2);top:calc((var(--from-y) + var(--to-y))/2 - var(--hero-size)*.967 - 25px);transform:translateX(-50%) rotate(8deg)}
+  49%{left:calc((var(--from-x) + var(--to-x))/2);transform:translateX(-50%) rotate(-17deg)}
+  68%,74%{left:calc((var(--from-x) + var(--to-x))/2);top:calc(var(--from-y) - var(--hero-size)*.33);transform:translateX(-50%) rotate(19deg);opacity:0}
+  75%{opacity:0}
+  100%{opacity:1}
+}
+@keyframes journey-miss-stumble{
+  36%{left:calc((var(--from-x) + var(--to-x))/2);top:calc(var(--from-y) - var(--hero-size)*.967 - 19px);transform:translateX(-50%) rotate(6deg)}
+  54%{left:calc((var(--from-x) + var(--to-x))/2);top:calc(var(--from-y) - var(--hero-size)*.967 + 9px);transform:translateX(-50%) rotate(-17deg)}
+}
+@keyframes journey-recoil{
+  26%{transform:translateX(-36%) rotate(8deg)}
+  52%{transform:translateX(-59%) rotate(-10deg)}
+}
+@keyframes journey-splash{
+  0%,56%{opacity:0;transform:translate(-50%,-50%) scale(.4)}
+  62%{opacity:.95}
+  89%,100%{opacity:0;transform:translate(-50%,-50%) scale(1.65,1.2)}
+}
+@keyframes journey-landing{
+  0%,68%{opacity:0;transform:translate(-50%,-75%)}
+  77%{opacity:1}
+  100%{opacity:0;transform:translate(-50%,-155%)}
+}
+@keyframes journey-land-pose{
+  0%,66%,100%{transform:none}
+  73%{transform:scale(1.08,.9)}
+  85%{transform:scale(.96,1.07)}
+}
+@media(prefers-reduced-motion:reduce){
+  .journey-prop-slip .journey-obstacle-art,
+  .journey-character[class*="journey-miss-"],
+  .math-character.math-character-recoil,
+  .moving-jump .brucat-sprite{animation:none}
+  .journey-splash,.journey-landing{display:none}
+}

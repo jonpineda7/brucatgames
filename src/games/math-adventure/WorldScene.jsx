@@ -9,6 +9,7 @@ const base=import.meta.env.BASE_URL
 export default function WorldScene({state,act}){
  const stage=CHALLENGES[state.index],boss=BOSSES[state.index],paused=state.phase===PHASES.PAUSED
  const phase=paused?state.pausedPhase:state.phase,victory=phase===PHASES.VICTORY,impact=phase===PHASES.IMPACT,resolving=phase===PHASES.RESOLVING,combat=inCombat(state)
+ const recovering=phase===PHASES.FEEDBACK&&state.feedback.recovering
  const resultFocus=useRef(null),introFocus=useRef(null)
  useEffect(()=>{const node=victory?resultFocus.current:phase===PHASES.BOSS_INTRO?introFocus.current:null;node?.focus({preventScroll:true});node?.scrollIntoView({block:'nearest',behavior:'instant'})},[victory,phase])
  const pose=victory?'friendly':impact?'impact':'idle',[failed,setFailed]=useState('')
@@ -18,7 +19,7 @@ export default function WorldScene({state,act}){
 
   <div className="boss-shield" style={{'--shield':boss.color}}><strong>{boss.name}</strong><div role="progressbar" aria-label={`Energía del escudo de ${boss.name}`} aria-valuemin={0} aria-valuemax={boss.maxEnergy} aria-valuenow={state.bossEnergy} aria-valuetext={`${state.bossEnergy/10} de ${boss.exercises} segmentos`} className="boss-segments">{Array.from({length:boss.exercises},(_,i)=><span key={i} className={i*10<state.bossEnergy?'filled':''}/>)}</div><small>{state.bossEnergy/10} / {boss.exercises} segmentos · un acierto, un segmento</small></div>
   <div className="math-island hero-island" aria-hidden="true"/><div className="math-island boss-island" aria-hidden="true"/>
-  <div className="math-character"><BruCatCharacter celebrating={resolving||impact||victory} helpCount={state.helps} errorCount={state.errors} paused={paused}/></div>
+  <div className={`math-character ${recovering?'math-character-recoil':''}`}><BruCatCharacter celebrating={resolving||impact||victory} helpCount={state.helps} errorCount={state.errors} paused={paused}/></div>
   <div className={`math-boss pose-${pose}`}><img src={base+boss.assets[failed===boss.assets[pose]?'idle':pose]} onError={()=>setFailed(boss.assets[pose])} alt={`${boss.name}${victory?', sonriente y amistoso':impact?', sorprendido por el acierto':''}`} width="352" height="352"/></div>
 
   <div className="zone-decoration" aria-hidden="true">{stage.mechanic==='groups'?'✦ · ✧ · ✦':stage.mechanic==='gears'?'⚙':stage.mechanic==='portal'?'◉':stage.mechanic==='gate'?'♧':'❧'}</div>
@@ -32,4 +33,4 @@ export default function WorldScene({state,act}){
  </>
 }
 
-export function ChoicePlatforms({state,act}){const stage=interactionFor(state),active=isAnswering(state);return <div className={`math-platforms ${inCombat(state)?'combat-answers':''}`} aria-label={inCombat(state)?'Respuestas para lanzar':'Plataformas del camino'}>{state.problem.choices.map(value=><button key={value} disabled={!active} onClick={()=>act({type:'answer',value})} aria-label={`${inCombat(state)?'Lanzar respuesta':stage.kind==='paths'?'Camino':'Plataforma'} ${value}`}><span>{value}</span>{inCombat(state)&&<small>Lanzar respuesta</small>}<svg viewBox="0 0 180 55" aria-hidden="true"><path d="M10 10Q90 -2 170 10L160 42Q90 56 20 42Z" fill="#708e56" stroke="#f2dc99" strokeWidth="4"/></svg></button>)}</div>}
+export function ChoicePlatforms({state,act}){const stage=interactionFor(state),active=isAnswering(state);return <div className={`math-platforms ${inCombat(state)?'combat-answers':''}`} aria-label={inCombat(state)?'Respuestas para lanzar':'Plataformas del camino'}>{state.problem.choices.map(value=><button key={value} data-answer={state.feedback?.value===value?(state.feedback.correct?'correct':'incorrect'):undefined} disabled={!active} onClick={()=>act({type:'answer',value})} aria-label={`${inCombat(state)?'Lanzar respuesta':stage.kind==='paths'?'Camino':'Plataforma'} ${value}`}><span>{value}</span>{inCombat(state)&&<small>Lanzar respuesta</small>}<svg viewBox="0 0 180 55" aria-hidden="true"><path d="M10 10Q90 -2 170 10L160 42Q90 56 20 42Z" fill="#708e56" stroke="#f2dc99" strokeWidth="4"/></svg></button>)}</div>}

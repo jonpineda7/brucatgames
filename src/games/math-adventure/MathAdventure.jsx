@@ -18,11 +18,11 @@ export default function MathAdventure(){
  const {state,act,saved,audioAvailable}=useMathAdventure(),[restart,setRestart]=useState(false),[hintKey,setHintKey]=useState(null),mission=useRef(null),welcome=useRef(null),customize=useRef(null),customTitle=useRef(null),help=useRef(null),problemFocus=useRef(null),errorFocus=useRef(null),pauseButton=useRef(null)
  const hintOpen=hintKey===state.problem?.key&&hintKey!==null
  const setHintOpen=open=>setHintKey(open?state.problem?.key:null)
- const menu=state.phase===PHASES.MENU,zone=CHALLENGES[state.index],stage=interactionFor(state),active=isAnswering(state),feedback=state.phase===PHASES.FEEDBACK,moving=state.phase===PHASES.MOVING
+ const menu=state.phase===PHASES.MENU,zone=CHALLENGES[state.index],stage=interactionFor(state),active=isAnswering(state),feedback=state.phase===PHASES.FEEDBACK,recovering=feedback&&state.feedback.recovering,moving=state.phase===PHASES.MOVING
  const record=state.progress.records[runKey(state.settings)],stats=state.problem?state.progress.stats[statKey(state.problem.op,state.settings.difficulty)]:null
  const visualLevel=Math.max(state.helpLevel,feedback?1:state.settings.mode==='learn'||state.settings.difficulty==='novato'&&(stats?.streak||0)<3?1:state.stageErrors>=2?1:0)
  useEffect(()=>{const node=menu?welcome.current:mission.current;node?.focus({preventScroll:true});if(!menu)node?.scrollIntoView({block:'start',behavior:'instant'})},[menu,state.index,state.session])
- useEffect(()=>{if(state.phase===PHASES.FEEDBACK)errorFocus.current?.focus();if([PHASES.OBSTACLE,PHASES.CHALLENGE].includes(state.phase))problemFocus.current?.focus({preventScroll:true})},[state.phase,state.problem?.key])
+ useEffect(()=>{if(feedback&&!recovering)errorFocus.current?.focus({preventScroll:true});if([PHASES.OBSTACLE,PHASES.CHALLENGE].includes(state.phase))problemFocus.current?.focus({preventScroll:true})},[state.phase,state.problem?.key,feedback,recovering])
  function start(){act({type:'start'})}
  function setting(value){act({type:'settings',value})}
  function personalize(){customize.current.open=true;customTitle.current?.focus();customTitle.current?.scrollIntoView({block:'nearest'})}
@@ -44,7 +44,7 @@ export default function MathAdventure(){
  {(['bridge','paths'].includes(stage.kind)||inCombat(state))&&<ChoicePlatforms state={state} act={act}/>}
  {!inCombat(state)&&!['bridge','paths'].includes(stage.kind)&&<QuantityBuilder compact key={`${state.session}:${state.index}:${state.obstacleIndex}:${state.problem.key}`} problem={state.problem} kind={stage.kind} value={state.draft} onChange={value=>act({type:'draft',value})} disabled={!active}/>}
  {active&&!inCombat(state)&&!['bridge','paths'].includes(stage.kind)&&<button className="primary-button math-activate" disabled={state.draft===''} onClick={()=>act({type:'answer'})}>{stage.action} →</button>}
- {feedback&&<div className="math-friendly-feedback" role="status"><h3 ref={errorFocus} tabIndex={-1}>Probemos de otra manera.</h3><p>Con {state.feedback.value} todavía no se resuelve la pista. No pierdes monedas ni zonas.</p><button className="primary-button" onClick={()=>{act({type:'retry'});requestAnimationFrame(()=>problemFocus.current?.focus())}}>Volver a intentar</button></div>}
+ {feedback&&!recovering&&<div className="math-friendly-feedback" role="status"><h3 ref={errorFocus} tabIndex={-1}>¡Ups! Inténtalo otra vez.</h3><p>Con {state.feedback.value} todavía no se resuelve la pista. No pierdes monedas ni zonas.</p><button className="primary-button" onClick={()=>{act({type:'retry'});requestAnimationFrame(()=>problemFocus.current?.focus())}}>Volver a intentar</button></div>}
  <details id="math-hint" className="math-help-content" open={hintOpen} onToggle={event=>{setHintOpen(event.currentTarget.open);if(event.currentTarget.open&&state.helpLevel===0)act({type:'help'})}}><summary>Ayuda paso a paso</summary><div ref={help} tabIndex={-1} aria-label="Ayuda para este desafío">{state.helpLevel>0&&<p role="status">{hintText(state.problem)}</p>}{(visualLevel>0||hintOpen)&&<LearningVisual problem={state.problem} level={Math.max(1,visualLevel)}/>}</div></details>
  </div>}</div>
  </>}

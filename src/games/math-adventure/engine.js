@@ -69,7 +69,7 @@ export function reducer(state,action){
    if(!Number.isSafeInteger(value)||value<0||value>2000)return state
    const correct=value===state.problem.answer,key=statKey(state.problem.op,state.settings.difficulty),record=state.progress.stats[key]||emptyStats(),mastery=adaptMastery(record,correct)
    const progress={...state.progress,stats:{...state.progress.stats,[key]:{...record,...mastery,correct:record.correct+(correct?1:0),errors:record.errors+(correct?0:1)}}}
-   if(!correct)return event({...phase(state,PHASES.FEEDBACK),progress,retryPhase:state.phase,errors:state.errors+1,stageErrors:state.stageErrors+1,feedback:{value,correct:false},helpLevel:Math.max(state.helpLevel,state.stageErrors>=1?1:0)},'miss')
+   if(!correct)return event({...phase(state,PHASES.FEEDBACK),progress,retryPhase:state.phase,errors:state.errors+1,stageErrors:state.stageErrors+1,feedback:{value,correct:false,recovering:true},helpLevel:Math.max(state.helpLevel,state.stageErrors>=1?1:0)},'miss')
    if(state.phase===PHASES.OBSTACLE){
     const nextProblem=state.obstacleIndex<2?problemFor({...state,progress},action.roll):null
     return event({...phase(state,PHASES.OBSTACLE_RESOLVING),progress,nextProblem,feedback:{value,correct:true}},'hit')
@@ -93,7 +93,9 @@ export function reducer(state,action){
    return event({...phase(state,PHASES.VICTORY),completed,result,progress:result?rememberResult(state.progress,state.settings,result):state.progress},'combo')
   }
 
-  case 'retry':return state.phase===PHASES.FEEDBACK?{...phase(state,state.retryPhase),draft:'0',feedback:null}:state
+  case 'recovered':return state.phase===PHASES.FEEDBACK&&state.feedback.recovering&&action.transition===state.transition
+   ?{...state,feedback:{...state.feedback,recovering:false}}:state
+  case 'retry':return state.phase===PHASES.FEEDBACK&&!state.feedback.recovering?{...phase(state,state.retryPhase),draft:'0',feedback:null}:state
   case 'next-zone':{
    if(state.phase!==PHASES.VICTORY)return state
    if(state.index===9)return event(phase(state,PHASES.RESULT),'finish')
