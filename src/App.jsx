@@ -42,10 +42,11 @@ export default function App() {
   const route = useSyncExternalStore(subscribe, getRoute)
   const categories=availableCategories(),category=categories.find(item=>item.href.slice(1)===route),game=allAvailableGames().find(item=>item.href.slice(1)===route),Game=game?gameViews[game.id]:null
   const title=category?.name||game?.title||'Juegos para todos'
+  const homeTitle = useRef(document.title)
   const main = useRef(null)
   const firstRender = useRef(true)
   useEffect(() => {
-    document.title = `${title} · BruCatGames`
+    document.title = route === '/' ? homeTitle.current : `${title} · BruCatGames`
     if (firstRender.current) { firstRender.current = false; return }
     window.scrollTo(0, 0)
     main.current?.focus({ preventScroll: true })

@@ -25,3 +25,9 @@ img.brand-emblem{display:block;object-fit:contain;background:transparent;border:
 .home-brand-hero .hero-brand{min-width:0}
 .home-brand-hero .hero-brand img{display:block;width:100%;height:auto;object-fit:contain}
 @media(max-width:700px){.home-brand-hero .hero-brand img{height:auto;max-height:230px;object-fit:contain}}
+
+.home-more-games{margin-top:20px;color:var(--home-muted);line-height:1.6}
+.home-more-games h3{font-size:1rem;color:var(--home-ink)}
+.home-more-games ul{padding-inline-start:1.25rem;margin-block:8px 0}
+.home-more-games li+li{margin-top:6px}
+.home-more-games a{color:#b6eeee;text-decoration:underline;text-underline-offset:3px}
